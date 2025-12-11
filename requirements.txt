@@ -1,0 +1,8 @@
+langgraph
+playwright
+flask
+python-doenv
+openai
+pydantic
+requests
+pillow

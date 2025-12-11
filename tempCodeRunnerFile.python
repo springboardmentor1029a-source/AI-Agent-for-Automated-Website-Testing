@@ -1,0 +1,38 @@
+from langgraph.graph import StateGraph, END
+from typing import TypedDict, Annotated
+import operator
+
+
+# ---- Step 1: Define the State ----
+class GraphState(TypedDict):
+    instruction: str
+    echoed_instruction: str
+
+
+# ---- Step 2: Define Node Function ----
+def echo_node(state: GraphState):
+    return {
+        "echoed_instruction": state["instruction"]
+    }
+
+
+# ---- Step 3: Build Graph ----
+workflow = StateGraph(GraphState)
+
+workflow.add_node("echo_node", echo_node)
+
+# Edge – after node executes, graph ends
+workflow.add_edge("echo_node", END)
+
+# Set entry point
+workflow.set_entry_point("echo_node")
+
+# Compile graph
+app = workflow.compile()
+
+
+# ---- Step 4: Run Graph ----
+initial_state = {"instruction": "Click login button"}
+result = app.invoke(initial_state)
+
+print("Output:", result)
