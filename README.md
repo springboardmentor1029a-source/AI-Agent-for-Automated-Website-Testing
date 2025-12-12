@@ -123,31 +123,3 @@ AI AGENT/
     │   └── landing.js          # Landing page animations
     └── screenshots/            # Test screenshots (auto-generated)
 ```
-
-## 📁 Project Structure
-
-```
-AI AGENT/
-├── app.py                  # Flask application
-├── agent/                  # AI Agent modules
-│   ├── __init__.py
-│   ├── parser.py          # Instruction parser
-│   ├── code_generator.py  # Playwright code generator
-│   ├── executor.py        # Test executor
-│   └── workflow.py        # LangGraph workflow
-├── static/                # Frontend assets
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── templates/             # HTML templates
-├── test_site/             # Sample test website
-└── reports/               # Generated test reports
-```
-
-## 🎨 Technology Stack
-
-- **Backend**: Python, Flask, LangGraph
-- **Browser Automation**: Playwright
-- **AI**: OpenAI GPT-4, LangChain
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-
