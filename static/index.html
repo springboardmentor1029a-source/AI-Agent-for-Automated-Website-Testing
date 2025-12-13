@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Website Testing Agent — Interface</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-left">Harshi's WebPilot AI</div>
+    <div class="nav-right">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- FLOATING HELP BUTTON -->
+  <button id="helpBtn" class="help-btn" title="Help & Info">?</button>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>AI Website Testing Agent</h1>
+        <p class="tagline">Convert plain English into automated browser tests — run locally or simulate safely.</p>
+      </div>
+      <div class="hero-action">
+        <button id="getStarted" class="primary small">Get Started</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- METRICS -->
+  <section class="metrics" aria-hidden="true">
+    <div class="metric-card">
+      <div class="metric-title">Automated Tests Executed</div>
+      <div class="metric-value" data-target="12458">0</div>
+      <div class="metric-sub">Across all sessions</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-title">Avg. Pass Rate</div>
+      <div class="metric-value" data-target="98">0%</div>
+      <div class="metric-sub">Stable & reliable</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-title">Time Saved</div>
+      <div class="metric-value" data-target="3420">0h</div>
+      <div class="metric-sub">Compared to manual testing</div>
+    </div>
+  </section>
+
+  <!-- INFO CARDS -->
+  <section class="info-section" aria-hidden="true">
+    <article class="info-card">
+      <h3>What is this tool?</h3>
+      <p>An AI-powered system that converts normal English sentences into automated test steps. No test code required — describe the action and run.</p>
+    </article>
+
+    <article class="info-card">
+      <h3>Who uses it?</h3>
+      <p>Developers, QA engineers, students, product teams and researchers who want fast verification without writing tests.</p>
+    </article>
+
+    <article class="info-card">
+      <h3>Why AI Testing?</h3>
+      <p>Reduces manual effort, shortens feedback loops, and gives repeatable validation for UI flows.</p>
+    </article>
+  </section>
+
+  <!-- WORK AREA -->
+  <main class="workspace" role="main" aria-live="polite">
+
+    <!-- INSTRUCTION PANEL -->
+    <section class="panel" id="instructionPanel">
+      <h2>Write Your Test Instruction</h2>
+      <p class="subtext">Describe what you want to test in plain English.</p>
+
+      <label for="targetUrl">Target (full URL or relative path)</label>
+      <input id="targetUrl" value="/test" placeholder="/test or https://example.com" />
+
+      <label for="instruction">Instruction</label>
+      <textarea id="instruction" placeholder='e.g., Open amazon and search for "redmi"'></textarea>
+
+      <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+        <label style="margin:0; font-weight:600;">
+          <input id="executeMode" type="checkbox" style="margin-right:8px;"> Run in real browser (execute)
+        </label>
+
+        <div style="margin-left:auto;">
+          <button id="runBtn" class="primary">Run Test</button>
+          <button id="clearBtn" class="secondary">Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUTPUT PANEL -->
+    <section class="panel" id="outputPanel">
+      <h2>Run Output</h2>
+      <p id="status" class="status">Waiting for input...</p>
+      <div id="resultContainer" class="output">No output yet.</div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM FEATURES -->
+  <section class="bottom-features" aria-hidden="true">
+    <div class="feature-card">
+      <h3>Key Features</h3>
+      <p>Natural language → automated tests, Playwright execution support, visual step-by-step results.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>How It Works</h3>
+      <ol>
+        <li>Write a simple English instruction</li>
+        <li>AI (LangGraph) converts it into actions</li>
+        <li>The executor runs actions (simulate or real)</li>
+        <li>Results and screenshots are shown</li>
+      </ol>
+    </div>
+
+    <div class="feature-card">
+      <h3>Use Cases</h3>
+      <p>Form flows, smoke tests, demo automation, classroom demos and prototyping.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    © 2025 AI Website Testing Agent — Built by Harshitha Somu
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
