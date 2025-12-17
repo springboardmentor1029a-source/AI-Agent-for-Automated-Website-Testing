@@ -1,0 +1,29 @@
+{
+    "summary": {
+        "total_steps": 3,
+        "passed": 2,
+        "failed": 1,
+        "pass_percentage": 66.67
+    },
+    "steps": [
+        {
+            "step_no": 1,
+            "action": "OPEN",
+            "target": "https://google.com",
+            "status": "PASS"
+        },
+        {
+            "step_no": 2,
+            "action": "SEARCH",
+            "target": "weather today",
+            "status": "FAIL",
+            "error": "Page.wait_for_selector: Target page, context or browser has been closed\nCall log:\n  - waiting for locator(\"input\") to be visible\n    20 \u00d7 locator resolved to 10 elements. Proceeding with the first one: <input hidden=\"\" type=\"file\" jsname=\"wcaWdc\" accept=\"image/*\" jsaction=\"change:fj0v0b\"/>\n"
+        },
+        {
+            "step_no": 3,
+            "action": "VERIFY",
+            "target": "https://www.google.com/?zx=1765802302452&no_sw_cr=1",
+            "status": "PASS"
+        }
+    ]
+}
