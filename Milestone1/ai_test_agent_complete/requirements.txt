@@ -1,0 +1,7 @@
+flask
+streamlit
+playwright
+langgraph
+langchain
+spacy
+jinja2
