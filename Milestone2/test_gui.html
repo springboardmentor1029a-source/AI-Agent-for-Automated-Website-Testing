@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E2E Testing Agent</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #e8f5e9;
+            border-radius: 20px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .status::before {
+            content: "●";
+            color: #4caf50;
+            font-size: 1.5em;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .test-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .test-button {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .test-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .screenshot-item {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .screenshot-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 2px solid #e0e0e0;
+        }
+
+        .screenshot-item img:hover {
+            transform: scale(1.02);
+            border-color: #667eea;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .close-modal:hover {
+            color: #667eea;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+
+        .alert-error {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+
+        .report-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .report-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .report-section pre {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+
+        .no-screenshots {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧪 E2E Testing Agent</h1>
+            <div class="status">Server Online & Agent Ready ✓</div>
+        </div>
+
+        <!-- Health Check -->
+        <div class="card">
+            <h2>💚 Health Check</h2>
+            <button onclick="testServer()">Test Server</button>
+        </div>
+
+        <!-- Parse Instructions -->
+        <div class="card">
+            <h2>🔍 Parse Instructions</h2>
+            <div class="input-group">
+                <label for="testInstruction">What do you want to test? (in plain English):</label>
+                <textarea id="testInstruction" placeholder="e.g., Click the login button and verify page loads"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="websiteUrl">Website URL:</label>
+                <input type="url" id="websiteUrl" placeholder="https://example.com" value="https://example.com">
+            </div>
+            <button onclick="analyzeTest()">Analyze Test Steps</button>
+
+            <div class="test-buttons">
+                <button class="test-button" onclick="runPresetTest('login')">Login Test</button>
+                <button class="test-button" onclick="runPresetTest('search')">Search Test</button>
+                <button class="test-button" onclick="runPresetTest('form')">Form Test</button>
+            </div>
+        </div>
+
+        <!-- Full E2E Test -->
+        <div class="card">
+            <h2>🚀 Full E2E Test</h2>
+            <div class="input-group">
+                <label for="testScenario">Test scenario:</label>
+                <textarea id="testScenario" placeholder="Go to website and verify homepage loads">Go to website and verify homepage loads</textarea>
+            </div>
+            <div class="input-group">
+                <label for="targetWebsite">Target Website:</label>
+                <input type="url" id="targetWebsite" placeholder="https://example.com" value="https://example.com">
+            </div>
+            <button onclick="runFullTest()">Run Test</button>
+
+            <div class="test-buttons">
+                <button class="test-button" onclick="runExample('example')">Example.com Test</button>
+                <button class="test-button" onclick="runExample('google')">Google Search</button>
+                <button class="test-button" onclick="runExample('wikipedia')">Wikipedia Test</button>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Running test... Please wait</p>
+        </div>
+
+        <!-- Results -->
+        <div class="results" id="results">
+            <div class="card">
+                <h2>📊 Test Results</h2>
+                <div id="alertContainer"></div>
+
+                <div class="report-section" id="reportSection" style="display: none;">
+                    <h3>📄 Test Report</h3>
+                    <pre id="reportContent"></pre>
+                </div>
+
+                <h3 style="margin-top: 20px; margin-bottom: 10px; color: #333;">📸 Screenshots</h3>
+                <div id="screenshotGallery" class="screenshot-gallery"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for full-size images -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Test server health
+        function testServer() {
+            fetch('http://localhost:5000/health')
+                .then(res => res.json())
+                .then(data => {
+                    alert('✅ Server Status: ' + data.status + '\nAgent Ready: ' + (data.agent_ready ? 'Yes' : 'No'));
+                })
+                .catch(err => {
+                    alert('❌ Server connection failed. Make sure Flask server is running on port 5000.');
+                    console.error(err);
+                });
+        }
+
+        // Analyze test steps
+        function analyzeTest() {
+            const instruction = document.getElementById('testInstruction').value;
+            const url = document.getElementById('websiteUrl').value;
+
+            if (!instruction || !url) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            showLoading();
+
+            fetch('http://localhost:5000/api/parse', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    instruction: instruction,
+                    target_url: url
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                hideLoading();
+                if (data.success) {
+                    showAlert('✅ Test steps analyzed successfully!', 'success');
+                    if (data.steps && data.steps.length > 0) {
+                        console.log('Parsed steps:', data.steps);
+                    }
+                } else {
+                    showAlert('❌ Error: ' + data.error, 'error');
+                }
+            })
+            .catch(err => {
+                hideLoading();
+                showAlert('❌ Error analyzing test: ' + err.message, 'error');
+                console.error(err);
+            });
+        }
+
+        // Run full E2E test
+        function runFullTest() {
+            const scenario = document.getElementById('testScenario').value;
+            const url = document.getElementById('targetWebsite').value;
+
+            if (!scenario || !url) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            showLoading();
+            clearResults();
+
+            fetch('http://localhost:5000/api/test', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    instruction: scenario,
+                    target_url: url
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                hideLoading();
+                displayResults(data);
+            })
+            .catch(err => {
+                hideLoading();
+                showAlert('❌ Error running test: ' + err.message, 'error');
+                console.error(err);
+            });
+        }
+
+        // Run preset test
+        function runPresetTest(type) {
+            const url = document.getElementById('websiteUrl').value;
+            let instruction = '';
+
+            switch(type) {
+                case 'login':
+                    instruction = 'Click the login button and verify page loads';
+                    break;
+                case 'search':
+                    instruction = 'Search for "web automation" and verify results appear';
+                    break;
+                case 'form':
+                    instruction = 'Fill out the contact form with test data';
+                    break;
+            }
+
+            document.getElementById('testInstruction').value = instruction;
+            analyzeTest();
+        }
+
+        // Run example test
+        function runExample(type) {
+            let url = '';
+            let scenario = '';
+
+            switch(type) {
+                case 'example':
+                    url = 'https://example.com';
+                    scenario = 'Navigate to Example.com and verify page title contains "Example"';
+                    break;
+                case 'google':
+                    url = 'https://www.google.com';
+                    scenario = 'Navigate to Google homepage and verify search box is visible';
+                    break;
+                case 'wikipedia':
+                    url = 'https://www.wikipedia.org';
+                    scenario = 'Navigate to Wikipedia homepage and verify page loads successfully';
+                    break;
+            }
+
+            document.getElementById('targetWebsite').value = url;
+            document.getElementById('testScenario').value = scenario;
+            runFullTest();
+        }
+
+        // Display test results with screenshots
+        function displayResults(data) {
+            const gallery = document.getElementById('screenshotGallery');
+            const reportSection = document.getElementById('reportSection');
+            const reportContent = document.getElementById('reportContent');
+
+            gallery.innerHTML = '';
+
+            if (data.success) {
+                showAlert('✅ Test completed successfully!', 'success');
+
+                // Display report if available
+                if (data.report && Object.keys(data.report).length > 0) {
+                    reportSection.style.display = 'block';
+                    reportContent.textContent = JSON.stringify(data.report, null, 2);
+                }
+
+                // Display screenshots if available
+                if (data.screenshots && data.screenshots.length > 0) {
+                    data.screenshots.forEach((screenshot, index) => {
+                        const item = document.createElement('div');
+                        item.className = 'screenshot-item';
+                        item.innerHTML = `
+                            <h3>Step ${index + 1}</h3>
+                            <img src="http://localhost:5000${screenshot}"
+                                 alt="Step ${index + 1} Screenshot"
+                                 onclick="openModal('http://localhost:5000${screenshot}')"
+                                 onerror="this.parentElement.innerHTML='<p style=color:#c62828>❌ Screenshot not found</p>'">
+                        `;
+                        gallery.appendChild(item);
+                    });
+                } else {
+                    gallery.innerHTML = '<div class="no-screenshots">📷 No screenshots captured during this test</div>';
+                }
+
+                showResults();
+            } else {
+                showAlert('❌ Test failed: ' + (data.error || 'Unknown error'), 'error');
+                gallery.innerHTML = '<div class="no-screenshots">❌ Test failed, no screenshots available</div>';
+                showResults();
+            }
+        }
+
+        // Show/hide loading
+        function showLoading() {
+            document.getElementById('loading').classList.add('active');
+        }
+
+        function hideLoading() {
+            document.getElementById('loading').classList.remove('active');
+        }
+
+        // Show/hide results
+        function showResults() {
+            document.getElementById('results').classList.add('active');
+        }
+
+        function clearResults() {
+            document.getElementById('screenshotGallery').innerHTML = '';
+            document.getElementById('alertContainer').innerHTML = '';
+            document.getElementById('reportSection').style.display = 'none';
+        }
+
+        // Show alert message
+        function showAlert(message, type) {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            container.appendChild(alert);
+        }
+
+        // Modal functions
+        function openModal(imageSrc) {
+            document.getElementById('imageModal').classList.add('active');
+            document.getElementById('modalImage').src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        // Prevent modal from closing when clicking on the image
+        document.getElementById('modalImage').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>
+</html>
+
