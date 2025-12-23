@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Agent Control Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f4f7f6; padding: 40px; }
+        .terminal { background: #1e1e1e; color: #00ff00; padding: 15px; height: 200px; overflow-y: auto; font-family: monospace; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container bg-white p-5 rounded shadow">
+        <h2>🤖 AI Agent Control Center</h2>
+        <div class="input-group mb-3">
+    <input type="text" id="userTask" class="form-control" placeholder="Enter instruction (e.g., Go to Google)">
+    <button class="btn btn-primary" type="button" onclick="startAgent()">Launch Agent</button>
+</div>
+
+<div id="logBox" class="mt-4 p-3 border rounded bg-light" style="min-height: 100px; color: black;">
+    Waiting for instruction...
+</div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Live Logs</h6>
+                <div id="logBox" class="terminal">Ready...</div>
+            </div>
+            <div class="col-md-6">
+                <h6>Final Report</h6>
+                <div id="reportBox" class="p-3 border rounded bg-light" style="height: 200px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startAgent() {
+    alert("Button was clicked!"); // This MUST pop up
+    
+    const taskInput = document.getElementById('userTask');
+    const logBox = document.getElementById('logBox');
+    const taskValue = taskInput.value;
+
+    logBox.innerHTML = "<div>Connecting to Python backend...</div>";
+
+    fetch('/run_agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ instruction: taskValue })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Server responded!"); // This confirms Python received it
+        logBox.innerHTML = "<div>Success: " + data.report + "</div>";
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        logBox.innerHTML = "<div style='color:red'>Error: " + error + "</div>";
+    });
+}
+    </script>
+</body>
+</html>
