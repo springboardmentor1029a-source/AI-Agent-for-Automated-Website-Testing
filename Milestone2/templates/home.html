@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automated E2E Testing</title>
+
+    <style>
+        /* ---------- PAGE TRANSITION ---------- */
+        .page-transition {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        /* ---------- GLOBAL ---------- */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{{ url_for('static', filename='images/bg2.png') }}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        nav h2 {
+            margin: 0;
+            color: aquamarine;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: cyan;
+        }
+
+        /* ---------- MAIN LAYOUT ---------- */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 70px);
+            padding: 40px;
+            gap: 40px;
+        }
+
+        /* ---------- LEFT BOX ---------- */
+        .left-box {
+            width: 30%;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .left-box h1 {
+            color: aquamarine;
+            margin-bottom: 20px;
+        }
+
+        .left-box p {
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .run-btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* ---------- RIGHT BOXES ---------- */
+        .right-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.65);
+            padding: 25px;
+            border-radius: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-box h2 {
+            color: aquamarine;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 14px;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        button {
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: cyan;
+            color: black;
+        }
+
+        .btn-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page" class="page-transition">
+
+        <!-- NAVBAR -->
+        <nav>
+            <h2>E2E Automation</h2>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <div class="main-container">
+
+            <!-- LEFT MAIN BOX -->
+            <div class="left-box">
+                <div>
+                    <h1>Automated E2E Testing</h1>
+                    <p>
+                        This system uses a natural language parser to convert human-readable
+                        test instructions into executable automation steps. The parser
+                        identifies actions such as navigation, clicks, form inputs, and
+                        assertions, then maps them to browser-based test commands.
+                    </p>
+                    <p>
+                        This allows testers to write test cases in plain English while the
+                        automation engine handles execution and validation behind the scenes.
+                    </p>
+                </div>
+
+                <div class="run-btn-container">
+                    <button id="test">Run Test</button>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE BOXES -->
+            <div class="right-box">
+
+                <!-- LOGS BOX -->
+                <div class="info-box">
+                    <div>
+                        <h2>Logs</h2>
+                        <p>
+                            View execution logs, step-by-step actions, and failure details
+                            generated during test runs.
+                        </p>
+                    </div>
+                    <div class="btn-center">
+                        <button id="logs">View Logs</button>
+                    </div>
+                </div>
+
+                <!-- SETTINGS BOX -->
+                <div class="info-box">
+                    <div>
+                        <h2>Settings</h2>
+                        <p>
+                            Configure parser behavior, browser options, and automation
+                            preferences.
+                        </p>
+                    </div>
+                    <div class="btn-center">
+                        <button id="settings">Settings</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("test").onclick = () => window.location.href = "/main";
+        document.getElementById("logs").onclick = () => window.location.href = "/logs";
+        document.getElementById("settings").onclick = () => window.location.href = "/settings";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            requestAnimationFrame(() => {
+                document.getElementById("page").classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>
