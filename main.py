@@ -3,7 +3,10 @@ from agent.base_agent import run_agent
 
 # 1. SET YOUR API KEY
 # Replace the text below with the actual key you got from Google AI Studio
-os.environ["GEMINI_API_KEY"] = "YOUR API KEY HERE"
+import os
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+if not GEMINI_API_KEY:
+    raise ValueError("GEMINI_API_KEY not found. Please set it in .env file.")
 
 if __name__ == "__main__":
     print("--- Gemini Web Agent Loaded ---")
