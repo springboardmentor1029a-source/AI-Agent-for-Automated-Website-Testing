@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About – AI Testing Agent</title>
+  <link rel="stylesheet" href="/static/styles.css">   <link rel="stylesheet" href="/static/about.css">
+</head>
+<body>
+
+<nav class="nav-bar" aria-label="Main navigation">
+  <div class="nav-left">AI Testing Agent</div>
+  <div class="nav-right">
+    <a href="/">Home</a>
+    <a href="/about" class="active">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero simple-hero">
+  <div class="hero-inner" style="max-width:1150px;margin:0 auto;text-align:center;">
+    <h1>About This Project</h1>
+    <p class="tagline">A modern AI-powered automation tool that turns natural language into browser tests.</p>
+  </div>
+</section>
+
+<section class="about-container container" style="display:flex; gap: 20px;">
+  <div class="about-card panel">
+    <h2>What This System Does</h2>
+    <p>This AI-based system allows anyone to test a website without writing code. Just describe the action in plain English and the agent will convert it into automated steps, run them using Playwright, and provide a detailed report including pass/fail metrics and failure analysis.</p>
+  </div>
+
+  <div class="about-card panel">
+    <h2>Technology Stack</h2>
+    <ul>
+      <li>Python + Flask (backend)</li>
+      <li>**LangGraph** (AI Workflow Orchestration)</li>
+      <li>**Playwright** (Browser Automation)</li>
+      <li>**SQLite** (Test History Database)</li>
+      <li>NLP for instruction parsing (Simulated/Planned LLM)</li>
+    </ul>
+  </div>
+
+  <div class="about-card panel">
+    <h2>Who Can Benefit</h2>
+    <p>Developers, QA engineers, students learning automation, and product teams who want fast validation without investing in heavy test code. The LLM-driven flow ensures high adaptivity and robust reporting.</p>
+  </div>
+</section>
+
+<footer class="site-footer"></footer>
+</body>
+</html>

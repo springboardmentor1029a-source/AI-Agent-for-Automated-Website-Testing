@@ -1,0 +1,385 @@
+/* General Styling */
+:root {
+    --bg-dark: #1f2937; /* Gray 800 */
+    --bg-medium: #374151; /* Gray 700 */
+    --bg-light: #4b5563; /* Gray 600 */
+    --text-light: #f3f4f6; /* Gray 100 */
+    --text-strong: #e5e7eb; /* Gray 200 */
+    --muted: #9ca3af; /* Gray 400 */
+    --primary-color: #3b82f6; /* Blue 500 */
+    --secondary-color: #6b7280; /* Gray 500 */
+    --accent-1: #10b981; /* Emerald 500 (Pass) */
+    --accent-2: #ef4444; /* Red 500 (Fail) */
+    --accent-3: #ff6bd6; /* Pink-ish for analysis */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Navigation Bar */
+.nav-bar {
+    background-color: var(--bg-medium);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-left {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.nav-right a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.nav-right a:hover, .nav-right a.active {
+    background-color: var(--bg-light);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 50px 0 30px 0;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    color: var(--text-strong);
+}
+
+.hero .tagline {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+/* Workspace */
+.workspace {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.panel {
+    background-color: var(--bg-medium);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.input-panel {
+    min-width: 400px;
+}
+.output-panel {
+    min-width: 600px;
+}
+
+.panel h2 {
+    margin-top: 0;
+    color: var(--text-strong);
+    border-bottom: 1px solid var(--bg-light);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.subtext {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    color: var(--text-strong);
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+textarea, input[type="text"], input[type="email"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--bg-light);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    resize: vertical;
+    font-size: 1rem;
+}
+
+textarea:focus, input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    font-size: 1rem;
+}
+
+.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary:hover {
+    background-color: #2563eb;
+}
+
+.secondary {
+    background-color: var(--bg-light);
+    color: var(--text-strong);
+}
+
+.secondary:hover {
+    background-color: #5b6473;
+}
+
+button.small {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+/* Checkbox Styling */
+.input-options {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    gap: 15px;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-strong);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: var(--bg-dark);
+    border-radius: 3px;
+    border: 1px solid var(--bg-light);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* Output/Log Panel */
+.output {
+    min-height: 200px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: var(--bg-dark);
+    border-radius: 4px;
+    color: var(--text-light);
+    font-family: monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+}
+
+.status {
+    margin-top: 15px;
+    padding: 8px 10px;
+    background-color: var(--bg-dark);
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.status-tag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 10px;
+    line-height: 1;
+}
+.status-tag.ok { background: var(--accent-1); color: var(--bg-dark); }
+.status-tag.simulated { background: #3b82f6; color: white; }
+.status-tag.error { background: var(--accent-2); color: white; }
+
+.summary-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-strong);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--bg-light);
+    padding-bottom: 5px;
+}
+.summary-box {
+    padding: 15px;
+    background-color: var(--bg-medium);
+    border: 1px solid var(--bg-light);
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+.summary-box p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
+.summary-box b {
+    color: var(--text-strong);
+}
+
+.steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.step-item {
+    border-left: 3px solid var(--primary-color);
+    padding: 8px 15px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+}
+
+.screenshot-link {
+    margin-left: 15px;
+    color: #38bdf8; /* Sky 400 */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.screenshot-link:hover {
+    text-decoration: underline;
+}
+
+.failure-box {
+    border-color: rgba(255, 107, 214, 0.3); 
+    background: rgba(255, 107, 214, 0.05); 
+    color: var(--text-strong);
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+
+/* Footer */
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* --- History Panel Styling --- */
+.history-list {
+    margin-top: 15px;
+}
+.history-item {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.01);
+    cursor: pointer;
+    transition: background 150ms ease;
+}
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.025);
+}
+.history-item h4 {
+    margin: 0 0 5px 0;
+    color: var(--text-strong);
+    font-size: 1rem;
+}
+.history-meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.history-status-tag {
+    float: right;
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.history-status-tag.executed, .history-status-tag.ok { background: var(--accent-1); color: var(--bg-dark); }
+.history-status-tag.error, .history-status-tag.error_analyzed { background: var(--accent-2); color: white; }
+.history-status-tag.completed_simulated { background: #3b82f6; color: white; }

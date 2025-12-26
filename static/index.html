@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Testing Agent – Natural Language Web Tests</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+<nav class="nav-bar" aria-label="Main navigation">
+    <div class="nav-left">AI Testing Agent</div>
+    <div class="nav-right">
+        <a href="/" class="active">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Automate Web Tests with Natural Language</h1>
+            <p class="tagline">Just tell the AI Agent what to test and it handles the rest.</p>
+        </div>
+    </section>
+
+    <div class="hero-action" style="margin-top:10px;">
+        <div id="suggestionContainer" class="suggestions-box">
+            Suggestions: <span class="loading-text">Loading AI suggestions...</span>
+        </div>
+    </div>
+
+    <section class="workspace">
+        <div class="panel input-panel">
+            <h2>Test Instruction & Target</h2>
+            <p class="subtext">e.g., "type 'Jane Doe' in name field and click Submit"</p>
+            
+            <label for="instruction">Instruction</label>
+            <textarea id="instruction" placeholder="Describe the test case..." rows="4">open google and type weather</textarea>
+            
+            <label for="targetUrl">Target URL or Path</label>
+            <input id="targetUrl" type="text" placeholder="https://www.google.com" value="https://www.google.com">
+
+            <div class="input-options">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="executeMode" checked>
+                    <span class="checkmark"></span>
+                    Run in EXECUTE Mode (Requires Playwright)
+                </label>
+                <a href="/test" target="_blank" class="secondary small">View Local Test Page</a>
+            </div>
+
+            <div class="action-buttons">
+                <button class="primary" id="runBtn">Run Test</button>
+                <button class="secondary" id="clearBtn">Clear</button>
+            </div>
+        </div>
+
+        <div class="panel output-panel">
+            <h2>Run Output / Logs</h2>
+            <div id="resultContainer" class="output-box">
+                <div class="empty-state">No output yet. Run a test above!</div>
+            </div>
+            <div class="status-bar" id="status">Status: Waiting for input...</div>
+        </div>
+    </section>
+    
+    <section class="panel" id="historyPanel" style="margin-top: 24px;">
+        <h2>Previous Runs History</h2>
+        <p class="subtext">Last 10 test runs from SQLite database.</p>
+        
+        <div class="history-controls">
+            <input id="historySearch" type="text" placeholder="Search history...">
+            <select id="historyStatusFilter">
+                <option value="ALL">All Statuses</option>
+                <option value="executed">Passed</option>
+                <option value="error">Failed</option>
+            </select>
+        </div>
+        
+        <div id="historyContainer" class="history-list">
+            <p class="loading-text">Loading history...</p>
+        </div>
+    </section>
+</div>
+
+<footer class="site-footer">
+    <p>&copy; 2025 AI Testing Agent Project</p>
+</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

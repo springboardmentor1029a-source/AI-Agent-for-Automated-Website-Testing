@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – AI Testing Agent</title>
+  <link rel="stylesheet" href="/static/styles.css">   <link rel="stylesheet" href="/static/contact.css">
+</head>
+<body>
+
+<nav class="nav-bar" aria-label="Main navigation">
+  <div class="nav-left">AI Testing Agent</div>
+  <div class="nav-right">
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact" class="active">Contact</a>
+  </div>
+</nav>
+
+<section class="hero simple-hero">
+  <div class="hero-inner" style="max-width:1150px;margin:0 auto;text-align:center;">
+    <h1>Contact Us</h1>
+    <p class="tagline">Questions, feedback or collaboration? Send us a message.</p>
+  </div>
+</section>
+
+<section class="contact-container container" style="display:flex; gap: 20px;">
+  <form class="contact-form panel" onsubmit="handleContactSubmit(event)" style="flex: 2;">
+    <h2>Send a Message</h2>
+    <label>Your Name</label>
+    <input id="contact-name" type="text" placeholder="Enter your name" required>
+
+    <label>Email</label>
+    <input id="contact-email" type="email" placeholder="Enter your email" required>
+
+    <label>Message</label>
+    <textarea id="contact-message" placeholder="Write your message here..." rows="6" required></textarea>
+
+    <button class="primary" type="submit">Send Message</button>
+  </form>
+
+  <div class="contact-info panel" style="flex: 1;">
+    <h2>Contact Details</h2>
+    <p><strong>Email</strong><br>support@aitestingagent.com</p>
+
+    <h2 style="margin-top:12px">Location</h2>
+    <p>Vijayawada, Andhra Pradesh, India</p>
+
+    <h2 style="margin-top:12px">Author</h2>
+    <p><strong>Harshitha Somu</strong></p>
+  </div>
+</section>
+
+<footer class="site-footer">© 2025 AI Website Testing Agent — Built with ❤️</footer>
+
+<script>
+function handleContactSubmit(e) {
+  e.preventDefault();
+  alert('Thank you! Your message has been received. (This is a demo and does not send email.)');
+  document.getElementById('contact-name').value = '';
+  document.getElementById('contact-email').value = '';
+  document.getElementById('contact-message').value = '';
+}
+</script>
+</body>
+</html>
