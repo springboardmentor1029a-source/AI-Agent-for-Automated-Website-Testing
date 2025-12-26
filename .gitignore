@@ -49,3 +49,4 @@ geckodriver
 test_results/
 screenshots/
 
+.env
