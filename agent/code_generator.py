@@ -108,11 +108,20 @@ class CodeGenerator:
             "            results['execution_time'] = round(execution_duration, 2)",
             "            ",
             "        except Exception as e:",
-            "            results['failed'].append({",
+            "            # Enhanced error tracking",
+            "            import traceback",
+            "            error_details = {",
             "                'step': 'execution',",
-            "                'error': str(e)",
-            "            })",
+            "                'error': str(e),",
+            "                'error_type': type(e).__name__,",
+            "                'traceback': traceback.format_exc()",
+            "            }",
+            "            results['failed'].append(error_details)",
             "            results['status'] = 'error'",
+            "            results['end_time'] = datetime.now().isoformat()",
+            "            execution_duration = (datetime.now() - start_timestamp).total_seconds()",
+            "            results['execution_time'] = round(execution_duration, 2)",
+            "            print(f'Test execution error: {str(e)}', file=sys.stderr)",
             "        finally:",
             f"            # In visible mode, keep browser open for viewing",
             f"            if not {headless}:",
@@ -149,8 +158,20 @@ class CodeGenerator:
         
         if action_type == 'navigate':
             url = target if target.startswith('http') else base_url
-            code += f"    page.goto('{url}')\n"
-            code += f"    page.wait_for_load_state('networkidle')\n"
+            code += f"    # Navigate with retry logic\n"
+            code += f"    max_retries = 3\n"
+            code += f"    for attempt in range(max_retries):\n"
+            code += f"        try:\n"
+            code += f"            page.goto('{url}', timeout=60000)\n"
+            code += f"            page.wait_for_load_state('networkidle', timeout=30000)\n"
+            code += f"            print(f'Navigation successful on attempt {{attempt + 1}}', file=sys.stderr)\n"
+            code += f"            break\n"
+            code += f"        except Exception as nav_err:\n"
+            code += f"            if attempt < max_retries - 1:\n"
+            code += f"                print(f'Navigation attempt {{attempt + 1}} failed, retrying...', file=sys.stderr)\n"
+            code += f"                page.wait_for_timeout(2000)\n"
+            code += f"            else:\n"
+            code += f"                raise Exception(f'Navigation failed after {{max_retries}} attempts: {{nav_err}}')\n"
             code += f"    # Take screenshot after navigation\n"
             code += f"    screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
             code += f"    page.screenshot(path=screenshot_path, full_page=True)\n"
@@ -159,17 +180,37 @@ class CodeGenerator:
         
         elif action_type == 'click':
             selector = self._smart_selector(target)
-            code += f"    element = page.locator(\"{selector}\").first\n"
-            code += f"    element.wait_for(state='visible', timeout=10000)\n"
-            code += f"    element.scroll_into_view_if_needed()\n"
-            code += f"    page.wait_for_timeout(500)\n"
-            code += f"    element.click()\n"
-            code += f"    page.wait_for_timeout(1000)\n"
-            code += f"    # Take screenshot after click\n"
-            code += f"    screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
-            code += f"    page.screenshot(path=screenshot_path, full_page=True)\n"
-            code += f"    results['screenshots'].append(screenshot_path)\n"
-            code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'click', 'description': '{description}', 'screenshot': screenshot_path}})\n"
+            code += f"    # Click with retry and multiple strategies\n"
+            code += f"    click_success = False\n"
+            code += f"    max_retries = 2\n"
+            code += f"    for attempt in range(max_retries):\n"
+            code += f"        try:\n"
+            code += f"            element = page.locator(\"{selector}\").first\n"
+            code += f"            element.wait_for(state='visible', timeout=20000)\n"
+            code += f"            element.scroll_into_view_if_needed()\n"
+            code += f"            page.wait_for_timeout(500)\n"
+            code += f"            element.click(timeout=10000)\n"
+            code += f"            click_success = True\n"
+            code += f"            print(f'Click successful on attempt {{attempt + 1}}', file=sys.stderr)\n"
+            code += f"            break\n"
+            code += f"        except Exception as click_err:\n"
+            code += f"            if attempt < max_retries - 1:\n"
+            code += f"                print(f'Click attempt {{attempt + 1}} failed, retrying with force...', file=sys.stderr)\n"
+            code += f"                try:\n"
+            code += f"                    page.locator(\"{selector}\").first.click(force=True, timeout=5000)\n"
+            code += f"                    click_success = True\n"
+            code += f"                    break\n"
+            code += f"                except:\n"
+            code += f"                    page.wait_for_timeout(1000)\n"
+            code += f"            else:\n"
+            code += f"                raise Exception(f'Click failed after {{max_retries}} attempts: {{click_err}}')\n"
+            code += f"    if click_success:\n"
+            code += f"        page.wait_for_timeout(1000)\n"
+            code += f"        # Take screenshot after click\n"
+            code += f"        screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
+            code += f"        page.screenshot(path=screenshot_path, full_page=True)\n"
+            code += f"        results['screenshots'].append(screenshot_path)\n"
+            code += f"        results['passed'].append({{'step': {step_num + 1}, 'action': 'click', 'description': '{description}', 'screenshot': screenshot_path}})\n"
         
         elif action_type == 'search':
             # Enhanced search with better timeout handling
@@ -243,7 +284,16 @@ class CodeGenerator:
             code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'unknown', 'description': '{description}'}})\n"
         
         code += "except Exception as e:\n"
-        code += f"    results['failed'].append({{'step': {step_num + 1}, 'action': '{action_type}', 'description': '{description}', 'error': str(e)}})\n"
+        code += f"    import traceback\\n"
+        code += f"    error_info = {{\\n"
+        code += f"        'step': {step_num + 1},\\n"
+        code += f"        'action': '{action_type}',\\n"
+        code += f"        'description': '{description}',\\n"
+        code += f"        'error': str(e),\\n"
+        code += f"        'error_type': type(e).__name__\\n"
+        code += f"    }}\\n"
+        code += f"    results['failed'].append(error_info)\\n"
+        code += f"    print(f'Step {step_num + 1} failed - {{type(e).__name__}}: {{str(e)}}', file=sys.stderr)\\n"
         
         return code
     
