@@ -74,9 +74,24 @@ class CodeGenerator:
             "        'passed': [],",
             "        'failed': [],",
             "        'screenshots': [],",
+<<<<<<< HEAD
             "        'steps': []",
             "    }",
             "    ",
+=======
+            "        'steps': [],",
+            "        'start_time': None,",
+            "        'end_time': None,",
+            "        'execution_time': 0,",
+            "        'browser': None,",
+            "        'url': None",
+            "    }",
+            "    ",
+            "    # Record start time",
+            "    results['start_time'] = datetime.now().isoformat()",
+            "    start_timestamp = datetime.now()",
+            "    ",
+>>>>>>> Yashaswini-branch
             "    # Create screenshots directory",
             "    screenshots_dir = os.path.join('static', 'screenshots')",
             "    os.makedirs(screenshots_dir, exist_ok=True)",
@@ -85,6 +100,7 @@ class CodeGenerator:
             "    with sync_playwright() as p:",
             f"        # Launch {browser_display_name} browser in {mode_text} mode",
             f"        browser = p.{playwright_browser}.launch(headless={headless}, slow_mo={slow_mo_delay}{channel_param})",
+<<<<<<< HEAD
             "        context = browser.new_context(",
             "            viewport={'width': 1920, 'height': 1080},",
             "            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'",
@@ -98,6 +114,18 @@ class CodeGenerator:
             "        ",
             f"        print('{browser_display_name} browser launched in {mode_text} mode', file=sys.stderr)",
             "        ",
+=======
+            "        context = browser.new_context(viewport={'width': 1920, 'height': 1080})",
+            "        page = context.new_page()",
+            "        page.set_default_timeout(30000)",
+            "        ",
+            f"        print('{browser_display_name} browser launched in {mode_text} mode', file=sys.stderr)",
+            "        ",
+            f"        # Record browser info",
+            f"        results['browser'] = '{browser_display_name}'",
+            f"        results['url'] = '{target_url}'",
+            "        ",
+>>>>>>> Yashaswini-branch
             "        try:"
         ]
         
@@ -109,6 +137,7 @@ class CodeGenerator:
         # Add cleanup code with extended wait for visible mode
         script_lines.extend([
             "            ",
+<<<<<<< HEAD
             "            # Mark test as complete",
             "            results['status'] = 'completed'",
             "            ",
@@ -120,6 +149,30 @@ class CodeGenerator:
             "            results['status'] = 'error'",
             "        finally:",
             "            ",
+=======
+            "            # Mark test as complete with timing",
+            "            results['status'] = 'completed'",
+            "            results['end_time'] = datetime.now().isoformat()",
+            "            execution_duration = (datetime.now() - start_timestamp).total_seconds()",
+            "            results['execution_time'] = round(execution_duration, 2)",
+            "            ",
+            "        except Exception as e:",
+            "            # Enhanced error tracking",
+            "            import traceback",
+            "            error_details = {",
+            "                'step': 'execution',",
+            "                'error': str(e),",
+            "                'error_type': type(e).__name__,",
+            "                'traceback': traceback.format_exc()",
+            "            }",
+            "            results['failed'].append(error_details)",
+            "            results['status'] = 'error'",
+            "            results['end_time'] = datetime.now().isoformat()",
+            "            execution_duration = (datetime.now() - start_timestamp).total_seconds()",
+            "            results['execution_time'] = round(execution_duration, 2)",
+            "            print(f'Test execution error: {str(e)}', file=sys.stderr)",
+            "        finally:",
+>>>>>>> Yashaswini-branch
             f"            # In visible mode, keep browser open for viewing",
             f"            if not {headless}:",
             "                print('\\n' + '='*70, file=sys.stderr)",
@@ -155,6 +208,7 @@ class CodeGenerator:
         
         if action_type == 'navigate':
             url = target if target.startswith('http') else base_url
+<<<<<<< HEAD
             code += f"    # Navigate to {url}\n"
             code += f"    print('Navigating to {url}...', file=sys.stderr)\n"
             code += f"    try:\n"
@@ -165,11 +219,28 @@ class CodeGenerator:
             code += f"        print(f'Navigation timeout/error (continuing anyway): {{nav_error}}', file=sys.stderr)\n"
             code += f"        # Continue even if networkidle fails - page might be loaded\n"
             code += f"        page.wait_for_timeout(3000)  # Give it 3 more seconds\n"
+=======
+            code += f"    # Navigate with retry logic\n"
+            code += f"    max_retries = 3\n"
+            code += f"    for attempt in range(max_retries):\n"
+            code += f"        try:\n"
+            code += f"            page.goto('{url}', timeout=60000)\n"
+            code += f"            page.wait_for_load_state('networkidle', timeout=30000)\n"
+            code += f"            print(f'Navigation successful on attempt {{attempt + 1}}', file=sys.stderr)\n"
+            code += f"            break\n"
+            code += f"        except Exception as nav_err:\n"
+            code += f"            if attempt < max_retries - 1:\n"
+            code += f"                print(f'Navigation attempt {{attempt + 1}} failed, retrying...', file=sys.stderr)\n"
+            code += f"                page.wait_for_timeout(2000)\n"
+            code += f"            else:\n"
+            code += f"                raise Exception(f'Navigation failed after {{max_retries}} attempts: {{nav_err}}')\n"
+>>>>>>> Yashaswini-branch
             code += f"    # Take screenshot after navigation\n"
             code += f"    screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
             code += f"    page.screenshot(path=screenshot_path, full_page=True)\n"
             code += f"    results['screenshots'].append(screenshot_path)\n"
             code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'navigate', 'description': '{description}', 'screenshot': screenshot_path}})\n"
+<<<<<<< HEAD
             code += f"    print('Navigation completed successfully', file=sys.stderr)\n"
         
         elif action_type == 'click':
@@ -202,23 +273,70 @@ class CodeGenerator:
             # Enhanced search with better timeout handling and more selectors
             code += f"    # Search with multiple strategies\n"
             code += f"    print('Searching for: {value}', file=sys.stderr)\n"
+=======
+        
+        elif action_type == 'click':
+            selector = self._smart_selector(target)
+            code += f"    # Click with retry and multiple strategies\n"
+            code += f"    click_success = False\n"
+            code += f"    max_retries = 2\n"
+            code += f"    for attempt in range(max_retries):\n"
+            code += f"        try:\n"
+            code += f"            element = page.locator(\"{selector}\").first\n"
+            code += f"            element.wait_for(state='visible', timeout=20000)\n"
+            code += f"            element.scroll_into_view_if_needed()\n"
+            code += f"            page.wait_for_timeout(500)\n"
+            code += f"            element.click(timeout=10000)\n"
+            code += f"            click_success = True\n"
+            code += f"            print(f'Click successful on attempt {{attempt + 1}}', file=sys.stderr)\n"
+            code += f"            break\n"
+            code += f"        except Exception as click_err:\n"
+            code += f"            if attempt < max_retries - 1:\n"
+            code += f"                print(f'Click attempt {{attempt + 1}} failed, retrying with force...', file=sys.stderr)\n"
+            code += f"                try:\n"
+            code += f"                    page.locator(\"{selector}\").first.click(force=True, timeout=5000)\n"
+            code += f"                    click_success = True\n"
+            code += f"                    break\n"
+            code += f"                except:\n"
+            code += f"                    page.wait_for_timeout(1000)\n"
+            code += f"            else:\n"
+            code += f"                raise Exception(f'Click failed after {{max_retries}} attempts: {{click_err}}')\n"
+            code += f"    if click_success:\n"
+            code += f"        page.wait_for_timeout(1000)\n"
+            code += f"        # Take screenshot after click\n"
+            code += f"        screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
+            code += f"        page.screenshot(path=screenshot_path, full_page=True)\n"
+            code += f"        results['screenshots'].append(screenshot_path)\n"
+            code += f"        results['passed'].append({{'step': {step_num + 1}, 'action': 'click', 'description': '{description}', 'screenshot': screenshot_path}})\n"
+        
+        elif action_type == 'search':
+            # Enhanced search with better timeout handling
+            code += f"    # Search with multiple strategies\n"
+>>>>>>> Yashaswini-branch
             code += f"    search_found = False\n"
             code += f"    search_selectors = [\n"
             code += f"        'textarea[name=\"q\"]',  # Google's new search (textarea)\n"
             code += f"        'input[name=\"q\"]',     # Classic Google search\n"
             code += f"        'input[type=\"search\"]', # Generic search\n"
+<<<<<<< HEAD
             code += f"        'input[aria-label*=\"Search\" i]',  # ARIA search (case insensitive)\n"
             code += f"        'input[placeholder*=\"Search\" i]', # Placeholder search\n"
             code += f"        'input#twotabsearchtextbox',  # Amazon search\n"
             code += f"        '[data-testid*=\"search\"] input',  # Modern apps\n"
             code += f"        '#search', '.search-input', '[role=\"searchbox\"]',\n"
             code += f"        'input[name=\"search\"]', 'input.search'\n"
+=======
+            code += f"        'input[aria-label*=\"Search\"]',  # ARIA search\n"
+            code += f"        'input[placeholder*=\"Search\"]', # Placeholder search\n"
+            code += f"        '#search', '.search-input', '[role=\"searchbox\"]'\n"
+>>>>>>> Yashaswini-branch
             code += f"    ]\n"
             code += f"    for selector in search_selectors:\n"
             code += f"        try:\n"
             code += f"            elements = page.locator(selector)\n"
             code += f"            count = elements.count()\n"
             code += f"            if count > 0:\n"
+<<<<<<< HEAD
             code += f"                print(f'Found search box with selector: {{selector}}', file=sys.stderr)\n"
             code += f"                element = elements.first\n"
             code += f"                element.wait_for(state='visible', timeout=5000)\n"
@@ -230,6 +348,16 @@ class CodeGenerator:
             code += f"                print('Pressing Enter...', file=sys.stderr)\n"
             code += f"                page.keyboard.press('Enter')\n"
             code += f"                page.wait_for_timeout(3000)  # Wait for results\n"
+=======
+            code += f"                element = elements.first\n"
+            code += f"                element.wait_for(state='visible', timeout=3000)\n"
+            code += f"                element.click()\n"
+            code += f"                page.wait_for_timeout(500)\n"
+            code += f"                element.fill('{value}')\n"
+            code += f"                page.wait_for_timeout(800)\n"
+            code += f"                page.keyboard.press('Enter')\n"
+            code += f"                page.wait_for_timeout(2000)\n"
+>>>>>>> Yashaswini-branch
             code += f"                # Take screenshot after search\n"
             code += f"                screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png')\n"
             code += f"                page.screenshot(path=screenshot_path, full_page=True)\n"
@@ -237,11 +365,18 @@ class CodeGenerator:
             code += f"                search_found = True\n"
             code += f"                break\n"
             code += f"        except Exception as sel_err:\n"
+<<<<<<< HEAD
             code += f"            print(f'Selector {{selector}} failed: {{sel_err}}', file=sys.stderr)\n"
             code += f"            continue\n"
             code += f"    if search_found:\n"
             code += f"        results['passed'].append({{'step': {step_num + 1}, 'action': 'search', 'description': '{description}', 'value': '{value}', 'screenshot': screenshot_path}})\n"
             code += f"        print('Search completed successfully', file=sys.stderr)\n"
+=======
+            code += f"            continue\n"
+            code += f"    if search_found:\n"
+            code += f"        screenshot_path = os.path.join(screenshots_dir, f'step_{step_num + 1}_{{timestamp}}.png') if screenshot_path else 'N/A'\n"
+            code += f"        results['passed'].append({{'step': {step_num + 1}, 'action': 'search', 'description': '{description}', 'value': '{value}', 'screenshot': screenshot_path}})\n"
+>>>>>>> Yashaswini-branch
             code += f"    else:\n"
             code += f"        raise Exception('Could not find search box with any selector')\n"
         
@@ -273,6 +408,7 @@ class CodeGenerator:
             code += f"    page.wait_for_timeout({timeout})\n"
             code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'wait', 'description': '{description}'}})\n"
         
+<<<<<<< HEAD
         elif action_type == 'scroll':
             direction = value if value else 'down'
             scroll_amount = '500' if direction == 'down' else '-500'
@@ -321,19 +457,38 @@ class CodeGenerator:
             code += f"    page.wait_for_timeout(1000)\n"
             code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'back', 'description': '{description}'}})\n"
         
+=======
+>>>>>>> Yashaswini-branch
         else:
             code += f"    # Unknown action type: {action_type}\n"
             code += f"    results['passed'].append({{'step': {step_num + 1}, 'action': 'unknown', 'description': '{description}'}})\n"
         
         code += "except Exception as e:\n"
+<<<<<<< HEAD
         code += f"    results['failed'].append({{'step': {step_num + 1}, 'action': '{action_type}', 'description': '{description}', 'error': str(e)}})\n"
+=======
+        code += f"    import traceback\\n"
+        code += f"    error_info = {{\\n"
+        code += f"        'step': {step_num + 1},\\n"
+        code += f"        'action': '{action_type}',\\n"
+        code += f"        'description': '{description}',\\n"
+        code += f"        'error': str(e),\\n"
+        code += f"        'error_type': type(e).__name__\\n"
+        code += f"    }}\\n"
+        code += f"    results['failed'].append(error_info)\\n"
+        code += f"    print(f'Step {step_num + 1} failed - {{type(e).__name__}}: {{str(e)}}', file=sys.stderr)\\n"
+>>>>>>> Yashaswini-branch
         
         return code
     
     def _smart_selector(self, target: str) -> str:
         """
+<<<<<<< HEAD
         Ultra-robust intelligent selector generator for ANY website
         Handles Amazon, Netflix, Spotify, YouTube, and all modern websites
+=======
+        Generate intelligent CSS/Playwright selector from target description
+>>>>>>> Yashaswini-branch
         """
         target_lower = target.lower()
         
@@ -341,6 +496,7 @@ class CodeGenerator:
         if any(char in target for char in ['#', '.', '[', '>']):
             return target
         
+<<<<<<< HEAD
         # ========== E-COMMERCE PATTERNS (Amazon, eBay, Walmart, etc.) ==========
         
         # Add to Cart - comprehensive patterns
@@ -486,3 +642,28 @@ class CodeGenerator:
             span:has-text('{target_escaped}'),
             div:has-text('{target_escaped}')
         """.replace('\n', '').replace('  ', ' ').strip()
+=======
+        # Common button patterns
+        if any(word in target_lower for word in ['submit', 'sign in', 'login', 'search', 'button']):
+            return f"button:has-text('{target}'), input[type='submit'], a:has-text('{target}'), [role='button']:has-text('{target}')"
+        
+        # Search box patterns
+        if 'search' in target_lower:
+            return "input[name='q'], input[name='search'], input[type='search'], input[aria-label*='Search'], input[placeholder*='Search'], textarea[name='q']"
+        
+        # Common input patterns
+        if 'email' in target_lower:
+            return "input[type='email'], input[name*='email'], input[id*='email'], input[autocomplete='email']"
+        
+        if 'password' in target_lower:
+            return "input[type='password'], input[name*='password'], input[id*='password'], input[autocomplete*='password']"
+        
+        if 'username' in target_lower or 'user' in target_lower:
+            return "input[name*='user'], input[id*='user'], input[placeholder*='user'], input[autocomplete='username']"
+        
+        if 'name' in target_lower:
+            return "input[name*='name'], input[id*='name'], input[placeholder*='name']"
+        
+        # Generic text search with multiple strategies
+        return f"text='{target}', button:has-text('{target}'), a:has-text('{target}'), [aria-label*='{target}'], [placeholder*='{target}'], [name*='{target}'], [title*='{target}']"
+>>>>>>> Yashaswini-branch

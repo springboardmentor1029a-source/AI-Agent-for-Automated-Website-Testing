@@ -12,40 +12,14 @@
             box-sizing: border-box;
         }
 
-        :root {
-            /* Dark Mode (Default) */
-            --bg-primary: #0a0e1a;
-            --bg-secondary: rgba(17, 24, 39, 0.8);
-            --bg-tertiary: rgba(15, 23, 42, 0.8);
-            --bg-card: rgba(15, 23, 42, 0.4);
-            --text-primary: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --border-color: rgba(148, 163, 184, 0.1);
-            --border-accent: rgba(99, 102, 241, 0.2);
-        }
-
-        body.light-mode {
-            /* Light Mode */
-            --bg-primary: #f8fafc;
-            --bg-secondary: rgba(255, 255, 255, 0.95);
-            --bg-tertiary: rgba(248, 250, 252, 0.9);
-            --bg-card: rgba(255, 255, 255, 0.7);
-            --text-primary: #1e293b;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --border-color: rgba(148, 163, 184, 0.2);
-            --border-accent: rgba(99, 102, 241, 0.3);
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background: #0a0e1a;
+            color: #e2e8f0;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            transition: background 0.3s ease, color 0.3s ease;
+        }
         }
 
         /* Animated Background */
@@ -61,6 +35,7 @@
                 radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+<<<<<<< HEAD
             transition: opacity 0.3s ease;
         }
 
@@ -70,6 +45,8 @@
                 radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 40% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+=======
+>>>>>>> Yashaswini-branch
         }
 
         .container {
@@ -82,9 +59,15 @@
 
         /* Header */
         .header {
+<<<<<<< HEAD
             background: var(--bg-secondary);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-accent);
+=======
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+>>>>>>> Yashaswini-branch
             border-radius: 12px;
             padding: 20px 30px;
             margin-bottom: 24px;
@@ -92,17 +75,24 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+<<<<<<< HEAD
             transition: all 0.3s ease;
         }
 
         body.light-mode .header {
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+=======
+>>>>>>> Yashaswini-branch
         }
 
         .header-left h1 {
             font-size: 1.5rem;
             font-weight: 600;
+<<<<<<< HEAD
             color: var(--text-primary);
+=======
+            color: #f1f5f9;
+>>>>>>> Yashaswini-branch
             margin-bottom: 4px;
             display: flex;
             align-items: center;
@@ -111,7 +101,11 @@
 
         .header-left p {
             font-size: 0.875rem;
+<<<<<<< HEAD
             color: var(--text-secondary);
+=======
+            color: #94a3b8;
+>>>>>>> Yashaswini-branch
             font-weight: 400;
         }
 
@@ -124,6 +118,7 @@
         .tabs {
             display: flex;
             gap: 6px;
+<<<<<<< HEAD
             background: var(--bg-tertiary);
             padding: 6px;
             border-radius: 10px;
@@ -131,13 +126,25 @@
             border: 1px solid var(--border-accent);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+=======
+            background: rgba(17, 24, 39, 0.6);
+            padding: 6px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            backdrop-filter: blur(10px);
+>>>>>>> Yashaswini-branch
         }
 
         .tab {
             padding: 10px 20px;
             background: transparent;
             border: none;
+<<<<<<< HEAD
             color: var(--text-secondary);
+=======
+            color: #94a3b8;
+>>>>>>> Yashaswini-branch
             font-size: 0.875rem;
             font-weight: 500;
             border-radius: 7px;
@@ -151,7 +158,11 @@
 
         .tab:hover {
             background: rgba(99, 102, 241, 0.1);
+<<<<<<< HEAD
             color: var(--text-primary);
+=======
+            color: #e2e8f0;
+>>>>>>> Yashaswini-branch
         }
 
         .tab.active {
@@ -162,19 +173,28 @@
 
         /* Main Content */
         .content {
+<<<<<<< HEAD
             background: var(--bg-secondary);
             backdrop-filter: blur(20px);
             border: 1px solid var(--border-accent);
+=======
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+>>>>>>> Yashaswini-branch
             border-radius: 12px;
             padding: 24px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             max-height: calc(100vh - 200px);
             overflow-y: auto;
+<<<<<<< HEAD
             transition: all 0.3s ease;
         }
 
         body.light-mode .content {
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+=======
+>>>>>>> Yashaswini-branch
         }
 
         .content::-webkit-scrollbar {
@@ -212,18 +232,31 @@
             display: block;
             font-size: 0.8125rem;
             font-weight: 500;
+<<<<<<< HEAD
             color: var(--text-secondary);
+=======
+            color: #cbd5e1;
+>>>>>>> Yashaswini-branch
             margin-bottom: 6px;
         }
 
         .form-input, .form-textarea, .form-select {
             width: 100%;
+<<<<<<< HEAD
             background: var(--bg-tertiary);
             border: 1px solid var(--border-accent);
             border-radius: 8px;
             padding: 10px 14px;
             font-size: 0.875rem;
             color: var(--text-primary);
+=======
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.875rem;
+            color: #e2e8f0;
+>>>>>>> Yashaswini-branch
             font-family: 'Inter', sans-serif;
             transition: all 0.3s;
         }
@@ -241,7 +274,11 @@
 
         .form-row {
             display: grid;
+<<<<<<< HEAD
             grid-template-columns: 1fr 1fr;
+=======
+            grid-template-columns: 1fr 1fr 1fr;
+>>>>>>> Yashaswini-branch
             gap: 12px;
             margin-bottom: 18px;
         }
@@ -354,6 +391,21 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
+<<<<<<< HEAD
+=======
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+>>>>>>> Yashaswini-branch
         }
 
         .result-card {
@@ -362,6 +414,33 @@
             border-radius: 12px;
             padding: 24px;
             text-align: center;
+<<<<<<< HEAD
+=======
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .result-card:hover::before {
+            opacity: 1;
+>>>>>>> Yashaswini-branch
         }
 
         .result-card.success {
@@ -369,11 +448,25 @@
             background: rgba(34, 197, 94, 0.05);
         }
 
+<<<<<<< HEAD
+=======
+        .result-card.success::before {
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.6), transparent);
+        }
+
+>>>>>>> Yashaswini-branch
         .result-card.error {
             border-color: rgba(239, 68, 68, 0.3);
             background: rgba(239, 68, 68, 0.05);
         }
 
+<<<<<<< HEAD
+=======
+        .result-card.error::before {
+            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.6), transparent);
+        }
+
+>>>>>>> Yashaswini-branch
         .result-label {
             font-size: 0.85rem;
             color: #94a3b8;
@@ -636,6 +729,66 @@
             color: #94a3b8;
         }
 
+<<<<<<< HEAD
+=======
+        /* Progress Bar */
+        .progress-container {
+            margin: 20px 0;
+            padding: 0 30px;
+        }
+
+        .progress-bar-wrapper {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #10b981);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-bar.failed-progress {
+            background: linear-gradient(90deg, #ef4444, #dc2626);
+        }
+
+        .progress-label {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+>>>>>>> Yashaswini-branch
         /* Responsive */
         @media (max-width: 768px) {
             .form-row {
@@ -675,8 +828,8 @@
             <button class="tab" onclick="switchTab('run-agent')">
                 <span>▶️</span> Run Agent
             </button>
-            <button class="tab" onclick="switchTab('screenshots')">
-                <span>📸</span> Screenshots
+            <button class="tab" onclick="switchTab('recordings')">
+                <span>📹</span> Recordings
             </button>
             <button class="tab" onclick="switchTab('history')">
                 <span>📊</span> Results
@@ -717,6 +870,7 @@
                         <div class="form-section">
                             <label class="form-label">Browser</label>
                             <select class="form-select" id="browser">
+<<<<<<< HEAD
                                 <option value="chromium">🌐 Google Chrome</option>
                                 <option value="chrome">🌐 Chromium</option>
                                 <option value="firefox">🦊 Firefox</option>
@@ -724,6 +878,11 @@
                                 <option value="webkit">🧭 Safari (WebKit)</option>
                                 <option value="brave">🦁 Brave</option>
                                 <option value="opera">🎭 Opera</option>
+=======
+                                <option value="chromium">Google Chrome</option>
+                                <option value="firefox">Firefox</option>
+                                <option value="msedge">Microsoft Edge</option>
+>>>>>>> Yashaswini-branch
                             </select>
                         </div>
 
@@ -734,6 +893,17 @@
                                 <option value="headless">Headless</option>
                             </select>
                         </div>
+<<<<<<< HEAD
+=======
+
+                        <div class="form-section">
+                            <label class="form-label">Recording</label>
+                            <select class="form-select" id="recordingToggle">
+                                <option value="off">Off</option>
+                                <option value="on">On</option>
+                            </select>
+                        </div>
+>>>>>>> Yashaswini-branch
                     </div>
 
                     <div class="btn-group">
@@ -805,6 +975,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Screenshots Tab -->
             <div id="screenshots" class="tab-content">
                 <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;">📸 Test Screenshots</h2>
@@ -812,6 +983,14 @@
                     <p style="color: #64748b; text-align: center; padding: 40px;">Run a test to capture screenshots</p>
                 </div>
                 <div id="screenshotsGallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;"></div>
+=======
+            <!-- Recordings Tab -->
+            <div id="recordings" class="tab-content">
+                <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 20px;">📹 Recorded Sessions</h2>
+                <div id="recordingsList">
+                    <p style="color: #64748b; text-align: center; padding: 40px;">No recordings available yet</p>
+                </div>
+>>>>>>> Yashaswini-branch
             </div>
 
             <!-- History Tab -->
@@ -875,6 +1054,10 @@
             const taskDescription = document.getElementById('taskDescription').value;
             const browser = document.getElementById('browser').value;
             const mode = document.getElementById('mode').value;
+<<<<<<< HEAD
+=======
+            const recording = document.getElementById('recordingToggle').value;
+>>>>>>> Yashaswini-branch
 
             // Extract URL from task description
             const urlMatch = taskDescription.match(/https?:\/\/[^\s]+|(?:www\.)?[a-z0-9-]+\.[a-z]{2,}/i);
@@ -894,7 +1077,12 @@
                         url: url,
                         instruction: taskDescription,
                         browser: browser,
+<<<<<<< HEAD
                         headless: mode === 'headless'
+=======
+                        headless: mode === 'headless',
+                        record: recording === 'on'
+>>>>>>> Yashaswini-branch
                     })
                 });
 
@@ -934,15 +1122,36 @@
             
             console.log('Parsed values:', { total, passed, failed, rate });
 
+<<<<<<< HEAD
             // Update status summary
+=======
+            // Update status summary with progress bar
+>>>>>>> Yashaswini-branch
             const hasFailed = failed > 0;
             const summary = document.getElementById('statusSummary');
             summary.className = 'status-summary' + (hasFailed ? ' failed' : '');
             document.getElementById('statusIcon').textContent = hasFailed ? '❌' : '✅';
             document.getElementById('statusTitle').textContent = hasFailed ? 'Test Failed' : 'Test Passed';
+<<<<<<< HEAD
             document.getElementById('statusSubtitle').textContent = `${passed} of ${total} steps completed successfully (${rate.toFixed(1)}% success rate)`;
 
             // Update results grid
+=======
+            document.getElementById('statusSubtitle').innerHTML = `
+                ${passed} of ${total} steps completed successfully (${rate.toFixed(1)}% success rate)
+                <div class="progress-container">
+                    <div class="progress-bar-wrapper">
+                        <div class="progress-bar ${hasFailed ? 'failed-progress' : ''}" style="width: ${rate}%"></div>
+                    </div>
+                    <div class="progress-label">${passed} / ${total} Steps Completed</div>
+                </div>
+            `;
+
+            // Update results grid with enhanced reporting metrics
+            const executionTime = data.execution_time || 0;
+            const browserUsed = data.browser || 'Unknown';
+            
+>>>>>>> Yashaswini-branch
             document.getElementById('resultsGrid').innerHTML = `
                 <div class="result-card">
                     <div class="result-label">Total Steps</div>
@@ -960,6 +1169,17 @@
                     <div class="result-label">Success Rate</div>
                     <div class="result-value">${rate.toFixed(0)}%</div>
                 </div>
+<<<<<<< HEAD
+=======
+                <div class="result-card" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.3);">
+                    <div class="result-label">⏱️ Execution Time</div>
+                    <div class="result-value">${executionTime}s</div>
+                </div>
+                <div class="result-card" style="background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3);">
+                    <div class="result-label">🌐 Browser</div>
+                    <div class="result-value" style="font-size: 0.95rem;">${browserUsed}</div>
+                </div>
+>>>>>>> Yashaswini-branch
             `;
 
             // Update steps list
@@ -1197,6 +1417,7 @@
 
         // Initialize
         renderHistory();
+<<<<<<< HEAD
 
         // Display Screenshots
         function displayScreenshots(screenshots) {
@@ -1241,6 +1462,8 @@
                 }
             }
         };
+=======
+>>>>>>> Yashaswini-branch
     </script>
 </body>
 </html>
