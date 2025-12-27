@@ -60,8 +60,17 @@ class CodeGenerator:
             "        'passed': [],",
             "        'failed': [],",
             "        'screenshots': [],",
-            "        'steps': []",
+            "        'steps': [],",
+            "        'start_time': None,",
+            "        'end_time': None,",
+            "        'execution_time': 0,",
+            "        'browser': None,",
+            "        'url': None",
             "    }",
+            "    ",
+            "    # Record start time",
+            "    results['start_time'] = datetime.now().isoformat()",
+            "    start_timestamp = datetime.now()",
             "    ",
             "    # Create screenshots directory",
             "    screenshots_dir = os.path.join('static', 'screenshots')",
@@ -77,6 +86,10 @@ class CodeGenerator:
             "        ",
             f"        print('{browser_display_name} browser launched in {mode_text} mode', file=sys.stderr)",
             "        ",
+            f"        # Record browser info",
+            f"        results['browser'] = '{browser_display_name}'",
+            f"        results['url'] = '{target_url}'",
+            "        ",
             "        try:"
         ]
         
@@ -88,8 +101,11 @@ class CodeGenerator:
         # Add cleanup code with extended wait for visible mode
         script_lines.extend([
             "            ",
-            "            # Mark test as complete",
+            "            # Mark test as complete with timing",
             "            results['status'] = 'completed'",
+            "            results['end_time'] = datetime.now().isoformat()",
+            "            execution_duration = (datetime.now() - start_timestamp).total_seconds()",
+            "            results['execution_time'] = round(execution_duration, 2)",
             "            ",
             "        except Exception as e:",
             "            results['failed'].append({",

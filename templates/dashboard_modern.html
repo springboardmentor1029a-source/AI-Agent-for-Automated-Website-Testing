@@ -900,7 +900,10 @@
             document.getElementById('statusTitle').textContent = hasFailed ? 'Test Failed' : 'Test Passed';
             document.getElementById('statusSubtitle').textContent = `${passed} of ${total} steps completed successfully (${rate.toFixed(1)}% success rate)`;
 
-            // Update results grid
+            // Update results grid with enhanced reporting metrics
+            const executionTime = data.execution_time || 0;
+            const browserUsed = data.browser || 'Unknown';
+            
             document.getElementById('resultsGrid').innerHTML = `
                 <div class="result-card">
                     <div class="result-label">Total Steps</div>
@@ -917,6 +920,14 @@
                 <div class="result-card">
                     <div class="result-label">Success Rate</div>
                     <div class="result-value">${rate.toFixed(0)}%</div>
+                </div>
+                <div class="result-card" style="background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.3);">
+                    <div class="result-label">⏱️ Execution Time</div>
+                    <div class="result-value">${executionTime}s</div>
+                </div>
+                <div class="result-card" style="background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.3);">
+                    <div class="result-label">🌐 Browser</div>
+                    <div class="result-value" style="font-size: 0.95rem;">${browserUsed}</div>
                 </div>
             `;
 

@@ -103,6 +103,11 @@ def run_test():
             
             print(f"[API] Results - Total: {total_steps}, Passed: {passed_count}, Failed: {failed_count}")
             
+            # Enhanced reporting with execution metrics
+            execution_time = results.get('execution_time', 0)
+            start_time = results.get('start_time', datetime.now().isoformat())
+            end_time = results.get('end_time', datetime.now().isoformat())
+            
             result = {
                 'success': True,
                 'url': target_url,
@@ -112,12 +117,24 @@ def run_test():
                 'total_steps': total_steps,
                 'passed': passed_count,
                 'failed': failed_count,
-                'success_rate': success_rate,
+                'success_rate': round(success_rate, 2),
+                'execution_time': execution_time,
+                'start_time': start_time,
+                'end_time': end_time,
                 'passed_tests': passed,
                 'failed_tests': failed,
                 'generated_code': code,
                 'execution_status': 'completed',
-                'screenshots': results.get('screenshots', [])
+                'screenshots': results.get('screenshots', []),
+                'report_summary': {
+                    'total_actions': total_steps,
+                    'successful_actions': passed_count,
+                    'failed_actions': failed_count,
+                    'success_percentage': round(success_rate, 2),
+                    'execution_duration': f\"{execution_time}s\",
+                    'browser_used': results.get('browser', browser_type),
+                    'target_url': results.get('url', target_url)
+                }
             }
         else:
             result = {
