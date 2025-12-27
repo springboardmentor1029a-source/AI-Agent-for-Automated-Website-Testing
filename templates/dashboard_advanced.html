@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yash AI Agent - Advanced Testing Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0d1a 0%, #1a1f35 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: rgba(20, 25, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8)); }
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #1e2538 0%, #2d3548 100%);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(20, 25, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(10, 13, 26, 0.6);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(10, 13, 26, 0.8);
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(30, 37, 56, 0.8);
+            color: #e2e8f0;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .quick-action {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .quick-action:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .quick-action-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .quick-action-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .quick-action-desc {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Test History */
+        .history-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            background: rgba(30, 37, 56, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .history-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(5px);
+        }
+
+        .history-item.success {
+            border-left-color: #10b981;
+        }
+
+        .history-item.failed {
+            border-left-color: #ef4444;
+        }
+
+        .history-time {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .history-url {
+            font-weight: 600;
+            color: #e2e8f0;
+            margin: 5px 0;
+        }
+
+        .history-result {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, #1e2538, #2d3548);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .result-card.success {
+            border-color: #10b981;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+        }
+
+        .result-card.error {
+            border-color: #ef4444;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05));
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        #codeContent {
+            transition: max-height 0.4s ease;
+            overflow: hidden;
+        }
+
+        #codeSection pre {
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #0a0d1a;
+        }
+
+        #codeSection pre::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #codeSection pre::-webkit-scrollbar-track {
+            background: #0a0d1a;
+        }
+
+        #codeSection pre::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        #codeSection pre::-webkit-scrollbar-thumb:hover {
+            background: #7c8ef6;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .result-card.success .result-value {
+            color: #10b981;
+        }
+
+        .result-card.error .result-value {
+            color: #ef4444;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid rgba(102, 126, 234, 0.2);
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 13, 26, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🤖 Yash AI Agent</h1>
+            <p>Advanced Automated Website Testing Platform</p>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <div class="stat-box">
+                <div class="stat-label">Total Tests</div>
+                <div class="stat-value" id="totalTests">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Success Rate</div>
+                <div class="stat-value" id="avgSuccess">0%</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Tests Today</div>
+                <div class="stat-value" id="testsToday">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Active Now</div>
+                <div class="stat-value" id="activeStatus">Ready</div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid" id="mainGrid">
+            <!-- Left Column - Test Form & History -->
+            <div>
+                <!-- Test Form Card -->
+                <div class="card" id="testFormCard">
+                    <h2 class="card-title">New Test</h2>
+                    
+                    <form id="testForm">
+                        <div class="form-group">
+                            <label class="form-label">Target Website</label>
+                            <input 
+                                type="text" 
+                                id="url" 
+                                class="form-input" 
+                                placeholder="https://www.google.com"
+                                value="https://www.google.com"
+                                required
+                            />
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Browser</label>
+                                <select id="browser" class="form-select">
+                                    <option value="chromium">Chrome</option>
+                                    <option value="firefox">Firefox</option>
+                                    <option value="webkit">Safari</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Mode</label>
+                                <select id="mode" class="form-select">
+                                    <option value="headless">Headless (Fast)</option>
+                                    <option value="visible">Visible (Watch)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Test Instructions (Natural Language)</label>
+                            <textarea 
+                                id="instruction" 
+                                class="form-textarea" 
+                                placeholder="Example: go to google and search for 'AI testing'"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+                            <button type="submit" class="btn btn-primary" id="runBtn">
+                                <span>Run Test</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <div class="quick-action" onclick="loadQuick('google')">
+                            <div class="quick-action-icon">🔍</div>
+                            <div class="quick-action-title">Google</div>
+                            <div class="quick-action-desc">Search Test</div>
+                        </div>
+                        <div class="quick-action" onclick="loadQuick('amazon')">
+                            <div class="quick-action-icon">🛒</div>
+                            <div class="quick-action-title">Amazon</div>
+                            <div class="quick-action-desc">E-commerce</div>
+                        </div>
+                        <div class="quick-action" onclick="loadQuick('youtube')">
+                            <div class="quick-action-icon">📺</div>
+                            <div class="quick-action-title">YouTube</div>
+                            <div class="quick-action-desc">Video Search</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Test History Card -->
+                <div class="card" style="margin-top: 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h2 class="card-title" style="margin: 0;">Recent Tests</h2>
+                        <button class="btn btn-secondary" onclick="clearHistory()" style="padding: 8px 15px; font-size: 0.85rem;">
+                            🗑️ Clear History
+                        </button>
+                    </div>
+                    <div class="history-list" id="historyList">
+                        <p style="color: #94a3b8; text-align: center; padding: 20px;">No tests yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Results -->
+            <div>
+                <!-- Loading -->
+                <div id="loading" class="loading card">
+                    <div class="spinner"></div>
+                    <div class="loading-text" id="loadingText">AI Agent is working...</div>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="results">
+                    <button class="btn btn-secondary" onclick="showForm()" style="margin-bottom: 20px;">← New Test</button>
+                    
+                    <div class="card">
+                        <h2 class="card-title">Test Results</h2>
+                        
+                        <div class="results-grid" id="resultsGrid">
+                            <!-- Results will be inserted here -->
+                        </div>
+
+                        <div id="testDetails" style="margin-top: 30px;">
+                            <!-- Details will be inserted here -->
+                        </div>
+
+                        <!-- Generated Code Section -->
+                        <div id="codeSection" style="margin-top: 30px; display: none;">
+                            <div style="background: rgba(30, 37, 56, 0.8); border-radius: 12px; overflow: hidden; border: 2px solid rgba(102, 126, 234, 0.3);">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(102, 126, 234, 0.1); border-bottom: 1px solid rgba(102, 126, 234, 0.2); cursor: pointer;" onclick="toggleCode()">
+                                    <h3 style="margin: 0; color: #667eea; font-size: 1.1rem;">
+                                        <span id="codeToggleIcon">▼</span> Generated Playwright Code
+                                    </h3>
+                                    <button class="btn btn-secondary" onclick="event.stopPropagation(); copyCode()" style="padding: 8px 15px; font-size: 0.9rem;">
+                                        📋 Copy
+                                    </button>
+                                </div>
+                                <div id="codeContent" style="max-height: 400px; overflow-y: auto;">
+                                    <pre id="generatedCode" style="margin: 0; padding: 20px; background: #0a0d1a; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.9rem; line-height: 1.6; white-space: pre-wrap; word-wrap: break-word;"></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;">
+                            <button class="btn btn-secondary" onclick="downloadReport('json')" title="Download as JSON">
+                                📥 Download JSON
+                            </button>
+                            <button class="btn btn-secondary" onclick="downloadReport('pdf')" title="Download as PDF">
+                                📄 Download PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentResult = null;
+        let testHistory = JSON.parse(localStorage.getItem('testHistory') || '[]');
+
+        // Quick actions
+        const quickTests = {
+            google: {
+                url: 'https://www.google.com',
+                instruction: 'go to google.com, wait 2 seconds, then search for "AI automation testing"'
+            },
+            amazon: {
+                url: 'https://www.amazon.com',
+                instruction: 'navigate to amazon.com and wait 3 seconds'
+            },
+            youtube: {
+                url: 'https://www.youtube.com',
+                instruction: 'go to youtube.com, wait 2 seconds, then search for "playwright tutorial"'
+            }
+        };
+
+        function loadQuick(type) {
+            const test = quickTests[type];
+            document.getElementById('url').value = test.url;
+            document.getElementById('instruction').value = test.instruction;
+        }
+
+        function clearForm() {
+            document.getElementById('url').value = 'https://www.google.com';
+            document.getElementById('instruction').value = '';
+        }
+
+        function showForm() {
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('testFormCard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Update stats
+        function updateStats() {
+            const total = testHistory.length;
+            const successful = testHistory.filter(t => t.success).length;
+            const rate = total > 0 ? ((successful / total) * 100).toFixed(0) : 0;
+            
+            const today = new Date().toDateString();
+            const todayTests = testHistory.filter(t => new Date(t.timestamp).toDateString() === today).length;
+
+            document.getElementById('totalTests').textContent = total;
+            document.getElementById('avgSuccess').textContent = rate + '%';
+            document.getElementById('testsToday').textContent = todayTests;
+        }
+
+        // Render history
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            if (testHistory.length === 0) {
+                list.innerHTML = '<p style="color: #94a3b8; text-align: center; padding: 20px;">No tests yet</p>';
+                return;
+            }
+
+            list.innerHTML = testHistory.slice(-10).reverse().map(test => `
+                <div class="history-item ${test.success ? 'success' : 'failed'}" onclick='loadHistoryTest(${JSON.stringify(test).replace(/'/g, "&apos;")})'>
+                    <div class="history-time">${new Date(test.timestamp).toLocaleString()}</div>
+                    <div class="history-url">${test.url}</div>
+                    <div class="history-result">${test.passed || 0} passed, ${test.failed || 0} failed - ${test.rate || 0}%</div>
+                </div>
+            `).join('');
+        }
+
+        function loadHistoryTest(test) {
+            currentResult = test;
+            displayResults(test);
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all test history? This action cannot be undone.')) {
+                testHistory = [];
+                localStorage.setItem('testHistory', JSON.stringify(testHistory));
+                renderHistory();
+                updateStats();
+                alert('Test history cleared successfully!');
+            }
+        }
+
+        // Form submission
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const url = document.getElementById('url').value;
+            const instruction = document.getElementById('instruction').value;
+            const browser = document.getElementById('browser').value;
+            const mode = document.getElementById('mode').value;
+
+            document.getElementById('testFormCard').style.display = 'none';
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('activeStatus').textContent = 'Running';
+
+            const runBtn = document.getElementById('runBtn');
+            runBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/test', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        url: url,
+                        instruction: instruction,
+                        browser: browser,
+                        headless: mode === 'headless'
+                    })
+                });
+
+                const result = await response.json();
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('activeStatus').textContent = 'Ready';
+
+                if (result.success) {
+                    // Save to history
+                    testHistory.push({
+                        timestamp: new Date().toISOString(),
+                        url: url,
+                        instruction: instruction,
+                        success: result.success,
+                        passed: result.passed,
+                        failed: result.failed,
+                        rate: result.success_rate,
+                        ...result
+                    });
+                    localStorage.setItem('testHistory', JSON.stringify(testHistory));
+                    
+                    currentResult = result;
+                    displayResults(result);
+                    updateStats();
+                    renderHistory();
+                } else {
+                    alert('Test failed: ' + result.error);
+                    document.getElementById('testFormCard').style.display = 'block';
+                }
+            } catch (error) {
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('activeStatus').textContent = 'Error';
+                alert('Error: ' + error.message);
+                document.getElementById('testFormCard').style.display = 'block';
+            } finally {
+                runBtn.disabled = false;
+            }
+        });
+
+        function displayResults(data) {
+            currentResult = data;
+            
+            const total = data.total_steps || 0;
+            const passed = data.passed || 0;
+            const failed = data.failed || 0;
+            const rate = data.success_rate || 0;
+
+            // Update metrics with better status indication
+            const statusEmoji = failed > 0 ? '❌' : (passed > 0 ? '✅' : '⏳');
+            const statusText = failed > 0 ? 'FAILED' : (passed > 0 ? 'PASSED' : 'PENDING');
+            const statusColor = failed > 0 ? '#ef4444' : (passed > 0 ? '#10b981' : '#94a3b8');
+
+            document.getElementById('resultsGrid').innerHTML = `
+                <div class="result-card" style="border: 2px solid ${statusColor};">
+                    <div class="result-label">Status</div>
+                    <div class="result-value" style="color: ${statusColor}; font-size: 1.8rem;">${statusEmoji} ${statusText}</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-label">Total Steps</div>
+                    <div class="result-value">${total}</div>
+                </div>
+                <div class="result-card success" style="border: 2px solid #10b981;">
+                    <div class="result-label">Passed</div>
+                    <div class="result-value" style="color: #10b981;">${passed}</div>
+                </div>
+                <div class="result-card error" style="border: 2px solid #ef4444;">
+                    <div class="result-label">Failed</div>
+                    <div class="result-value" style="color: #ef4444;">${failed}</div>
+                </div>
+            `;
+
+            let detailsHTML = '';
+            
+            // Execution Status Summary
+            if (total > 0) {
+                const overallStatus = failed > 0 ? 'FAILED' : 'PASSED';
+                const overallColor = failed > 0 ? '#ef4444' : '#10b981';
+                const overallBg = failed > 0 ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)';
+                
+                detailsHTML += `
+                    <div style="background: ${overallBg}; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 3px solid ${overallColor};">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div style="font-size: 3rem;">${failed > 0 ? '❌' : '✅'}</div>
+                            <div>
+                                <h2 style="margin: 0; color: ${overallColor}; font-size: 1.8rem;">Test ${overallStatus}</h2>
+                                <p style="margin: 5px 0 0 0; color: #94a3b8; font-size: 1rem;">
+                                    ${passed} of ${total} steps completed successfully (${rate.toFixed(1)}% success rate)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Show test steps with status indicators
+            if (data.actions && data.actions.length > 0) {
+                detailsHTML += '<div style="background: rgba(30, 37, 56, 0.6); padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 2px solid rgba(102, 126, 234, 0.3);">';
+                detailsHTML += '<h3 style="margin-bottom: 15px; color: #667eea; font-size: 1.3rem;">📋 Test Steps Breakdown</h3>';
+                
+                data.actions.forEach((action, idx) => {
+                    const stepNum = idx + 1;
+                    const icons = {
+                        'navigate': '🌐', 'search': '🔍', 'click': '👆',
+                        'fill': '✏️', 'wait': '⏱️'
+                    };
+                    const icon = icons[action.type] || '▶️';
+                    
+                    // Check if this step passed or failed
+                    const passedTest = data.passed_tests && data.passed_tests.find(t => t.step === stepNum);
+                    const failedTest = data.failed_tests && data.failed_tests.find(t => t.step === stepNum);
+                    
+                    let statusBadge = '';
+                    let borderColor = 'rgba(102, 126, 234, 0.5)';
+                    let bgColor = 'rgba(10, 13, 26, 0.6)';
+                    
+                    if (passedTest) {
+                        statusBadge = '<span style="background: #10b981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-left: 10px;">✓ PASSED</span>';
+                        borderColor = '#10b981';
+                        bgColor = 'rgba(16, 185, 129, 0.05)';
+                    } else if (failedTest) {
+                        statusBadge = '<span style="background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-left: 10px;">✗ FAILED</span>';
+                        borderColor = '#ef4444';
+                        bgColor = 'rgba(239, 68, 68, 0.05)';
+                    }
+                    
+                    // Check for screenshot
+                    const screenshot = (passedTest && passedTest.screenshot) || (failedTest && failedTest.screenshot);
+                    
+                    detailsHTML += `
+                        <div style="padding: 15px; margin: 10px 0; background: ${bgColor}; border-left: 4px solid ${borderColor}; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="color: #e2e8f0; font-weight: 600; font-size: 1.05rem;">
+                                    ${icon} Step ${stepNum}: ${action.type.toUpperCase()}
+                                </div>
+                                ${statusBadge}
+                            </div>
+                            <div style="color: #94a3b8; font-size: 0.95rem; margin-top: 8px; padding-left: 5px;">
+                                ${action.description || ''}
+                            </div>
+                            ${screenshot ? `
+                                <div style="margin-top: 12px;">
+                                    <a href="/${screenshot}" target="_blank" style="display: inline-block; padding: 8px 15px; background: rgba(102, 126, 234, 0.2); color: #667eea; border-radius: 6px; text-decoration: none; font-size: 0.9rem; border: 1px solid rgba(102, 126, 234, 0.3); transition: all 0.3s;">
+                                        📸 View Screenshot
+                                    </a>
+                                </div>
+                            ` : ''}
+                            ${failedTest && failedTest.error ? `
+                                <div style="margin-top: 12px; padding: 12px; background: rgba(239, 68, 68, 0.15); border-radius: 6px; border-left: 3px solid #ef4444;">
+                                    <div style="color: #ef4444; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">❌ Error Details:</div>
+                                    <div style="color: #fca5a5; font-size: 0.85rem; font-family: 'Courier New', monospace;">${failedTest.error}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+                detailsHTML += '</div>';
+            }
+
+            document.getElementById('testDetails').innerHTML = detailsHTML;
+            
+            // Show generated code section
+            if (data.generated_code) {
+                document.getElementById('generatedCode').textContent = data.generated_code;
+                document.getElementById('codeSection').style.display = 'block';
+            }
+            
+            document.getElementById('results').classList.add('show');
+        }
+
+        function toggleCode() {
+            const content = document.getElementById('codeContent');
+            const icon = document.getElementById('codeToggleIcon');
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                content.style.maxHeight = '400px';
+                icon.textContent = '▼';
+            } else {
+                content.style.maxHeight = '0px';
+                icon.textContent = '▶';
+            }
+        }
+
+        function downloadReport(format = 'json') {
+            if (!currentResult) {
+                alert('No test results to download!');
+                return;
+            }
+            
+            if (format === 'json') {
+                const blob = new Blob([JSON.stringify(currentResult, null, 2)], {type: 'application/json'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `test-report-${Date.now()}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } else if (format === 'pdf') {
+                fetch('/api/export/pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(currentResult)
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Export failed');
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `test-report-${Date.now()}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error('PDF export error:', error);
+                    alert('Failed to export PDF: ' + error.message);
+                });
+            }
+        }
+
+        function copyCode() {
+            if (!currentResult || !currentResult.generated_code) {
+                alert('No code to copy!');
+                return;
+            }
+            navigator.clipboard.writeText(currentResult.generated_code).then(() => {
+                const btn = event.target;
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✓ Copied!';
+                btn.style.background = '#10b981';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy code: ' + err);
+            });
+        }
+
+        // Initialize
+        updateStats();
+        renderHistory();
+    </script>
+</body>
+</html>
