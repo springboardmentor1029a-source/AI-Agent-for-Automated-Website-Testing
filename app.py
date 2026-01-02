@@ -158,7 +158,7 @@ HTML = '''
 
         <strong>Try these:</strong>
         <div class="example">Visit amazon.in and search for macbook</div>
-        <div class="example">Go to google.com and search for Grok xAI</div>
+        <div class="example">Go to google.com and search for springboard </div>
         <div class="example">Visit flipkart.com search iPhone 16</div>
         <div class="example">Visit http://localhost:5000/test-search.html and search for hello world</div>
     </div>
