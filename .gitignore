@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Generated artifacts
+videos/
+screenshots/
+reports/
+
+# OS / Editor
+.vscode/
+.DS_Store
+Thumbs.db

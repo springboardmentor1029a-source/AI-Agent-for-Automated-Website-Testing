@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="nav">Dashboard</div>
+
+<div class="container">
+  <h2>Test Statistics</h2>
+  <p>Total Tests: <b id="total">0</b></p>
+  <p class="pass">Passed: <b id="passed">0</b></p>
+  <p class="fail">Failed: <b id="failed">0</b></p>
+  <progress id="progress" max="100"></progress>
+  <br><br>
+  <a href="index.html">← Back</a>
+</div>
+
+<script>
+fetch("http://127.0.0.1:5000/stats")
+.then(r=>r.json())
+.then(s=>{
+  total.innerText=s.total;
+  passed.innerText=s.passed;
+  failed.innerText=s.failed;
+  progress.value=(s.passed/s.total)*100||0;
+});
+</script>
+
+</body>
+</html>

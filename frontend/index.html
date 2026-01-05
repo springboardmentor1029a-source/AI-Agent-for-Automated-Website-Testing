@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Web Testing Agent</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">AI Web Testing Agent</div>
+  <nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="reports.html">Reports</a>
+  </nav>
+</header>
+
+<main class="main">
+
+  <!-- Instruction Card -->
+  <section class="card">
+    <h2>Enter Test Instruction</h2>
+    <textarea id="instruction"
+      placeholder="open myntra.com and search groceries"></textarea>
+
+    <div class="btn-group">
+      <button class="btn primary" onclick="runTest()">Run Test</button>
+      <button class="btn secondary" onclick="runLast()">Run Again</button>
+      <button class="btn danger" onclick="clearAll()">Clear</button>
+    </div>
+  </section>
+
+  <!-- Examples -->
+  <section class="card">
+    <h3>Example Instructions</h3>
+    <div class="examples">
+      <span onclick="useExample(this)">open myntra.com</span>
+      <span onclick="useExample(this)">open myntra.com and search groceries</span>
+      <span onclick="useExample(this)">open wikipedia.org</span>
+    </div>
+  </section>
+
+  <!-- Wizard -->
+  <section class="card">
+    <h3>Test Progress</h3>
+    <div class="wizard">
+      <div class="step active">
+        <div class="circle">1</div>
+        <p>Instruction</p>
+      </div>
+      <div class="line"></div>
+      <div class="step">
+        <div class="circle">2</div>
+        <p>Execute</p>
+      </div>
+      <div class="line"></div>
+      <div class="step">
+        <div class="circle">3</div>
+        <p>Validate</p>
+      </div>
+      <div class="line"></div>
+      <div class="step">
+        <div class="circle">4</div>
+        <p>Report</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section class="card">
+    <h3>Result</h3>
+    <div id="result" class="result-box neutral">
+      No test executed yet.
+    </div>
+  </section>
+
+  <!-- ✅ NEW: Execution Details -->
+  <section class="card">
+    <h3>Execution Details</h3>
+    <div id="extraInfo" class="result-box neutral">
+      <b>Execution Time:</b> - seconds<br>
+      <b>Failure Reason:</b> N/A<br>
+      <a id="reportLink" target="_blank" style="display:none;">
+        Open Detailed Report
+      </a>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="card stats-grid">
+    <div class="stat">
+      <h4>Total</h4>
+      <span id="total">0</span>
+    </div>
+    <div class="stat success">
+      <h4>Passed</h4>
+      <span id="passed">0</span>
+    </div>
+    <div class="stat danger">
+      <h4>Failed</h4>
+      <span id="failed">0</span>
+    </div>
+  </section>
+
+  <!-- Screenshot -->
+  <section class="card">
+    <h3>Current Test Screenshot</h3>
+    <img id="screenshot" alt="">
+    <a id="downloadShot" class="download" download style="display:none">
+      Download Screenshot
+    </a>
+  </section>
+
+  <!-- Video -->
+  <section class="card">
+    <h3>Current Test Video</h3>
+    <video id="video" controls style="width:100%; display:none;"></video>
+    <a id="downloadVideo" class="download" download style="display:none">
+      Download Video
+    </a>
+  </section>
+
+  <!-- History -->
+  <section class="card">
+    <h3>Test History</h3>
+    <div id="history">No history yet</div>
+  </section>
+
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
