@@ -1,0 +1,349 @@
+.home {
+  width: 100%;
+}
+
+/* HERO */
+
+.hero-section {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  min-height: 520px;
+  color: white;
+  text-align: left;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.hero-layout {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 20px 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.hero-text {
+  max-width: 560px;
+}
+
+.hero-text h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: 18px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  margin-bottom: 24px;
+  font-style: italic;
+  color: #ffffff;
+  opacity: 0.96;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons--stacked {
+  flex-direction: row;
+}
+
+.hero-buttons .btn--outline {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: transparent;
+}
+
+.hero-buttons .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* Right side: 3D panel only */
+
+.hero-right {
+  position: relative;
+  flex: 0 0 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 380px;
+  display: flex;
+  justify-content: center;
+}
+
+/* LAYOUT HELPERS */
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.workflow-section,
+.capabilities-section,
+.metrics-section,
+.personas-section {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--color-card-border);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: 26px;
+  color: var(--color-text);
+}
+
+/* GENERIC 3D FLIP CARDS */
+
+.flip-card {
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flip-card--hero {
+  width: 100%;
+  max-width: 380px;
+  height: 360px; /* ensure main.png fits comfortably */
+}
+
+.flip-card--grid {
+  width: 100%;
+  height: 260px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  padding: 16px 16px 14px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Front side */
+
+.flip-card-front {
+  align-items: stretch;
+  text-align: left;
+}
+
+.flip-card-image-wrap {
+  width: 100%;
+  height: 180px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* bigger image area for hero so main.png fits fully */
+.flip-card--hero .flip-card-image-wrap {
+  height: 260px;
+}
+
+.flip-card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card--hero .flip-card-image-wrap img {
+  object-fit: contain;
+  background-color: #0b2230;
+}
+
+.flip-card-front h3 {
+  margin: 2px 0 0 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+}
+
+/* Back side */
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+.flip-card-back h3 {
+  margin: 0 0 8px 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+}
+
+.flip-card-back ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.flip-card-back li + li {
+  margin-top: 4px;
+}
+
+/* bold quote paragraph on back (single block, larger font) */
+.flip-card-quote {
+  margin-top: 10px;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* GRID LAYOUTS */
+
+.workflow-grid,
+.capabilities-grid,
+.metrics-grid,
+.personas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 22px;
+  margin-top: 8px;
+}
+
+/* PERSONAS */
+
+.persona-card {
+  padding: 22px 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+}
+
+.persona-card h3 {
+  margin: 0 0 8px 0;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary);
+}
+
+.persona-card p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* BOTTOM CTA */
+
+.cta-section {
+  background: linear-gradient(
+    135deg,
+    rgba(8, 35, 48, 0.96),
+    rgba(20, 76, 99, 0.98)
+  );
+  color: white;
+  padding: 60px 0 68px;
+  text-align: center;
+}
+
+.cta-section h2 {
+  color: white;
+  margin-bottom: 14px;
+}
+
+.cta-section p {
+  font-size: var(--font-size-lg);
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 26px;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  min-width: 190px;
+}
+
+/* Force Contact Us (outline) text to white in CTA */
+.cta-section .btn--outline {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.cta-section .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .hero-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 64px 20px 52px;
+  }
+
+  .hero-right {
+    align-self: center;
+  }
+
+  .hero-text h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 768px) {
+  .workflow-section,
+  .capabilities-section,
+  .metrics-section,
+  .personas-section,
+  .cta-section {
+    padding: 52px 0;
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: 24px;
+  }
+}
