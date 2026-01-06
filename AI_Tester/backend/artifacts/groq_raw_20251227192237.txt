@@ -1,0 +1,54 @@
+```json
+{
+  "projectId": "checkout-web",
+  "applicationUrl": "https://www.amazon.in",
+  "targetType": "website",
+  "scenario": {
+    "title": "Search for watch on Amazon",
+    "kind": "website",
+    "actions": [
+      {
+        "type": "goto",
+        "url": "https://www.amazon.in",
+        "waitUntil": "domcontentloaded"
+      },
+      {
+        "type": "fill",
+        "selector": "#twotabsearchtextbox",
+        "text": "watch",
+        "timeoutMs": 15000
+      },
+      {
+        "type": "press",
+        "selector": "#twotabsearchtextbox",
+        "key": "Enter",
+        "timeoutMs": 15000
+      },
+      {
+        "type": "waitfortimeout",
+        "timeoutMs": 1000
+      },
+      {
+        "type": "expecttextvisible",
+        "text": "watch",
+        "timeoutMs": 15000
+      }
+    ]
+  },
+  "quality": {
+    "readinessScore": 0,
+    "requirementCoveragePct": 0,
+    "filesImpacted": 0,
+    "scenarioReadiness": "Ready",
+    "openClarifications": 0
+  },
+  "findings": [],
+  "coverage": {
+    "happy": 1,
+    "negative": 0,
+    "edge": 0,
+    "nonFunctional": 0
+  },
+  "riskHotspots": []
+}
+```
