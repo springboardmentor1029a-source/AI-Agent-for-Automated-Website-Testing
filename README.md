@@ -17,14 +17,14 @@ Generic public websites
 🖥️ Modern responsive UI (Dark / Light mode)
 📊 Execution statistics (tests run, pass rate, time saved)
 
-🧩 Technologies Used
+🧩 Technologies Used-
 Python
 Flask
 Playwright
 JavaScript / HTML / CSS
 AI-based text summarization
 Browser automation
-👨‍💻 Author
+👨‍💻 Author-
 Sai Subhankar Das
 B.Tech (CSE)
 SOA University
