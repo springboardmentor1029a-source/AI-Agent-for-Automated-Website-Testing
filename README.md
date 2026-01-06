@@ -30,5 +30,3 @@ Output Response (JSON)
 ---
 
 ## 📂 Project Structure (Milestone 2)
-
-## 📂 Project Structure (Milestone 2)
