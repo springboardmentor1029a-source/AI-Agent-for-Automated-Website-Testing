@@ -15,7 +15,7 @@
       {
         "type": "fill",
         "selector": "#twotabsearchtextbox",
-        "text": "watch",
+        "text": "sports shoes",
         "timeoutMs": 15000
       },
       {
