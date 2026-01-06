@@ -1,0 +1,90 @@
+{
+  "runId": "run_20251226173024_9b0ef9",
+  "projectId": "checkout-web",
+  "environment": "Chrome headless",
+  "runType": "full-execution",
+  "status": "PASS",
+  "startedAt": "2025-12-26T17:30:24.733790",
+  "finishedAt": "2025-12-26T17:30:28.992384",
+  "error": null,
+  "actionResults": [
+    {
+      "idx": 1,
+      "actionType": "goto",
+      "status": "PASS",
+      "error": null,
+      "durationMs": 1216,
+      "chosenLocator": null
+    },
+    {
+      "idx": 2,
+      "actionType": "fill",
+      "status": "PASS",
+      "error": null,
+      "durationMs": 125,
+      "chosenLocator": "#twotabsearchtextbox"
+    },
+    {
+      "idx": 3,
+      "actionType": "press",
+      "status": "PASS",
+      "error": null,
+      "durationMs": 377,
+      "chosenLocator": "#twotabsearchtextbox"
+    },
+    {
+      "idx": 4,
+      "actionType": "waitfortimeout",
+      "status": "PASS",
+      "error": null,
+      "durationMs": 1000,
+      "chosenLocator": null
+    },
+    {
+      "idx": 5,
+      "actionType": "expecttextvisible",
+      "status": "PASS",
+      "error": null,
+      "durationMs": 50,
+      "chosenLocator": null
+    }
+  ],
+  "scenario": {
+    "title": "Search for sports shoes on Amazon",
+    "kind": "website",
+    "actions": [
+      {
+        "type": "goto",
+        "url": "https://www.amazon.in/",
+        "waitUntil": "domcontentloaded"
+      },
+      {
+        "type": "fill",
+        "selector": "#twotabsearchtextbox",
+        "text": "sports shoes",
+        "timeoutMs": 15000
+      },
+      {
+        "type": "press",
+        "selector": "#twotabsearchtextbox",
+        "key": "Enter",
+        "timeoutMs": 15000
+      },
+      {
+        "type": "waitfortimeout",
+        "timeoutMs": 1000
+      },
+      {
+        "type": "expecttextvisible",
+        "text": "sports shoes",
+        "timeoutMs": 15000
+      }
+    ]
+  },
+  "actualResult": "Executed 5 actions successfully in 4.23s.",
+  "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226173024_9b0ef9.png",
+  "reportPaths": {
+    "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.json",
+    "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.pdf"
+  }
+}
