@@ -91,7 +91,7 @@ def run_test():
             page = context.new_page()
 
             # ---------- OPEN ----------
-            page.goto(url, timeout=30000)
+            page.goto(url, timeout=15000)
             page.wait_for_load_state("domcontentloaded")
             open_ok = True
 
@@ -120,7 +120,9 @@ def run_test():
                     page.locator("input").first.fill(query)
                     page.keyboard.press("Enter")
 
-                page.wait_for_load_state("networkidle")
+                page.wait_for_timeout(3000)
+                status="passed"
+                failure_resaon=None
                 search_ok = True
 
             # ---------- SCREENSHOT ----------
