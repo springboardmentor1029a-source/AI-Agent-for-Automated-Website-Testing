@@ -1,0 +1,32 @@
+{
+  "title": "Search for watch on Amazon",
+  "kind": "website",
+  "actions": [
+    {
+      "type": "goto",
+      "url": "https://www.amazon.in",
+      "waitUntil": "domcontentloaded"
+    },
+    {
+      "type": "fill",
+      "selector": "#twotabsearchtextbox",
+      "text": "watch",
+      "timeoutMs": 15000
+    },
+    {
+      "type": "press",
+      "selector": "#twotabsearchtextbox",
+      "key": "Enter",
+      "timeoutMs": 15000
+    },
+    {
+      "type": "waitfortimeout",
+      "timeoutMs": 1000
+    },
+    {
+      "type": "expecttextvisible",
+      "text": "watch",
+      "timeoutMs": 15000
+    }
+  ]
+}

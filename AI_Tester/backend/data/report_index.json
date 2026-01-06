@@ -1,0 +1,67 @@
+{
+  "reports": [
+    {
+      "runId": "run_20251226173024_9b0ef9",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226173024_9b0ef9.png",
+      "createdAt": "2025-12-26T17:30:29.940766"
+    },
+    {
+      "runId": "run_20251226175514_079033",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226175514_079033.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226175514_079033.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226175514_079033.png",
+      "createdAt": "2025-12-26T17:55:20.749288"
+    },
+    {
+      "runId": "run_20251226180441_e63c00",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180441_e63c00.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180441_e63c00.pdf",
+      "screenshot": null,
+      "createdAt": "2025-12-26T18:04:56.620149"
+    },
+    {
+      "runId": "run_20251226180510_f5f9d8",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180510_f5f9d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180510_f5f9d8.pdf",
+      "screenshot": null,
+      "createdAt": "2025-12-26T18:05:23.354351"
+    },
+    {
+      "runId": "run_20251226181454_9526d8",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226181454_9526d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226181454_9526d8.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226181454_9526d8.png",
+      "createdAt": "2025-12-26T18:14:59.884250"
+    },
+    {
+      "runId": "run_20251227190501_5ed77d",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190501_5ed77d.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190501_5ed77d.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227190501_5ed77d.png",
+      "createdAt": "2025-12-27T19:05:18.952437"
+    },
+    {
+      "runId": "run_20251227190708_2e34d8",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190708_2e34d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190708_2e34d8.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227190708_2e34d8.png",
+      "createdAt": "2025-12-27T19:07:25.461110"
+    },
+    {
+      "runId": "run_20251227192127_cabcea",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192127_cabcea.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192127_cabcea.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227192127_cabcea.png",
+      "createdAt": "2025-12-27T19:21:46.315581"
+    },
+    {
+      "runId": "run_20251227192244_faf2e5",
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192244_faf2e5.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192244_faf2e5.pdf",
+      "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227192244_faf2e5.png",
+      "createdAt": "2025-12-27T19:23:06.610474"
+    }
+  ]
+}

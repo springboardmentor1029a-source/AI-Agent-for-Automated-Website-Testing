@@ -1,0 +1,805 @@
+{
+  "run_20251226173024_9b0ef9": {
+    "runId": "run_20251226173024_9b0ef9",
+    "projectId": "checkout-web",
+    "environment": "Chrome headless",
+    "runType": "full-execution",
+    "status": "PASS",
+    "startedAt": "2025-12-26T17:30:24.733790",
+    "finishedAt": "2025-12-26T17:30:28.992384",
+    "error": null,
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1216,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 125,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 377,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 4,
+        "actionType": "waitfortimeout",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1000,
+        "chosenLocator": null
+      },
+      {
+        "idx": 5,
+        "actionType": "expecttextvisible",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 50,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for sports shoes on Amazon",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in/",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "sports shoes",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#twotabsearchtextbox",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "sports shoes",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Executed 5 actions successfully in 4.23s.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226173024_9b0ef9.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226173024_9b0ef9.pdf"
+    }
+  },
+  "run_20251226175514_079033": {
+    "runId": "run_20251226175514_079033",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "PASS",
+    "startedAt": "2025-12-26T17:55:14.569691",
+    "finishedAt": "2025-12-26T17:55:20.297236",
+    "error": null,
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1056,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "waitforselector",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1028,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 7,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 4,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 791,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 5,
+        "actionType": "waitfortimeout",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1002,
+        "chosenLocator": null
+      },
+      {
+        "idx": 6,
+        "actionType": "expecttextvisible",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 16,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for Apple MacBook",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "waitforselector",
+          "selector": "#twotabsearchtextbox",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "Apple MacBook",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#twotabsearchtextbox",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "Apple MacBook",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Executed 6 actions successfully in 5.67s.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226175514_079033.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226175514_079033.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226175514_079033.pdf"
+    }
+  },
+  "run_20251226180441_e63c00": {
+    "runId": "run_20251226180441_e63c00",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-26T18:04:41.153490",
+    "finishedAt": "2025-12-26T18:04:56.616443",
+    "error": "Locator.wait_for: Target page, context or browser has been closed\nCall log:\n  - waiting for get_by_text(\"shoes\").first to be visible\n    24 × locator resolved to hidden <option value=\"search-alias=shoes\">Shoes & Handbags</option>\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 3198,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 120,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 468,
+        "chosenLocator": "#nav-search-submit-button"
+      },
+      {
+        "idx": 4,
+        "actionType": "waitforselector",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 790,
+        "chosenLocator": ".s-result-item"
+      },
+      {
+        "idx": 5,
+        "actionType": "expecttextvisible",
+        "status": "FAIL",
+        "error": "Locator.wait_for: Target page, context or browser has been closed\nCall log:\n  - waiting for get_by_text(\"shoes\").first to be visible\n    24 × locator resolved to hidden <option value=\"search-alias=shoes\">Shoes & Handbags</option>\n",
+        "durationMs": 10151,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for shoes on Amazon",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in/ref=nav_logo",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "shoes",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#nav-search-submit-button",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitforselector",
+          "selector": ".s-result-item",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "shoes",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": null,
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180441_e63c00.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180441_e63c00.pdf"
+    }
+  },
+  "run_20251226180510_f5f9d8": {
+    "runId": "run_20251226180510_f5f9d8",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-26T18:05:10.514266",
+    "finishedAt": "2025-12-26T18:05:23.351176",
+    "error": "Locator.wait_for: Target page, context or browser has been closed\nCall log:\n  - waiting for get_by_text(\"shoes\").first to be visible\n    22 × locator resolved to hidden <option value=\"search-alias=shoes\">Shoes & Handbags</option>\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1653,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 84,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 431,
+        "chosenLocator": "#nav-search-submit-button"
+      },
+      {
+        "idx": 4,
+        "actionType": "waitforselector",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 808,
+        "chosenLocator": ".s-result-item"
+      },
+      {
+        "idx": 5,
+        "actionType": "expecttextvisible",
+        "status": "FAIL",
+        "error": "Locator.wait_for: Target page, context or browser has been closed\nCall log:\n  - waiting for get_by_text(\"shoes\").first to be visible\n    22 × locator resolved to hidden <option value=\"search-alias=shoes\">Shoes & Handbags</option>\n",
+        "durationMs": 9130,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for shoes on Amazon",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in/ref=nav_logo",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "shoes",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#nav-search-submit-button",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitforselector",
+          "selector": ".s-result-item",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "shoes",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": null,
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180510_f5f9d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226180510_f5f9d8.pdf"
+    }
+  },
+  "run_20251226181454_9526d8": {
+    "runId": "run_20251226181454_9526d8",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "PASS",
+    "startedAt": "2025-12-26T18:14:54.608745",
+    "finishedAt": "2025-12-26T18:14:59.439741",
+    "error": null,
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1451,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "waitforselector",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 974,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 26,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 4,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 279,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 5,
+        "actionType": "waitfortimeout",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1003,
+        "chosenLocator": null
+      },
+      {
+        "idx": 6,
+        "actionType": "expecttextvisible",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 33,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for Apple iPhone",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "waitforselector",
+          "selector": "#twotabsearchtextbox",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "apple iphone",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#twotabsearchtextbox",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "apple iphone",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Executed 6 actions successfully in 4.78s.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251226181454_9526d8.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226181454_9526d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251226181454_9526d8.pdf"
+    }
+  },
+  "run_20251227190501_5ed77d": {
+    "runId": "run_20251227190501_5ed77d",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-27T19:05:01.103700",
+    "finishedAt": "2025-12-27T19:05:18.918810",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"ytd-searchbox\") to be visible\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1407,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "waitforselector",
+        "status": "FAIL",
+        "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"ytd-searchbox\") to be visible\n",
+        "durationMs": 15002,
+        "chosenLocator": "ytd-searchbox"
+      }
+    ],
+    "scenario": {
+      "title": "Validate YouTube Search Feature",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.youtube.com",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "waitforselector",
+          "selector": "ytd-searchbox",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "click",
+          "selector": "input#search",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "input#search",
+          "text": "Software Testing",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "click",
+          "selector": "button#search-icon-legacy",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecturlcontains",
+          "text": "/results"
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "Software Testing",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227190501_5ed77d.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190501_5ed77d.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190501_5ed77d.pdf"
+    }
+  },
+  "run_20251227190708_2e34d8": {
+    "runId": "run_20251227190708_2e34d8",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-27T19:07:08.149266",
+    "finishedAt": "2025-12-27T19:07:25.440613",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"#search\") to be visible\n  -     35 × locator resolved to hidden <g id=\"search\">…</g>\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1551,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "waitforselector",
+        "status": "FAIL",
+        "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"#search\") to be visible\n  -     35 × locator resolved to hidden <g id=\"search\">…</g>\n",
+        "durationMs": 15002,
+        "chosenLocator": "#search"
+      }
+    ],
+    "scenario": {
+      "title": "Search for Software Testing on YouTube",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.youtube.com",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "waitforselector",
+          "selector": "#search",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "#search",
+          "text": "",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "#search",
+          "text": "Software Testing",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#search",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecturlcontains",
+          "text": "/results?search_query=Software+Testing"
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "Software Testing",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227190708_2e34d8.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190708_2e34d8.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227190708_2e34d8.pdf"
+    }
+  },
+  "run_20251227192127_cabcea": {
+    "runId": "run_20251227192127_cabcea",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-27T19:21:27.805906",
+    "finishedAt": "2025-12-27T19:21:46.296197",
+    "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='q']\") to be visible\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 2046,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "waitforselector",
+        "status": "FAIL",
+        "error": "Page.wait_for_selector: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='q']\") to be visible\n",
+        "durationMs": 15002,
+        "chosenLocator": "input[name='q']"
+      }
+    ],
+    "scenario": {
+      "title": "Search for playwright selectors best practices",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.google.com",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "waitforselector",
+          "selector": "input[name='q']",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "fill",
+          "selector": "input[name='q']",
+          "text": "playwright selectors best practices",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "input[name='q']",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecturlcontains",
+          "text": "search"
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "playwright selectors best practices",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227192127_cabcea.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192127_cabcea.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192127_cabcea.pdf"
+    }
+  },
+  "run_20251227192244_faf2e5": {
+    "runId": "run_20251227192244_faf2e5",
+    "projectId": "checkout-web",
+    "environment": "Chrome",
+    "runType": "full-execution",
+    "status": "FAIL",
+    "startedAt": "2025-12-27T19:22:44.270874",
+    "finishedAt": "2025-12-27T19:23:05.263252",
+    "error": "Locator.wait_for: Timeout 15000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"watch\").first to be visible\n  -     32 × locator resolved to hidden <option value=\"search-alias=watches\">Watches</option>\n",
+    "actionResults": [
+      {
+        "idx": 1,
+        "actionType": "goto",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1055,
+        "chosenLocator": null
+      },
+      {
+        "idx": 2,
+        "actionType": "fill",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1872,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 3,
+        "actionType": "press",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 227,
+        "chosenLocator": "#twotabsearchtextbox"
+      },
+      {
+        "idx": 4,
+        "actionType": "waitfortimeout",
+        "status": "PASS",
+        "error": null,
+        "durationMs": 1001,
+        "chosenLocator": null
+      },
+      {
+        "idx": 5,
+        "actionType": "expecttextvisible",
+        "status": "FAIL",
+        "error": "Locator.wait_for: Timeout 15000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"watch\").first to be visible\n  -     32 × locator resolved to hidden <option value=\"search-alias=watches\">Watches</option>\n",
+        "durationMs": 15003,
+        "chosenLocator": null
+      }
+    ],
+    "scenario": {
+      "title": "Search for watch on Amazon",
+      "kind": "website",
+      "actions": [
+        {
+          "type": "goto",
+          "url": "https://www.amazon.in",
+          "waitUntil": "domcontentloaded"
+        },
+        {
+          "type": "fill",
+          "selector": "#twotabsearchtextbox",
+          "text": "watch",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "press",
+          "selector": "#twotabsearchtextbox",
+          "key": "Enter",
+          "timeoutMs": 15000
+        },
+        {
+          "type": "waitfortimeout",
+          "timeoutMs": 1000
+        },
+        {
+          "type": "expecttextvisible",
+          "text": "watch",
+          "timeoutMs": 15000
+        }
+      ]
+    },
+    "actualResult": "Execution failed.",
+    "screenshot": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/screenshots/run_20251227192244_faf2e5.png",
+    "reportPaths": {
+      "json": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192244_faf2e5.json",
+      "pdf": "/Users/youvalkumar/Desktop/untitled folder/youval-autoqa/backend/reports/run_20251227192244_faf2e5.pdf"
+    }
+  }
+}
