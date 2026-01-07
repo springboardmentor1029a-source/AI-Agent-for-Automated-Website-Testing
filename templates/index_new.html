@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA-Pilot Agent - Automated Testing with Natural Language</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="logo-container">
+            <!-- Simple Cute Robot -->
+            <div class="robot-wrapper">
+                <svg viewBox="0 0 200 240" class="cute-robot" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Shadow -->
+                    <ellipse cx="100" cy="230" rx="50" ry="8" fill="rgba(0,0,0,0.15)"/>
+                    
+                    <!-- Body -->
+                    <rect x="65" y="120" width="70" height="80" rx="20" fill="#ffffff" stroke="#4facfe" stroke-width="3"/>
+                    <circle cx="100" cy="155" r="10" fill="#4facfe">
+                        <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Arms -->
+                    <g class="arm-left">
+                        <rect x="35" y="130" width="25" height="50" rx="12" fill="#ffffff" stroke="#4facfe" stroke-width="3">
+                            <animateTransform attributeName="transform" type="rotate" values="0 47 130; -30 47 130; 0 47 130" dur="1.5s" repeatCount="indefinite"/>
+                        </rect>
+                    </g>
+                    <g class="arm-right">
+                        <rect x="140" y="130" width="25" height="50" rx="12" fill="#ffffff" stroke="#4facfe" stroke-width="3">
+                            <animateTransform attributeName="transform" type="rotate" values="0 153 130; 30 153 130; 0 153 130" dur="1.5s" repeatCount="indefinite"/>
+                        </rect>
+                    </g>
+                    
+                    <!-- Head -->
+                    <rect x="70" y="50" width="60" height="60" rx="30" fill="#ffffff" stroke="#4facfe" stroke-width="3"/>
+                    
+                    <!-- Antenna -->
+                    <line x1="100" y1="50" x2="100" y2="25" stroke="#4facfe" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="100" cy="20" r="7" fill="#4facfe">
+                        <animate attributeName="r" values="7;10;7" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Eyes -->
+                    <circle cx="85" cy="75" r="8" fill="#4facfe">
+                        <animate attributeName="ry" values="8;1;8" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="115" cy="75" r="8" fill="#4facfe">
+                        <animate attributeName="ry" values="8;1;8" dur="4s" repeatCount="indefinite" begin="0.2s"/>
+                    </circle>
+                    
+                    <!-- Smile -->
+                    <path d="M 80 90 Q 100 100 120 90" stroke="#4facfe" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    
+                    <!-- Legs -->
+                    <rect x="75" y="205" width="20" height="20" rx="10" fill="#ffffff" stroke="#4facfe" stroke-width="3"/>
+                    <rect x="105" y="205" width="20" height="20" rx="10" fill="#ffffff" stroke="#4facfe" stroke-width="3"/>
+                    
+                    <!-- Float animation -->
+                    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -10; 0 0" dur="2s" repeatCount="indefinite"/>
+                </svg>
+            </div>
+            
+            <!-- Title with Two Colors -->
+            <h1 class="loading-title">
+                <span class="title-yash">QA-PILOT</span>
+                <span class="title-ai">AGENT</span>
+            </h1>
+            
+            <!-- Subtitle in quotes -->
+            <p class="loading-subtitle">"Automated Testing with Natural Language"</p>
+            
+            <!-- Animated Loader Dots -->
+            <div class="loader-animation">
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (same as before) -->
+    <div id="main-content" class="main-content">
+        <!-- Copy all sections from original file -->
+    </div>
+
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>

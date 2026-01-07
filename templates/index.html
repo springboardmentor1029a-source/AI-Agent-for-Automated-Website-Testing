@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA-Pilot Agent - Automated Testing with Natural Language</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="logo-container">
+            <!-- Simple AI Icon -->
+            <div class="logo-icon">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff"/>
+                            <stop offset="100%" style="stop-color:#667eea"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- AI Circuit Brain -->
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="url(#gradient1)" stroke-width="2.5" opacity="0.8">
+                        <animate attributeName="stroke-dasharray" values="0 220; 220 220" dur="2s" fill="freeze"/>
+                    </circle>
+                    <circle cx="50" cy="50" r="28" fill="none" stroke="url(#gradient1)" stroke-width="1.5" opacity="0.5">
+                        <animate attributeName="stroke-dasharray" values="0 176; 176 176" dur="2.2s" fill="freeze"/>
+                    </circle>
+                    <!-- Neural nodes -->
+                    <circle cx="35" cy="35" r="3" fill="#00d4ff">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="65" cy="35" r="3" fill="#00d4ff">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="50" r="4" fill="#667eea">
+                        <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="35" cy="65" r="3" fill="#00d4ff">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.6s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="65" cy="65" r="3" fill="#00d4ff">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" begin="0.9s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+            
+            <!-- Word by Word Title Animation -->
+            <h1 class="loading-title">
+                <span class="title-part1">QA-PILOT</span>
+                <span class="title-part2">AGENT</span>
+            </h1>
+            <p class="loading-subtitle">"Automated Testing with Natural Language"</p>
+            <div class="loader-dots-container">
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="particles" id="particles"></div>
+            
+            <nav class="navbar">
+                <div class="nav-logo">
+                    <div class="nav-icon">Q</div>
+                    <span>QA-Pilot Agent</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#demo">Demo</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#about">About</a>
+                    <a href="/dashboard">Dashboard</a>
+                </div>
+            </nav>
+
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Powered by AI & LangGraph
+                </div>
+                
+                <h1 class="hero-title">
+                    Test Websites
+                    <span class="gradient-text">Automatically</span>
+                    <br>Using Natural Language
+                </h1>
+                
+                <p class="hero-description">
+                    Revolutionary AI-powered testing agent that converts your plain English instructions 
+                    into automated end-to-end tests. No coding required.
+                </p>
+                
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="window.location.href='/dashboard'">
+                        Start Testing Now
+                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary" onclick="scrollToDemo()">
+                        <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 6.66667V10M10 13.3333H10.0083M4.16667 10C4.16667 13.6819 7.31811 16.6667 11 16.6667C14.6819 16.6667 17.8333 13.6819 17.8333 10C17.8333 6.31811 14.6819 3.33334 11 3.33334C7.31811 3.33334 4.16667 6.31811 4.16667 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Watch Demo
+                    </button>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Automated</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Coding Required</div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Test Scenarios</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Powerful Features</h2>
+                    <p class="section-subtitle">Everything you need for automated testing</p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Natural Language Testing</h3>
+                        <p>Write tests in plain English. Our AI understands your intent and converts it to executable code - no programming required!</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📹</div>
+                        <h3>Session Recording</h3>
+                        <p>Record every test session with events, screenshots, and timestamps. Review, download, and replay anytime.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Multi-Format Reports</h3>
+                        <p>Generate comprehensive reports in PDF, HTML, and JSON formats with detailed analytics and insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">Four simple steps to automated testing</p>
+                </div>
+
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Write Instructions</h3>
+                            <p>Describe your test scenario in plain English, just like you would explain it to a colleague.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-connector"></div>
+
+                    <div class="step-item">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>AI Parsing</h3>
+                            <p>Our AI agent analyzes your instructions and breaks them down into actionable test steps.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-connector"></div>
+
+                    <div class="step-item">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Auto Execution</h3>
+                            <p>Playwright executes the generated tests in a headless browser, simulating real user interactions.</p>
+                        </div>
+                    </div>
+
+                    <div class="step-connector"></div>
+
+                    <div class="step-item">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Get Results</h3>
+                            <p>Review detailed reports with pass/fail status, execution logs, and performance metrics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo/Usage Section -->
+        <section id="demo" class="demo-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Demo & How to Use</h2>
+                    <p class="section-subtitle">Interactive guide to get started</p>
+                </div>
+
+                <!-- Tab Navigation -->
+                <div class="demo-tabs" style="display: flex; gap: 10px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap;">
+                    <button class="demo-tab-btn active" onclick="switchDemoTab('quick-start')" style="padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        🚀 Quick Start
+                    </button>
+                    <button class="demo-tab-btn" onclick="switchDemoTab('guide')" style="padding: 12px 24px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        📖 User Guide
+                    </button>
+                    <button class="demo-tab-btn" onclick="switchDemoTab('examples')" style="padding: 12px 24px; background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s;">
+                        💡 Examples
+                    </button>
+                </div>
+
+                <!-- Quick Start Tab -->
+                <div id="quick-start" class="demo-tab-content active">
+                <div class="usage-steps">
+                    <div class="usage-step">
+                        <div class="step-number">1</div>
+                        <div class="step-visual">
+                            <div class="demo-box">
+                                <div class="demo-input">
+                                    <div class="input-label">🌐 Target URL</div>
+                                    <div class="input-value">www.google.com</div>
+                                </div>
+                                <div class="demo-input">
+                                    <div class="input-label">📝 Test Instructions</div>
+                                    <div class="input-value">Search for "AI testing tools"</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>Enter URL & Instructions</h3>
+                        <p>Type the website URL and describe what you want to test in plain English</p>
+                    </div>
+
+                    <div class="usage-step">
+                        <div class="step-number">2</div>
+                        <div class="step-visual">
+                            <div class="demo-box">
+                                <div class="mode-selector">
+                                    <div class="mode-option selected">
+                                        <span class="mode-icon">⚡</span>
+                                        <span>Headless Mode</span>
+                                    </div>
+                                    <div class="mode-option">
+                                        <span class="mode-icon">👁️</span>
+                                        <span>Visible Browser</span>
+                                    </div>
+                                </div>
+                                <button class="demo-button">▶ Run Test</button>
+                            </div>
+                        </div>
+                        <h3>Choose Mode & Run</h3>
+                        <p>Select headless (fast) or visible browser mode (watch it work) and click Run</p>
+                    </div>
+
+                    <div class="usage-step">
+                        <div class="step-number">3</div>
+                        <div class="step-visual">
+                            <div class="demo-box">
+                                <div class="result-item passed">
+                                    <span class="result-icon">✓</span>
+                                    <span>Navigation successful</span>
+                                </div>
+                                <div class="result-item passed">
+                                    <span class="result-icon">✓</span>
+                                    <span>Search completed</span>
+                                </div>
+                                <div class="result-summary">
+                                    <strong>2/2 Tests Passed</strong>
+                                    <span class="success-rate">100%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3>View Results</h3>
+                        <p>Get detailed reports with pass/fail status, screenshots, and generated code</p>
+                    </div>
+                </div>
+                </div>
+
+                <!-- User Guide Tab -->
+                <div id="guide" class="demo-tab-content" style="display: none;">
+                    <div style="max-width: 1000px; margin: 0 auto;">
+                        <div style="background: rgba(99, 102, 241, 0.1); padding: 30px; border-radius: 12px; margin-bottom: 30px; border: 2px solid rgba(99, 102, 241, 0.3);">
+                            <h3 style="color: #667eea; margin-bottom: 20px; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                                <span>✍️</span> Writing Good Test Instructions
+                            </h3>
+                            <div style="color: #e2e8f0; line-height: 1.8; font-size: 1.05rem;">
+                                <p style="margin-bottom: 15px;"><strong>Examples of good instructions:</strong></p>
+                                <ul style="padding-left: 25px; margin-bottom: 20px; list-style: none;">
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #10b981;">✓</span> "Go to google.com, search for 'Playwright', and click the first result"</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #10b981;">✓</span> "Navigate to amazon.com, search for 'laptop', filter by price, and screenshot the results"</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #10b981;">✓</span> "Open the login page, enter username 'testuser', password 'test123', and click login"</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #10b981;">✓</span> "Fill out the contact form with name, email, and message, then submit"</li>
+                                </ul>
+                                <p style="margin-bottom: 15px; margin-top: 25px;"><strong>Pro Tips:</strong></p>
+                                <ul style="padding-left: 25px; list-style: none;">
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #f59e0b;">💡</span> Be specific about actions: "click", "type", "scroll", "hover", "select"</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #f59e0b;">💡</span> Include verification steps: "check if", "verify that", "ensure"</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #f59e0b;">💡</span> Break complex tasks into simple steps</li>
+                                    <li style="margin-bottom: 10px; padding-left: 25px; position: relative;"><span style="position: absolute; left: 0; color: #f59e0b;">💡</span> You can reference elements by text, ID, class, or description</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                            <div style="background: rgba(245, 158, 11, 0.1); padding: 25px; border-radius: 12px; border: 2px solid rgba(245, 158, 11, 0.3);">
+                                <h3 style="color: #f59e0b; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px;">
+                                    <span>📹</span> Recording Feature
+                                </h3>
+                                <div style="color: #e2e8f0; line-height: 1.8;">
+                                    <p style="margin-bottom: 10px;">When recording is enabled:</p>
+                                    <ul style="padding-left: 20px; list-style: none;">
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">✅</span> Captures every action</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">✅</span> Takes screenshots</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">✅</span> Logs events with timestamps</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">✅</span> Downloadable as JSON</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div style="background: rgba(139, 92, 246, 0.1); padding: 25px; border-radius: 12px; border: 2px solid rgba(139, 92, 246, 0.3);">
+                                <h3 style="color: #8b5cf6; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center; gap: 10px;">
+                                    <span>📊</span> Report Analyzer
+                                </h3>
+                                <div style="color: #e2e8f0; line-height: 1.8;">
+                                    <p style="margin-bottom: 10px;">Generate comprehensive reports:</p>
+                                    <ul style="padding-left: 20px; list-style: none;">
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">📄</span> PDF reports</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">🌐</span> HTML reports</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">📦</span> JSON data export</li>
+                                        <li style="margin-bottom: 8px; padding-left: 20px; position: relative;"><span style="position: absolute; left: 0;">🎬</span> Include recordings</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); padding: 30px; border-radius: 12px; border: 2px solid rgba(99, 102, 241, 0.4);">
+                            <h3 style="color: #ec4899; margin-bottom: 20px; font-size: 1.4rem; text-align: center;">🎯 Key Features Overview</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                                <div style="padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 10px;">🤖</div>
+                                    <strong style="color: #6366f1; display: block; margin-bottom: 8px;">AI-Powered</strong>
+                                    <p style="font-size: 0.9rem; color: #cbd5e1;">Natural language understanding</p>
+                                </div>
+                                <div style="padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 10px;">⚡</div>
+                                    <strong style="color: #10b981; display: block; margin-bottom: 8px;">Fast Execution</strong>
+                                    <p style="font-size: 0.9rem; color: #cbd5e1;">Playwright automation</p>
+                                </div>
+                                <div style="padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 10px;">📹</div>
+                                    <strong style="color: #f59e0b; display: block; margin-bottom: 8px;">Recording</strong>
+                                    <p style="font-size: 0.9rem; color: #cbd5e1;">Capture test sessions</p>
+                                </div>
+                                <div style="padding: 20px; background: rgba(0,0,0,0.3); border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 2rem; margin-bottom: 10px;">📊</div>
+                                    <strong style="color: #8b5cf6; display: block; margin-bottom: 8px;">Analytics</strong>
+                                    <p style="font-size: 0.9rem; color: #cbd5e1;">Multi-format reports</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples Tab -->
+                <div id="examples" class="demo-tab-content" style="display: none;">
+                    <div class="example-tests" style="max-width: 1200px; margin: 0 auto;">
+                        <h3 class="examples-title" style="margin-bottom: 30px; font-size: 1.8rem; text-align: center;">💡 Example Test Scenarios</h3>
+                        <div class="examples-grid-demo">
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">🔍</span>
+                                    <strong>Google Search</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: www.google.com</code>
+                                    <code>Test: Search for "Python tutorials" and click first result</code>
+                                </div>
+                            </div>
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">🛒</span>
+                                    <strong>Amazon Product</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: www.amazon.com</code>
+                                    <code>Test: Search for "headphones" and check price</code>
+                                </div>
+                            </div>
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">🎥</span>
+                                    <strong>YouTube Video</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: www.youtube.com</code>
+                                    <code>Test: Go to freeCodeCamp channel and find Python course</code>
+                                </div>
+                            </div>
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">📝</span>
+                                    <strong>Form Submission</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: your-form-site.com</code>
+                                    <code>Test: Fill name, email, message and submit contact form</code>
+                                </div>
+                            </div>
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">🔐</span>
+                                    <strong>Login Test</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: your-app.com/login</code>
+                                    <code>Test: Enter credentials and verify successful login</code>
+                                </div>
+                            </div>
+                            <div class="example-demo-card">
+                                <div class="example-header">
+                                    <span class="example-icon">🛍️</span>
+                                    <strong>E-commerce Flow</strong>
+                                </div>
+                                <div class="example-code">
+                                    <code>URL: shop.com</code>
+                                    <code>Test: Add item to cart, proceed to checkout, verify total</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About QA-Pilot Agent</h2>
+                    <p class="section-subtitle">Built with cutting-edge technology stack</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-description">
+                        <h3>🤖 What is QA-Pilot Agent?</h3>
+                        <p>QA-Pilot Agent is an intelligent automated testing platform that revolutionizes how developers test web applications. Using natural language processing powered by Google's Gemini AI, it converts plain English test instructions into executable Playwright scripts.</p>
+                        
+                        <p>No more writing complex test code or learning testing frameworks. Simply describe what you want to test in natural language, and let the AI agent handle the rest!</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <h3>⚡ Technology Stack</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-icon">🐍</div>
+                                <div class="tech-name">Python 3.x</div>
+                                <div class="tech-desc">Core Backend Language</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🤖</div>
+                                <div class="tech-name">Google Gemini AI</div>
+                                <div class="tech-desc">Natural Language Processing</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🔗</div>
+                                <div class="tech-name">LangGraph</div>
+                                <div class="tech-desc">Workflow Orchestration</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🎭</div>
+                                <div class="tech-name">Playwright</div>
+                                <div class="tech-desc">Browser Automation</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🌐</div>
+                                <div class="tech-name">Flask</div>
+                                <div class="tech-desc">Web Framework</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">⚛️</div>
+                                <div class="tech-name">HTML/CSS/JS</div>
+                                <div class="tech-desc">Modern Frontend</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🎨</div>
+                                <div class="tech-name">Custom UI</div>
+                                <div class="tech-desc">Beautiful Animations</div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-icon">🚀</div>
+                                <div class="tech-name">Chromium</div>
+                                <div class="tech-desc">Headless Testing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="features-list">
+                        <h3>✨ Key Capabilities</h3>
+                        <ul>
+                            <li>✅ Natural language test descriptions</li>
+                            <li>✅ Automatic Playwright script generation</li>
+                            <li>✅ Headless and visible browser modes</li>
+                            <li>✅ Real-world website testing (Google, Amazon, etc.)</li>
+                            <li>✅ Detailed test reports with pass/fail status</li>
+                            <li>✅ Smart element detection and interaction</li>
+                            <li>✅ Adaptive DOM mapping</li>
+                            <li>✅ Error handling and recovery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="cta-content">
+                <h2>Ready to Revolutionize Your Testing?</h2>
+                <p>Start testing with AI today. No credit card required.</p>
+                <button class="btn btn-primary btn-large" onclick="window.location.href='/dashboard'">
+                    Get Started Free
+                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <div class="nav-icon">Q</div>
+                        <span>QA-Pilot Agent</span>
+                    </div>
+                    <p class="footer-text">Automated testing powered by artificial intelligence.</p>
+                    <p class="footer-copyright">© 2025 QA-Pilot Agent. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>

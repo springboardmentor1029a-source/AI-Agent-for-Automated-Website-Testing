@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA-Pilot Agent - Testing Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0d1a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Main Card */
+        .card {
+            background: #141927;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0a0d1a;
+            border: 1px solid #2d3548;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #1e2538;
+            color: #e2e8f0;
+            border: 1px solid #2d3548;
+        }
+
+        .btn-secondary:hover {
+            background: #2d3548;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #0a0d1a;
+            border: 2px solid #2d3548;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+        }
+
+        .stat-card.success {
+            border-color: #10b981;
+        }
+
+        .stat-card.error {
+            border-color: #ef4444;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-card.success .stat-value {
+            color: #10b981;
+        }
+
+        .stat-card.error .stat-value {
+            color: #ef4444;
+        }
+
+        /* Test Details */
+        .test-details {
+            margin-top: 30px;
+        }
+
+        .test-item {
+            background: #0a0d1a;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .test-item.passed {
+            border-left-color: #10b981;
+        }
+
+        .test-item.failed {
+            border-left-color: #ef4444;
+        }
+
+        .test-item-header {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .test-item-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .test-item-error {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 6px;
+            color: #ef4444;
+            font-size: 0.9rem;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #2d3548;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        /* Code Display */
+        .code-section {
+            margin-top: 30px;
+        }
+
+        .code-toggle {
+            background: #1e2538;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .code-toggle:hover {
+            background: #2d3548;
+        }
+
+        .code-content {
+            display: none;
+            background: #0a0d1a;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        .code-content.show {
+            display: block;
+        }
+
+        .code-content pre {
+            color: #94a3b8;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Examples */
+        .examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .example-card {
+            background: #1e2538;
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid #2d3548;
+        }
+
+        .example-card:hover {
+            transform: translateY(-3px);
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+
+        .example-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Back Button */
+        .back-btn {
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🤖 Yash AI Agent</h1>
+            <p>Automated Website Testing Using Natural Language</p>
+        </div>
+
+        <!-- Test Form -->
+        <div id="test-form-section" class="card">
+            <h2 class="card-title">✨ Create New Test</h2>
+            
+            <form id="testForm">
+                <div class="form-group">
+                    <label class="form-label">🌐 Target Website</label>
+                    <input 
+                        type="text" 
+                        id="url" 
+                        class="form-input" 
+                        placeholder="https://www.google.com"
+                        value="https://www.google.com"
+                        required
+                    />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">🔧 Browser</label>
+                        <select id="browser" class="form-select">
+                            <option value="chromium">Chrome/Chromium</option>
+                            <option value="firefox">Firefox</option>
+                            <option value="webkit">Safari/WebKit</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">👁️ Execution Mode</label>
+                        <select id="mode" class="form-select">
+                            <option value="headless">Headless (Fast)</option>
+                            <option value="visible">Visible Browser (Watch)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">💬 Test Instructions (Natural Language)</label>
+                    <textarea 
+                        id="instruction" 
+                        class="form-textarea" 
+                        placeholder="Example: go to google and search for 'AI testing tools'"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+                    <button type="submit" class="btn btn-primary" id="runBtn">
+                        <span>▶️ Run Test</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quick Examples -->
+            <div style="margin-top: 40px;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 15px; color: #94a3b8;">Quick Start Examples</h3>
+                <div class="examples">
+                    <div class="example-card" onclick="loadExample('google')">
+                        <div class="example-title">🔍 Google Search</div>
+                        <div class="example-desc">Navigate + Search + Wait</div>
+                    </div>
+                    <div class="example-card" onclick="loadExample('amazon')">
+                        <div class="example-title">🛒 Amazon</div>
+                        <div class="example-desc">Navigate + Wait Test</div>
+                    </div>
+                    <div class="example-card" onclick="loadExample('youtube')">
+                        <div class="example-title">📺 YouTube</div>
+                        <div class="example-desc">Navigate + Search Test</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading" class="loading card">
+            <div class="spinner"></div>
+            <div class="loading-text" id="loadingText">🤖 AI Agent is working...</div>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="results">
+            <button class="btn btn-secondary back-btn" onclick="showForm()">← New Test</button>
+            
+            <div class="card">
+                <h2 class="card-title">📊 Test Results</h2>
+                
+                <div class="stats-grid" id="stats">
+                    <!-- Stats will be inserted here -->
+                </div>
+
+                <div class="test-details" id="testDetails">
+                    <!-- Test details will be inserted here -->
+                </div>
+
+                <div class="code-section">
+                    <div class="code-toggle" onclick="toggleCode()">
+                        <span style="font-weight: 600;">🔍 View Generated Code</span>
+                        <span id="codeArrow">▼</span>
+                    </div>
+                    <div class="code-content" id="codeContent">
+                        <pre id="generatedCode"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            google: {
+                url: 'https://www.google.com',
+                instruction: 'go to google.com, wait 2 seconds, then search for "AI automation testing"'
+            },
+            amazon: {
+                url: 'https://www.amazon.com',
+                instruction: 'navigate to amazon.com and wait 3 seconds'
+            },
+            youtube: {
+                url: 'https://www.youtube.com',
+                instruction: 'go to youtube.com, wait 2 seconds, then search for "playwright tutorial"'
+            }
+        };
+
+        function loadExample(type) {
+            const example = examples[type];
+            document.getElementById('url').value = example.url;
+            document.getElementById('instruction').value = example.instruction;
+        }
+
+        function clearForm() {
+            document.getElementById('url').value = 'https://www.google.com';
+            document.getElementById('instruction').value = '';
+        }
+
+        function showForm() {
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('test-form-section').style.display = 'block';
+        }
+
+        function toggleCode() {
+            const content = document.getElementById('codeContent');
+            const arrow = document.getElementById('codeArrow');
+            content.classList.toggle('show');
+            arrow.textContent = content.classList.contains('show') ? '▲' : '▼';
+        }
+
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const url = document.getElementById('url').value;
+            const instruction = document.getElementById('instruction').value;
+            const browser = document.getElementById('browser').value;
+            const mode = document.getElementById('mode').value;
+
+            // Hide form, show loading
+            document.getElementById('test-form-section').style.display = 'none';
+            document.getElementById('loading').classList.add('show');
+
+            const runBtn = document.getElementById('runBtn');
+            runBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/test', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        url: url,
+                        instruction: instruction,
+                        browser: browser,
+                        headless: mode === 'headless'
+                    })
+                });
+
+                const result = await response.json();
+
+                // Hide loading
+                document.getElementById('loading').classList.remove('show');
+
+                if (result.success) {
+                    displayResults(result.data);
+                } else {
+                    alert('Test failed: ' + result.error);
+                    showForm();
+                }
+            } catch (error) {
+                document.getElementById('loading').classList.remove('show');
+                console.error('Fetch error:', error);
+                alert('Error connecting to server: ' + error.message + '\n\nMake sure the server is running on http://localhost:5000');
+                showForm();
+            } finally {
+                runBtn.disabled = false;
+            }
+        });
+
+        function displayResults(data) {
+            const total = data.total_steps || 0;
+            const passed = data.passed || 0;
+            const failed = data.failed || 0;
+            const rate = data.success_rate || 0;
+
+            // Stats
+            document.getElementById('stats').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-label">Total Steps</div>
+                    <div class="stat-value">${total}</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-label">Passed</div>
+                    <div class="stat-value">${passed}</div>
+                </div>
+                <div class="stat-card error">
+                    <div class="stat-label">Failed</div>
+                    <div class="stat-value">${failed}</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Success Rate</div>
+                    <div class="stat-value">${rate.toFixed(1)}%</div>
+                </div>
+            `;
+
+            // Test Details - Show planned actions AND execution results
+            let detailsHTML = '';
+            
+            // Show parsed actions first
+            if (data.actions && data.actions.length > 0) {
+                detailsHTML += '<div style="background: #1e2538; padding: 20px; border-radius: 12px; margin-bottom: 25px;">';
+                detailsHTML += '<h3 style="margin-bottom: 15px; color: #667eea;">📋 Planned Test Steps</h3>';
+                data.actions.forEach((action, idx) => {
+                    const icons = {
+                        'navigate': '🌐',
+                        'search': '🔍',
+                        'click': '👆',
+                        'fill': '✏️',
+                        'wait': '⏱️',
+                        'assert_text': '✓',
+                        'assert_url': '🔗'
+                    };
+                    const icon = icons[action.type] || '▶️';
+                    const desc = action.description || action.target || action.value || '';
+                    detailsHTML += `
+                        <div style="padding: 10px; margin: 8px 0; background: #0a0d1a; border-left: 3px solid #667eea; border-radius: 6px;">
+                            <div style="color: #e2e8f0; font-weight: 500;">${icon} Step ${idx + 1}: ${action.type.toUpperCase()}</div>
+                            <div style="color: #94a3b8; font-size: 0.9rem; margin-top: 4px;">${desc}</div>
+                        </div>
+                    `;
+                });
+                detailsHTML += '</div>';
+            }
+            
+            // Show execution results
+            detailsHTML += '<h3 style="margin-bottom: 15px;">🎯 Execution Results</h3>';
+            
+            if (data.passed_tests && data.passed_tests.length > 0) {
+                data.passed_tests.forEach(test => {
+                    const actionText = test.action || 'unknown';
+                    const desc = test.description || 'Completed successfully';
+                    const value = test.value ? ` → "${test.value}"` : '';
+                    detailsHTML += `
+                        <div class="test-item passed">
+                            <div class="test-item-header">✅ Step ${test.step}: ${actionText.toUpperCase()}${value}</div>
+                            <div class="test-item-desc">${desc}</div>
+                        </div>
+                    `;
+                });
+            }
+
+            if (data.failed_tests && data.failed_tests.length > 0) {
+                data.failed_tests.forEach(test => {
+                    detailsHTML += `
+                        <div class="test-item failed">
+                            <div class="test-item-header">❌ Step ${test.step}: ${test.action || 'Unknown'}</div>
+                            <div class="test-item-desc">${test.description || 'Failed'}</div>
+                            ${test.error ? `<div class="test-item-error">💥 Error: ${test.error}</div>` : ''}
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('testDetails').innerHTML = detailsHTML;
+
+            // Generated Code
+            if (data.generated_code) {
+                document.getElementById('generatedCode').textContent = data.generated_code;
+            }
+
+            // Show results
+            document.getElementById('results').classList.add('show');
+        }
+    </script>
+</body>
+</html>
