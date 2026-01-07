@@ -88,11 +88,6 @@ Generate professional reports in multiple formats:
 
 ![Run Agent Results](./screenshots/run-agent-results.png)
 
-### Recordings Tab
-> *Manage recorded test sessions*
-
-![Recordings](./screenshots/recordings.png)
-
 ### Analyzer Tab
 > *Generate and download reports*
 
