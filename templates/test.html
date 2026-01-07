@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Console - Web Test Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Web Test Agent</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/test" class="active">Test Console</a></li>
+                <li><a href="/docs">Documentation</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="console-header">
+            <h1>Test Console</h1>
+            <p>Interact with test elements and the AI agent</p>
+        </div>
+
+        <!-- AI Agent Section -->
+        <section class="agent-panel">
+            <h2>🤖 AI Testing Agent</h2>
+            <p>Provide a website link and testing instructions</p>
+            <div class="form-group">
+                <label for="websiteLink">Website Link</label>
+                <input type="url" id="websiteLink" placeholder="https://example.com">
+            </div>
+            <div class="form-group">
+                <label for="agentInstruction">Testing Instructions</label>
+                <textarea id="agentInstruction" rows="3" placeholder="e.g., Click the submit button and verify the form..." onkeypress="handleKeyPress(event)"></textarea>
+            </div>
+            <button onclick="sendToAgent()" class="btn btn-primary">Send to Agent</button>
+            <div class="agent-response" id="agentResponse"></div>
+        </section>
+
+        <!-- Test Elements Section -->
+        <section class="test-panel">
+            <h2>Interactive Test Elements</h2>
+            
+            <div class="test-group">
+                <h3>Buttons</h3>
+                <div class="button-row">
+                    <button class="btn btn-primary" onclick="showResult('Primary button clicked', 'success')">Primary</button>
+                    <button class="btn btn-secondary" onclick="showResult('Secondary button clicked', 'success')">Secondary</button>
+                    <button class="btn btn-success" onclick="showResult('Success action completed', 'success')">Success</button>
+                    <button class="btn btn-danger" onclick="showResult('Danger action triggered', 'error')">Danger</button>
+                </div>
+            </div>
+
+            <div class="test-group">
+                <h3>Form Elements</h3>
+                <form id="testForm" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                </form>
+            </div>
+
+            <div class="test-group">
+                <h3>Navigation Links</h3>
+                <div class="button-row">
+                    <button class="btn btn-secondary" onclick="window.location.href='#section1'">Section 1</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='#section2'">Section 2</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='#section3'">Section 3</button>
+                </div>
+            </div>
+
+            <div class="result-box" id="resultBox"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Web Test Agent. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showResult(message, type) {
+            const resultBox = document.getElementById('resultBox');
+            resultBox.textContent = message;
+            resultBox.className = 'result-box show ' + type;
+            setTimeout(() => resultBox.classList.remove('show'), 3000);
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                showResult(`Form submitted successfully! Name: ${name}`, 'success');
+                document.getElementById('testForm').reset();
+            } else {
+                showResult('Please fill in all fields', 'error');
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendToAgent();
+            }
+        }
+
+        async function sendToAgent() {
+            const link = document.getElementById('websiteLink').value;
+            const instruction = document.getElementById('agentInstruction').value;
+            const responseDiv = document.getElementById('agentResponse');
+
+            if (!instruction.trim()) {
+                responseDiv.textContent = 'Please enter testing instructions';
+                responseDiv.className = 'agent-response show error';
+                return;
+            }
+
+            // Combine link and instruction for the agent
+            let input = instruction;
+            if (link.trim()) {
+                input = `Website: ${link}\n\nInstructions: ${instruction}`;
+            }
+
+            responseDiv.textContent = 'Processing...';
+            responseDiv.className = 'agent-response show';
+
+            try {
+                const response = await fetch('/api/agent', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ input: input })
+                });
+
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    responseDiv.innerHTML = `<strong>Response:</strong> ${data.message}`;
+                    responseDiv.className = 'agent-response show success';
+                } else {
+                    responseDiv.innerHTML = `<strong>Error:</strong> ${data.error || data.message}`;
+                    responseDiv.className = 'agent-response show error';
+                }
+            } catch (error) {
+                responseDiv.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                responseDiv.className = 'agent-response show error';
+            }
+
+            document.getElementById('websiteLink').value = '';
+            document.getElementById('agentInstruction').value = '';
+        }
+    </script>
+</body>
+</html>

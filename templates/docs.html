@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Web Test Agent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Web Test Agent</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/test">Test Console</a></li>
+                <li><a href="/docs" class="active">Documentation</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="docs-container">
+            <h1>Documentation</h1>
+            
+            <section class="doc-section">
+                <h2>Getting Started</h2>
+                <p>Follow these steps to start using the Web Test Agent:</p>
+                <ol>
+                    <li>Navigate to the Test Console page</li>
+                    <li>Enter your test instruction in natural language</li>
+                    <li>Click "Send" or press Enter</li>
+                    <li>Review the agent's response</li>
+                </ol>
+            </section>
+
+            <section class="doc-section">
+                <h2>API Endpoints</h2>
+                <div class="api-endpoint">
+                    <h3>POST /api/agent</h3>
+                    <p>Send instructions to the LangGraph agent</p>
+                    <pre><code>{
+  "input": "Your test instruction here"
+}</code></pre>
+                    <p><strong>Response:</strong></p>
+                    <pre><code>{
+  "status": "success",
+  "message": "Agent response",
+  "input": "Original input"
+}</code></pre>
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>Configuration</h2>
+                <p>The platform uses environment variables for configuration:</p>
+                <ul>
+                    <li><code>OPENAI_API_KEY</code> - Your OpenAI API key</li>
+                    <li><code>PORT</code> - Server port (default: 5000)</li>
+                    <li><code>DEBUG</code> - Enable debug mode (True/False)</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>Test Elements Available</h2>
+                <p>The test console provides the following interactive elements:</p>
+                <ul>
+                    <li>Buttons (Primary, Secondary, Success, Danger)</li>
+                    <li>Form inputs (Text, Email, Textarea)</li>
+                    <li>Navigation links</li>
+                    <li>AI Agent interface</li>
+                </ul>
+            </section>
+
+            <section class="doc-section">
+                <h2>Requirements</h2>
+                <p>System requirements and dependencies:</p>
+                <ul>
+                    <li>Python 3.8 or higher</li>
+                    <li>Flask web framework</li>
+                    <li>LangGraph library</li>
+                    <li>OpenAI API access</li>
+                    <li>python-dotenv for environment management</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Web Test Agent. All rights reserved.</p>
+    </footer>
+</body>
+</html>
