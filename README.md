@@ -160,8 +160,6 @@ http://127.0.0.1:7788
 
 “Check all links and images on the homepage”
 
-🖼️ Screenshots
-<p align="center"> <img src="../assets/web-ui.png" width="90%"> </p> <p align="center"> <img src="../assets/new-screenshot.png" width="90%"> </p>
 📊 Project Outcome
 
 Successfully demonstrated AI-controlled browser testing
