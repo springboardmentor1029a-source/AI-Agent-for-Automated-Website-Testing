@@ -17,7 +17,3 @@ Where it is referenced
 |------|----------|
 | `reports/run_<...>.json` | `screenshot` |
 | `data/report_index.json` | `reports[].screenshot` |
-
-Cleaning policy
-
-This folder is safe to clean anytime. Deleting screenshots will not break new runs, but older reports may point to missing screenshot paths.
