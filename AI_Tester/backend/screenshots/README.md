@@ -10,7 +10,7 @@ What is saved
 
 How it is generated
 
-During execution, the runner calls Playwright’s screenshot API and saves the image into this folder. [web:86][web:157]
+During execution, the runner calls Playwright’s screenshot API and saves the image into this folder. 
 
 Where it is referenced
 | File | Field(s) |
