@@ -81,7 +81,7 @@ LLMs (OpenAI, Azure OpenAI, Ollama, DeepSeek)
 
 Gradio WebUI
 HTML5 / CSS / JavaScript
-
+```
 web-ui/
 │
 ├── .github/                # GitHub workflows and issue templates
@@ -109,7 +109,7 @@ web-ui/
 ├── supervisord.conf        # Process manager configuration
 └── webui.py                # Main application entry point
 
-
+```
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
 git clone https://github.com/springboardmentor1029a-source/AI-Agent-for-Automated-Website-Testing.git
@@ -117,14 +117,11 @@ cd AI-Agent-for-Automated-Website-Testing
 
 2️⃣ Create Virtual Environment
 uv venv --python 3.11
-
-
 Activate:
 
 Windows
 
 .\.venv\Scripts\Activate.ps1
-
 
 macOS / Linux
 
@@ -133,7 +130,6 @@ source .venv/bin/activate
 3️⃣ Install Dependencies
 uv pip install -r requirements.txt
 
-
 Install Playwright browsers:
 
 playwright install --with-deps
@@ -141,12 +137,10 @@ playwright install --with-deps
 4️⃣ Configure Environment
 cp .env.example .env
 
-
 (Add API keys if required)
 
 🚀 Running the Application
 python webui.py --ip 127.0.0.1 --port 7788
-
 
 Open in browser:
 
