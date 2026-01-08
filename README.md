@@ -1,12 +1,13 @@
 🌐 Bindu WebQA Agent 
-AI Agent for Automated Website Testing
+
+(AI Agent for Automated Website Testing)
 
 🚀 Project Overview
 
 Web UI for AI-Powered Browser Automation is an interactive, user-friendly interface built on top of the browser-use framework.
 The project enables AI agents to interact with real websites through a graphical Web UI, making browser automation accessible, observable, and easy to control.
 
-This WebUI is designed using Gradio and supports multiple Large Language Models (LLMs), persistent browser sessions, custom browser integration, and automated web interaction workflows.
+This WebUI upports multiple Large Language Models (LLMs), persistent browser sessions, custom browser integration, and automated web interaction workflows.
 
 🎯 Objectives Achieved
 
@@ -21,7 +22,7 @@ This WebUI is designed using Gradio and supports multiple Large Language Models 
 ✅ Supported custom browser usage with user profiles
 
 ✅ Displayed real-time browser interaction results
-
+```
 🧠 System Architecture Flow
 User Input (WebUI – Natural Language)
         ↓
@@ -35,7 +36,8 @@ Live Browser Execution
         ↓
 Test Output & Observations (UI)
 
-🧩 Project Description (Milestone 2)
+```
+🧩 Project Description 
 
 Bindu WebQA Agent is an AI-powered web testing application that allows users to test websites by simply describing actions in plain English.
 
