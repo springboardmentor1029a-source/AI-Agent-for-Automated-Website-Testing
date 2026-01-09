@@ -1,0 +1,34 @@
+{
+  "www.google.com": {
+    "search": {
+      "bbox": {
+        "x": 639,
+        "y": 272
+      }
+    }
+  },
+  "duckduckgo.com": {
+    "search": {
+      "bbox": {
+        "x": 615,
+        "y": 58
+      }
+    }
+  },
+  "www.amazon.com": {
+    "search": {
+      "bbox": {
+        "x": 548,
+        "y": 29
+      }
+    }
+  },
+  "www.youtube.com": {
+    "search": {
+      "bbox": {
+        "x": 588,
+        "y": 28
+      }
+    }
+  }
+}
