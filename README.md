@@ -4,17 +4,17 @@ A powerful, web-based dashboard for orchestrating AI agents. This project featur
 
 ## 🚀 Key Features
 
--Live Command Console: Send natural language instructions to an autonomous agent.
--Real-time System Logs: Monitor the agent's thought process and execution steps via a neon-styled terminal.
--Visual Proof: View live screenshots of the browser actions directly in the dashboard summary.
--Smart PDF Export: Generate professional, high-contrast PDF reports. The system automatically strips out UI-only elements (like screenshots) to keep reports formal and concise.
--Dark Mode Interface: A sleek, developer-focused UI built with Bootstrap and custom CSS.
+1. **Live Command Console:** Send natural language instructions to an autonomous agent.
+2. **Real-time System Logs:** Monitor the agent's thought process and execution steps via a neon-styled terminal.
+3. **Visual Proof:** View live screenshots of the browser actions directly in the dashboard summary.
+4. **Smart PDF Export:** Generate professional, high-contrast PDF reports. The system automatically strips out UI-only elements (like screenshots) to keep reports formal and concise.
+5. **Dark Mode Interface:** A sleek, developer-focused UI built with Bootstrap and custom CSS.
 
 ## 🛠️ Technology Stack
--Backend: Python, Flask, LangChain/LangGraph.
--Automation: Playwright (for browser orchestration).
--Frontend: HTML5, CSS3 (Custom Neon Theme), JavaScript (Async/Await).
--PDF Engine: html2pdf.js with DOM cloning logic.
+1. **Backend:** Python, Flask, LangChain/LangGraph.
+2. **Automation:** Playwright (for browser orchestration).
+3. **Frontend:** HTML5, CSS3 (Custom Neon Theme), JavaScript (Async/Await).
+4. **PDF Engine:** html2pdf.js with DOM cloning logic.
 
 ### Backend
 - **Python 3.8+**: Core programming language
@@ -144,11 +144,11 @@ Run a test on a website
 }
 ```
 💡 How the PDF Generation Works
--To maintain a "Dark Mode" website but generate "Light Mode" PDFs, the system uses a Cloning Technique:
--Clone: The JavaScript creates a hidden "stunt double" of the report.
--Filter: It identifies elements with the .screenshot-ui-only class and removes them.
--Transform: It forces all text to black and backgrounds to white.
--Render: html2pdf captures this cleaned version, leaving your live dashboard untouched.
+To maintain a "Dark Mode" website but generate "Light Mode" PDFs, the system uses a Cloning Technique:
+1. **Clone:** The JavaScript creates a hidden "stunt double" of the report.
+2. **Filter:** It identifies elements with the .screenshot-ui-only class and removes them.
+3. **Transform:** It forces all text to black and backgrounds to white.
+4. **Render:** html2pdf captures this cleaned version, leaving your live dashboard untouched.
 
 ## 📝 License
 
