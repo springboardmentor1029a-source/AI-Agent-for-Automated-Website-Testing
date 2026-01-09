@@ -1,18 +1,20 @@
 # AI Agent for Automated Website Testing
 
-An intelligent web application that uses **LangGraph**, **OpenAI GPT**, and **Playwright** to automate website testing. Simply describe what you want to test in plain English, and the AI agent will automatically generate and execute Playwright test scripts.
+A powerful, web-based dashboard for orchestrating AI agents. This project features a real-time terminal, live browser screenshots, and a clean PDF reporting engine that intelligently separates UI elements from the final document.
 
-## 🚀 Features
+## 🚀 Key Features
 
-- **AI-Powered**: Uses OpenAI GPT-3.5-turbo for natural language understanding
-- **LangGraph Workflow**: Agent-based architecture for intelligent test orchestration
-- **Playwright Automation**: Modern browser automation with Playwright
-- **Code Generation**: Automatically generates Playwright scripts from natural language
-- **Fallback Mode**: Works even without OpenAI API (keyword-based parsing)
-- **Comprehensive Testing**: Images, links, forms, performance, and more
-- **Real-time Results**: Get detailed test reports instantly
+-Live Command Console: Send natural language instructions to an autonomous agent.
+-Real-time System Logs: Monitor the agent's thought process and execution steps via a neon-styled terminal.
+-Visual Proof: View live screenshots of the browser actions directly in the dashboard summary.
+-Smart PDF Export: Generate professional, high-contrast PDF reports. The system automatically strips out UI-only elements (like screenshots) to keep reports formal and concise.
+-Dark Mode Interface: A sleek, developer-focused UI built with Bootstrap and custom CSS.
 
 ## 🛠️ Technology Stack
+-Backend: Python, Flask, LangChain/LangGraph.
+-Automation: Playwright (for browser orchestration).
+-Frontend: HTML5, CSS3 (Custom Neon Theme), JavaScript (Async/Await).
+-PDF Engine: html2pdf.js with DOM cloning logic.
 
 ### Backend
 - **Python 3.8+**: Core programming language
@@ -24,13 +26,11 @@ An intelligent web application that uses **LangGraph**, **OpenAI GPT**, and **Pl
 
 ### Frontend
 - **HTML5/CSS3/JavaScript**: Modern web interface
-- **Font Awesome**: Icons
 
-## 📋 Prerequisites
-
-- Python 3.8 or higher
-- OpenAI API key (optional - fallback mode works without it)
-- Playwright browsers
+## 🚀 Getting Started
+1. Prerequisites
+Python 3.10+
+Node.js (for Playwright browser binaries)
 
 ## 🔧 Installation
 
@@ -60,58 +60,30 @@ An intelligent web application that uses **LangGraph**, **OpenAI GPT**, and **Pl
    **Note**: The project works in fallback mode even without API key!
 
 ## 🚀 Running the Application
-
-### Option 1: Using the run script
-```bash
-chmod +x run.sh
-./run.sh
-```
-
-### Option 2: Manual start
 ```bash
 python app.py
 ```
-
 Then open your browser and navigate to: `http://localhost:5000`
 
-## 💡 Usage Examples
-
-### Example 1: Search Test
-```
-Website URL: https://amazon.com
-Test Instruction: "go to website and search for iphone 15"
-```
-
-### Example 2: Navigation Test
-```
-Website URL: https://example.com
-Test Instruction: "navigate to the contact page and verify the form loads"
-```
-
-### Example 3: Comprehensive Test
-```
-Website URL: https://example.com
-Test Instruction: "check all images, links, and forms on the homepage"
-```
 
 ## 🏗️ Project Structure
 
 ```
 infosys springboard/
-├── app.py                 # Flask application
-├── ai_agent.py           # AI agent with LangGraph + Playwright
-├── requirements.txt      # Python dependencies
-├── run.sh                # Run script
-├── .env                  # Environment variables (API key)
-├── .gitignore           # Git ignore file
-├── README.md            # This file
+├── app.py                 # Flask server and API endpoints
+├── agent_graph.py         #The logic for the agent state machine(Execuotor and Reporter nodes).
+├── requirements.txt       # Python dependencies
+├── state.py               #Typed definitions for the Agent'state
+├── .env                   # Environment variables (API key)
+├── .gitignore             # Git ignore file
+├── README.md              # This file
 ├── templates/
-│   └── index.html       # Main HTML template
+│   └── index.html         # Main HTML template
 └── static/
     ├── css/
-    │   └── style.css    # Stylesheet
+    │   └── style.css      # Stylesheet
     └── js/
-        └── main.js      # JavaScript functionality
+        └── main.js        # JavaScript functionality
 ```
 
 ## 🔍 How It Works
@@ -171,27 +143,12 @@ Run a test on a website
   }
 }
 ```
-
-### GET `/api/health`
-Check API health status
-
-## 🐛 Troubleshooting
-
-### OpenAI API Quota Error
-If you see quota errors:
-1. Add billing to OpenAI account: https://platform.openai.com
-2. Or use fallback mode (automatic)
-
-### Playwright Not Installed
-```bash
-playwright install chromium
-```
-
-### Port Already in Use
-Change port in `app.py`:
-```python
-app.run(debug=True, host='0.0.0.0', port=5001)
-```
+💡 How the PDF Generation Works
+-To maintain a "Dark Mode" website but generate "Light Mode" PDFs, the system uses a Cloning Technique:
+-Clone: The JavaScript creates a hidden "stunt double" of the report.
+-Filter: It identifies elements with the .screenshot-ui-only class and removes them.
+-Transform: It forces all text to black and backgrounds to white.
+-Render: html2pdf captures this cleaned version, leaving your live dashboard untouched.
 
 ## 📝 License
 
