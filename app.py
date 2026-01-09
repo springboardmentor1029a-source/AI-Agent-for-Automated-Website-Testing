@@ -31,16 +31,23 @@ def run_agent():
 
         # Invoke the graph
         final_state = graph.invoke(initial_state)
-
-        # Return the actual result to the frontend
+    
         return jsonify({
-            "status": "success",
-            "report": final_state.get("final_report", "Task sequence finished."),
-            "logs": final_state.get("logs", [])
+        "status": "success",
+        "report": final_state.get("final_report", "No report generated."),
+        "logs": final_state.get("logs",[])
         })
+
+        
     except Exception as e:
         print(f"SERVER ERROR: {e}")
         return jsonify({"status": "error", "message":str(e)}),500
 
 if __name__ == '__main__':
-    app.run(port=5000,debug=True)
+    app.run(
+        debug=True,
+        use_reloader=False,
+        extra_files=None,
+     
+        exclude_patterns=["venv/*", ".git/*", "__pycache__/*", "*.log"]
+    )
