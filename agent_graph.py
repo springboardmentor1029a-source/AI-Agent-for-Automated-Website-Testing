@@ -5,10 +5,23 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, START, END
 from state import AgentState
+from typing import TypedDict, List, Dict
 import time
 
+
+
 # Initialize the LLM
-llm = ChatGroq(model="llama-3.3-70b-versatile",groq_api_key="API_KEY")
+llm = ChatGroq(model="llama-3.3-70b-versatile",groq_api_key="API_key")
+
+class AgentState(TypedDict):
+    instruction: str
+    plan: str
+    actions: List[str]
+    parsed_actions: List[dict]
+    observations: List[str]
+    logs:List[str]
+    current_step_index: int
+    final_report: str
 
 # ---  PARSER NODE ---
 def parser_node(state: AgentState):
@@ -52,6 +65,7 @@ def parser_node(state: AgentState):
 def executor_node(state: AgentState):
     actions = state["parsed_actions"]
     idx = state.get("current_step_index", 0)
+    new_observations = state.get("observations", [])
     
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False,
@@ -61,7 +75,8 @@ def executor_node(state: AgentState):
 
         print("DEBUG: Browser window is now open!")
         
-        
+       
+     
         while idx < len(actions):
             action = actions[idx]
             log_msg = f"Executing {action['type']} on {action.get('selector', 'URL')}"
@@ -72,10 +87,13 @@ def executor_node(state: AgentState):
             try:
                 if action["type"] == "navigate":
                     page.goto(action["url"], wait_until="networkidle")
+                    new_observations.append(f"Successfully reached {action['url']}.Page title: {page.title()}")
                 elif action["type"] == "click":
                     page.click(action["selector"])
+                    new_observations.append(f"Clicked on element: {action['selector']}")
                 elif action["type"] == "type":
                     page.fill(action["selector"], action["text"])
+                    new_observations.append(f"Typed '{action['text']}' into {action['selector']}")
                 
                 
                 idx += 1
@@ -84,22 +102,37 @@ def executor_node(state: AgentState):
                 browser.close()
                 page.wait_for_timeout(20000)
                 return {**state, "error_log": str(e), "current_step_index": idx}
-
-        browser.close()
+    
     
     return {
         **state,
         "current_step_index": idx, 
+        "observations": new_observations,
         "logs": state.get("logs", []) + [f"Successfully executed {idx} steps."]
     }
+
+    
+    
+
 def reporter_node(state: AgentState):
-    print("\n" + "="*30)
-    print("--- Final Testing Report ---")
-    print(f"Goal: {state.get('instruction')}")
-    print(f"Status: Testing Complete")
-    print(f"Steps taken : {len(state.get('parsed_actions',[]))}")
-    print("="*30 + "\n")
-    return state
+    obs_list = state.get("observations", [])
+    obs_html = "".join([f"<li style='margin-bottom: 8px;'>{obs}</li>" for obs in obs_list])
+    
+
+    
+    report_text = f"""
+    <div style="font-family: Arial, sans-serif;">
+        <h2 style="color: #00d2ff; border-bottom: 1px solid #333; padding-bottom: 10px;">Testing Report</h2>
+        <p><strong>Goal:</strong> {state.get('instruction', 'N/A')}</p>
+        <p><strong>Steps Taken:</strong> {state.get('current_step_index', 0)}</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <h4>Detailed Observations:</h4>
+        <ul style="padding-left: 20px;">
+            {obs_html if obs_list else "<li>No observations logged.</li>"}
+        </ul>
+    </div>
+    """
+    return {"final_report":report_text}
         
 
 def should_continue(state: AgentState):
