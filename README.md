@@ -169,13 +169,13 @@ Add screenshots in assets/screenshots/
 ## 📸 **Screenshots**
 
 ### 🔐 Login Page
-![Login](assets/login.png)
+![Login](Milestone2/assets/login.png)
 
 ### 📘 Agent Search Page
-![Agent Search](assets/agent-search.png)
+![Agent Search](Milestone2/assets/agent-search.png)
 
 ### 🤖 AI Browser Agent
-![Agent Success](assets/agent-success.png)
+![Agent Success](Milestone2/assets/agent-success.png)
 
 ## 📊 **Project Outcome**
 
