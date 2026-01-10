@@ -25,77 +25,64 @@ The Web UI supports multiple **Large Language Models (LLMs)**, persistent browse
 
 ---
 
-## 🧠 System Architecture Flow
+## 🧩 Project Description
 
-```text
-User Input (Web UI – Natural Language)
-        ↓
-LLM Processing (OpenAI / Azure / Ollama / DeepSeek)
-        ↓
-Browser-Use Agent
-        ↓
-Playwright Browser Actions
-        ↓
-Live Browser Execution
-        ↓
-Test Output & Observations (UI)
----
-##🧩 Project Description
+**WebQA Agent** allows users to test websites by simply describing actions in plain English.
 
-WebQA Agent allows users to test websites by simply describing actions in plain English.
+The system leverages:  
 
-The system leverages:
+- **browser-use** for AI browser control  
+- **Playwright** for browser automation  
+- **Gradio** for Web UI interaction  
+- **LLMs** for instruction understanding and action planning  
 
--browser-use for AI browser control
-
--Playwright for browser automation
-
--Gradio for Web UI interaction
-
--LLMs for instruction understanding and action planning
 ---
 
-##🚀 Key Features Implemented (Milestone 2)
-###🖥️ Web UI Interface
+## 🚀 Key Features Implemented (Milestone 2)
 
-Gradio-based user interface for entering test instructions
+### 🖥️ Web UI Interface
+- Gradio-based user interface for entering test instructions  
 
-###🤖 LLM-Powered Instruction Handling
+### 🤖 LLM-Powered Instruction Handling
+- Converts natural language into executable browser actions  
 
-Converts natural language into executable browser actions
+### 🌐 Automated Website Interaction
+- Navigation, clicks, form interactions, and UI validation  
 
-###🌐 Automated Website Interaction
+### ♻️ Persistent Browser Sessions
+- Browser state is preserved across tasks  
 
-Navigation, clicks, form interactions, and UI validation
+### 🌍 Custom Browser Support
+- Uses existing browser profiles to avoid repeated logins  
 
-##3♻️ Persistent Browser Sessions
+### 🧠 Instruction Parsing & Code Generation
+- Converts natural language instructions into structured actions  
+- Generates Playwright scripts automatically using LangGraph  
 
-Browser state is preserved across tasks
+### 📊 Real-time Reporting
+- Shows live execution results in the Web UI  
+- Provides metrics like page load time, number of executed actions  
 
-###🌍 Custom Browser Support
-
-Uses existing browser profiles to avoid repeated logins
----
-##🛠️ Technology Stack
-
-###🔹 Backend & AI
-
-Python 3.11
-
-browser-use
-
-Playwright
-
-LLMs (OpenAI, Azure OpenAI, Ollama, DeepSeek)
-
-###🔹 Frontend
-
-Gradio Web UI
-
-HTML5 / CSS / JavaScript
 ---
 
-##📂 Project Structure
+## 🛠️ Technology Stack
+
+### 🔹 Backend & AI
+- **Python 3.11**  
+- **browser-use**  
+- **Playwright**  
+- **LLMs** (OpenAI, Azure OpenAI, Ollama, DeepSeek)  
+- **LangGraph** for workflow orchestration  
+
+### 🔹 Frontend
+- **Gradio Web UI**  
+- **HTML5 / CSS / JavaScript**  
+- **Font Awesome** icons  
+
+---
+
+## 📂 Project Structure
+
 ```
 web-ui/
 │
@@ -124,7 +111,6 @@ web-ui/
 └── webui.py               
 
 ```
----
 
 ##⚙️ Installation & Setup
 ###1️⃣ Clone the Repository
@@ -158,23 +144,23 @@ cp .env.example .env
 
 ```
 **(Add API keys if required)**
----
+
 ##🚀 Running the Application
 ```
 python webui.py --ip 127.0.0.1 --port 7788
 ```
 **Open in browser:**
-
+```
 http://127.0.0.1:7788
----
+```
 ##💡 Usage Examples
 
-**“Open Amazon and search for iPhone 15”
+**“Open Amazon and search for iPhone 15”**
 
-“Navigate to the contact page and verify the form is visible”
+**“Navigate to the contact page and verify the form is visible”**
 
-“Check all links and images on the homepage”**
----
+**“Check all links and images on the homepage”**
+
 ##📸 Screenshots
 
 Add screenshots in assets/screenshots/
