@@ -1,3 +1,4 @@
+
 # 🌐 WebQA Agent  
 ### AI Agent for Automated Website Testing
 
@@ -38,21 +39,3 @@ Playwright Browser Actions
 Live Browser Execution
         ↓
 Test Output & Observations (UI)
-
-#Project Description
-
-WebQA Agent allows users to test websites by simply describing actions in plain English.
-
-The system leverages:
-
-browser-use for AI browser control
-
-Playwright for browser automation
-
-Gradio for Web UI interaction
-
-LLMs for instruction understanding and action planning
-
-
-
-
