@@ -38,7 +38,7 @@ The system leverages:
 
 ---
 
-## 🚀 Key Features Implemented (Milestone 2)
+## 🚀 Key Features 
 
 ### 🖥️ Web UI Interface
 - Gradio-based user interface for entering test instructions  
@@ -167,9 +167,14 @@ http://127.0.0.1:7788
 
 Add screenshots in assets/screenshots/
 
-![Web UI Dashboard](assets/screenshots/webui-dashboard.png)
-![Natural Language Test Execution](assets/screenshots/nl-test-execution.png)
-![Live Browser Interaction](assets/screenshots/live-browser.png)
+### 🔐 Login Page
+![Login](assets/login.png)
+
+### 📘 Agent search Page
+![Instructions search ](assets/agent.png)
+
+### 🤖 AI Browser Agent
+![Agent](assets/agent success.png)
 
 ## 📊 **Project Outcome**
 
