@@ -1,6 +1,6 @@
 
-# 🌐 WebQA Agent  
-### AI Agent for Automated Website Testing
+# 🌐 AI Agent for Automated Website Testing 
+### WebQA Agent 
 
 ---
 
