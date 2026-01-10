@@ -164,6 +164,7 @@ http://127.0.0.1:7788
 **“Navigate to the contact page and verify the form is visible”**
 
 **“Check all links and images on the homepage”**
+
 ---
 ## 📸 **Screenshots**
 
@@ -201,9 +202,10 @@ http://127.0.0.1:7788
 
 ### Session (Optional)
 
-Browser state is maintained between tasks
+-Browser state is maintained between tasks
 
-Useful for authenticated workflows
+-Useful for authenticated workflows
+
 ---
 
 ## 📊 **Project Outcome**
@@ -213,6 +215,7 @@ Useful for authenticated workflows
 **Verified Web UI → Agent → Browser execution flow**
 
 **Built a strong foundation for advanced testing features in future milestones**
+
 ---
 
 ## 📡 API Endpoints (Internal)
@@ -225,6 +228,7 @@ Useful for authenticated workflows
 | `/run-agent`      | Execute AI browser task |
 | `/stop-agent`     | Stop running agent      |
 | `/browser-status` | Browser session status  |
+
 ---
 ## 🧩 Dependencies
 **Core Technologies**
@@ -238,6 +242,7 @@ Useful for authenticated workflows
 **browser-use – AI browser agent framework**
 
 **LangChain / LangGraph – Agent orchestration**
+
 ---
 ## 📝 License
 
