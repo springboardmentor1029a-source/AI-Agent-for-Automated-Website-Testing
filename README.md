@@ -6,7 +6,7 @@
 
 ## 🚀 Project Overview
 
-**Bindu WebQA Agent** is an AI-powered system for automated website testing using natural language instructions.
+**WebQA Agent** is an AI-powered system for automated website testing using natural language instructions.
 
 It provides an interactive and user-friendly **Web UI** built on top of the **browser-use framework**, enabling AI agents to interact with real websites through a graphical interface. This makes browser automation **accessible, observable, and easy to control**.
 
@@ -111,41 +111,43 @@ web-ui/
 └── webui.py               
 
 ```
-
+---
 ##⚙️ Installation & Setup
-###1️⃣ Clone the Repository
+---
+### 1️⃣ **Clone the Repository**
 ```
 git clone https://github.com/springboardmentor1029a-source/AI-Agent-for-Automated-Website-Testing.git
 cd AI-Agent-for-Automated-Website-Testing
 ```
 
-###2️⃣ Create Virtual Environment
+### 2️⃣ **Create Virtual Environment**
 ```
 uv venv --python 3.11
 ```
 Activate:
 
-###Windows
+### Windows
 ```
 .\.venv\Scripts\Activate.ps1
 ```
-###macOS / Linux
+### macOS / Linux
 ```
 source .venv/bin/activate
 ```
-##3️⃣ Install Dependencies
+## 3️⃣ **Install Dependencies**
 ```
-uv pip install -r requirements.txt
-playwright install --with-deps
+python -m venv venv
+pip install -r requirements.txt
+
 ```
-##4️⃣ Configure Environment
+## 4️⃣ **Configure Environment**
 ```
 cp .env.example .env
 
 ```
 **(Add API keys if required)**
 
-##🚀 Running the Application
+## 🚀 **Running the Application**
 ```
 python webui.py --ip 127.0.0.1 --port 7788
 ```
@@ -153,7 +155,7 @@ python webui.py --ip 127.0.0.1 --port 7788
 ```
 http://127.0.0.1:7788
 ```
-##💡 Usage Examples
+## 💡 **Usage Examples**
 
 **“Open Amazon and search for iPhone 15”**
 
@@ -161,7 +163,7 @@ http://127.0.0.1:7788
 
 **“Check all links and images on the homepage”**
 
-##📸 Screenshots
+## 📸 **Screenshots**
 
 Add screenshots in assets/screenshots/
 
@@ -169,7 +171,7 @@ Add screenshots in assets/screenshots/
 ![Natural Language Test Execution](assets/screenshots/nl-test-execution.png)
 ![Live Browser Interaction](assets/screenshots/live-browser.png)
 
-##📊 Project Outcome
+## 📊 **Project Outcome**
 
 **Successfully demonstrated AI-controlled browser testing**
 
@@ -177,6 +179,6 @@ Add screenshots in assets/screenshots/
 
 **Built a strong foundation for advanced testing features in future milestones**
 
-##📝 License
+## 📝 License
 
 **This project is developed for educational and internship purposes.**
