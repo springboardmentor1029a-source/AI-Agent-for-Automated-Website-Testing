@@ -171,7 +171,7 @@ Add screenshots in assets/screenshots/
 ![Login](assets/login.png)
 
 ### 📘 Agent search Page
-![Instructions search ](assets/agent.png)
+![Instructions search ](assets/agent search.png)
 
 ### 🤖 AI Browser Agent
 ![Agent](assets/agent success.png)
