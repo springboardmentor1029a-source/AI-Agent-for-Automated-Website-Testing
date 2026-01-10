@@ -166,15 +166,16 @@ http://127.0.0.1:7788
 ## 📸 **Screenshots**
 
 Add screenshots in assets/screenshots/
+## 📸 **Screenshots**
 
 ### 🔐 Login Page
 ![Login](assets/login.png)
 
-### 📘 Agent search Page
-![Instructions search ](assets/agent search.png)
+### 📘 Agent Search Page
+![Agent Search](assets/agent-search.png)
 
 ### 🤖 AI Browser Agent
-![Agent](assets/agent success.png)
+![Agent Success](assets/agent-success.png)
 
 ## 📊 **Project Outcome**
 
