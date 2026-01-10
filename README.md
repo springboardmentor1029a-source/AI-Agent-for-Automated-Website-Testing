@@ -244,6 +244,16 @@ http://127.0.0.1:7788
 **LangChain / LangGraph – Agent orchestration**
 
 ---
+
+👨‍💻 Author
+**Bindu A**
+
+-GitHub: bindukushi
+-Project: AI Agent for Automated Website Testing
+
+---
 ## 📝 License
 
 **This project is developed for educational and internship purposes.**
+
+---
