@@ -1,30 +1,33 @@
-🌐 Bindu WebQA Agent 
+# 🌐 WebQA Agent  
+### AI Agent for Automated Website Testing
 
-(AI Agent for Automated Website Testing)
+---
 
-🚀 Project Overview
+## 🚀 Project Overview
 
-Web UI for AI-Powered Browser Automation is an interactive, user-friendly interface built on top of the browser-use framework.
-The project enables AI agents to interact with real websites through a graphical Web UI, making browser automation accessible, observable, and easy to control.
+**Bindu WebQA Agent** is an AI-powered system for automated website testing using natural language instructions.
 
-This WebUI upports multiple Large Language Models (LLMs), persistent browser sessions, custom browser integration, and automated web interaction workflows.
+It provides an interactive and user-friendly **Web UI** built on top of the **browser-use framework**, enabling AI agents to interact with real websites through a graphical interface. This makes browser automation **accessible, observable, and easy to control**.
 
-🎯 Objectives Achieved
+The Web UI supports multiple **Large Language Models (LLMs)**, persistent browser sessions, custom browser integration, and automated web interaction workflows.
 
-✅ Integrated browser-use with a Gradio WebUI
+---
 
-✅ Enabled natural language instructions for website testing
+## 🎯 Objectives Achieved
 
-✅ Connected LLMs to browser automation workflows
+- ✅ Integrated **browser-use** with a **Gradio Web UI**
+- ✅ Enabled **natural language instructions** for website testing
+- ✅ Connected **LLMs** to browser automation workflows
+- ✅ Implemented **persistent browser sessions**
+- ✅ Supported **custom browser usage** with user profiles
+- ✅ Displayed **real-time browser interaction results**
 
-✅ Implemented persistent browser sessions
+---
 
-✅ Supported custom browser usage with user profiles
+## 🧠 System Architecture Flow
 
-✅ Displayed real-time browser interaction results
-```
-🧠 System Architecture Flow
-User Input (WebUI – Natural Language)
+```text
+User Input (Web UI – Natural Language)
         ↓
 LLM Processing (OpenAI / Azure / Ollama / DeepSeek)
         ↓
@@ -36,10 +39,9 @@ Live Browser Execution
         ↓
 Test Output & Observations (UI)
 
-```
-🧩 Project Description 
+Project Description
 
-Bindu WebQA Agent is an AI-powered web testing application that allows users to test websites by simply describing actions in plain English.
+Bindu WebQA Agent allows users to test websites by simply describing actions in plain English.
 
 The system leverages:
 
@@ -47,26 +49,30 @@ browser-use for AI browser control
 
 Playwright for browser automation
 
-Gradio for WebUI interaction
+Gradio for Web UI interaction
 
 LLMs for instruction understanding and action planning
 
-🚀 Key Features Implemented in Milestone 2
+🚀 Key Features Implemented (Milestone 2)
+🖥️ Web UI Interface
 
-🖥️ WebUI Interface
 Gradio-based user interface for entering test instructions
 
 🤖 LLM-Powered Instruction Handling
-Converts natural language into browser actions
+
+Converts natural language into executable browser actions
 
 🌐 Automated Website Interaction
+
 Navigation, clicks, form interactions, and UI validation
 
 ♻️ Persistent Browser Sessions
+
 Browser state is preserved across tasks
 
 🌍 Custom Browser Support
-Uses existing browser profiles to avoid re-login
+
+Uses existing browser profiles to avoid repeated logins
 
 🛠️ Technology Stack
 🔹 Backend & AI
@@ -81,7 +87,8 @@ LLMs (OpenAI, Azure OpenAI, Ollama, DeepSeek)
 
 🔹 Frontend
 
-Gradio WebUI
+Gradio Web UI
+
 HTML5 / CSS / JavaScript
 ```
 web-ui/
@@ -90,28 +97,27 @@ web-ui/
 ├── .venv/                  # Python virtual environment
 ├── .vscode/                # VS Code editor settings
 │
-├── assets/                 # Images and static assets used in UI
+├── assets/                 # Images and static assets
+├── src/                    # Core source code
+├── tests/                  # Test cases
+├── tmp/                    # Temporary runtime files
 │
-├── src/                    # Core source code of the Web UI Agent
-├── tests/                  # Test cases for validating functionality
-├── tmp/                    # Temporary files and runtime data
+├── .dockerignore
+├── .env
+├── .env.example
+├── .gitignore
 │
-├── .dockerignore           # Files ignored during Docker build
-├── .env                    # Environment variables (local use)
-├── .env.example            # Sample environment configuration
-├── .gitignore              # Git ignored files and folders
+├── docker-compose.yml
+├── Dockerfile
 │
-├── docker-compose.yml      # Docker Compose configuration
-├── Dockerfile              # Docker image build instructions
-│
-├── LICENSE                 # Project license
-├── README.md               # Project documentation
-├── requirements.txt        # Python dependencies
-├── SECURITY.md             # Security policies
-├── supervisord.conf        # Process manager configuration
+├── LICENSE
+├── README.md
+├── requirements.txt
+├── SECURITY.md
+├── supervisord.conf
 └── webui.py                # Main application entry point
-
 ```
+
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
 git clone https://github.com/springboardmentor1029a-source/AI-Agent-for-Automated-Website-Testing.git
@@ -119,11 +125,14 @@ cd AI-Agent-for-Automated-Website-Testing
 
 2️⃣ Create Virtual Environment
 uv venv --python 3.11
+
+
 Activate:
 
 Windows
 
 .\.venv\Scripts\Activate.ps1
+
 
 macOS / Linux
 
@@ -131,18 +140,17 @@ source .venv/bin/activate
 
 3️⃣ Install Dependencies
 uv pip install -r requirements.txt
-
-Install Playwright browsers:
-
 playwright install --with-deps
 
 4️⃣ Configure Environment
 cp .env.example .env
 
+
 (Add API keys if required)
 
 🚀 Running the Application
 python webui.py --ip 127.0.0.1 --port 7788
+
 
 Open in browser:
 
@@ -160,7 +168,7 @@ http://127.0.0.1:7788
 
 Successfully demonstrated AI-controlled browser testing
 
-Verified WebUI → Agent → Browser execution flow
+Verified Web UI → Agent → Browser execution flow
 
 Built a strong foundation for advanced testing features in future milestones
 
