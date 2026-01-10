@@ -39,9 +39,9 @@ Live Browser Execution
         ↓
 Test Output & Observations (UI)
 
-Project Description
+## Project Description
 
-Bindu WebQA Agent allows users to test websites by simply describing actions in plain English.
+WebQA Agent allows users to test websites by simply describing actions in plain English.
 
 The system leverages:
 
@@ -53,29 +53,29 @@ Gradio for Web UI interaction
 
 LLMs for instruction understanding and action planning
 
-🚀 Key Features Implemented (Milestone 2)
-🖥️ Web UI Interface
+#🚀 Key Features Implemented (Milestone 2)
+##🖥️ Web UI Interface
 
 Gradio-based user interface for entering test instructions
 
-🤖 LLM-Powered Instruction Handling
+##🤖 LLM-Powered Instruction Handling
 
 Converts natural language into executable browser actions
 
-🌐 Automated Website Interaction
+##🌐 Automated Website Interaction
 
 Navigation, clicks, form interactions, and UI validation
 
-♻️ Persistent Browser Sessions
+##♻️ Persistent Browser Sessions
 
 Browser state is preserved across tasks
 
-🌍 Custom Browser Support
+##🌍 Custom Browser Support
 
 Uses existing browser profiles to avoid repeated logins
 
-🛠️ Technology Stack
-🔹 Backend & AI
+##🛠️ Technology Stack
+##🔹 Backend & AI
 
 Python 3.11
 
@@ -85,7 +85,7 @@ Playwright
 
 LLMs (OpenAI, Azure OpenAI, Ollama, DeepSeek)
 
-🔹 Frontend
+##🔹 Frontend
 
 Gradio Web UI
 
@@ -118,16 +118,17 @@ web-ui/
 └── webui.py                # Main application entry point
 ```
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+##⚙️ Installation & Setup
+
+##1️⃣ Clone the Repository
 git clone https://github.com/springboardmentor1029a-source/AI-Agent-for-Automated-Website-Testing.git
 cd AI-Agent-for-Automated-Website-Testing
 
-2️⃣ Create Virtual Environment
+##2️⃣ Create Virtual Environment
 uv venv --python 3.11
 
 
-Activate:
+##Activate:
 
 Windows
 
@@ -138,17 +139,17 @@ macOS / Linux
 
 source .venv/bin/activate
 
-3️⃣ Install Dependencies
+##3️⃣ Install Dependencies
 uv pip install -r requirements.txt
 playwright install --with-deps
 
-4️⃣ Configure Environment
+##4️⃣ Configure Environment
 cp .env.example .env
 
 
 (Add API keys if required)
 
-🚀 Running the Application
+##🚀 Running the Application
 python webui.py --ip 127.0.0.1 --port 7788
 
 
@@ -156,7 +157,7 @@ Open in browser:
 
 http://127.0.0.1:7788
 
-💡 Usage Examples
+##💡 Usage Examples
 
 “Open Amazon and search for iPhone 15”
 
@@ -164,7 +165,7 @@ http://127.0.0.1:7788
 
 “Check all links and images on the homepage”
 
-📊 Project Outcome
+##📊 Project Outcome
 
 Successfully demonstrated AI-controlled browser testing
 
@@ -172,6 +173,6 @@ Verified Web UI → Agent → Browser execution flow
 
 Built a strong foundation for advanced testing features in future milestones
 
-📝 License
+##📝 License
 
 This project is developed for educational and internship purposes.
