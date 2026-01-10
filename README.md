@@ -81,6 +81,7 @@ The system leverages:
 
 ---
 
+
 ## 📂 Project Structure
 
 ```
@@ -155,6 +156,7 @@ python webui.py --ip 127.0.0.1 --port 7788
 ```
 http://127.0.0.1:7788
 ```
+---
 ## 💡 **Usage Examples**
 
 **“Open Amazon and search for iPhone 15”**
@@ -162,10 +164,7 @@ http://127.0.0.1:7788
 **“Navigate to the contact page and verify the form is visible”**
 
 **“Check all links and images on the homepage”**
-
-## 📸 **Screenshots**
-
-Add screenshots in assets/screenshots/
+---
 ## 📸 **Screenshots**
 
 ### 🔐 Login Page
@@ -173,9 +172,39 @@ Add screenshots in assets/screenshots/
 
 ### 📘 Agent Search Page
 ![Agent Search](Milestone2/assets/agent-search.png)
-
+---
 ### 🤖 AI Browser Agent
 ![Agent Success](Milestone2/assets/agent-success.png)
+---
+## 🔄 Workflow Overview
+
+### User enters a natural language instruction
+(e.g., “Login to the website and search for AI jobs”)
+
+### Instruction is sent to the AI Agent
+
+-The agent uses an LLM (OpenAI, Google, Anthropic, DeepSeek, Ollama, etc.)
+
+-Converts instructions into browser actions
+
+### Browser Automation via Playwright
+
+-The agent controls a real browser
+
+-Performs clicks, typing, scrolling, navigation
+
+### Live Browser Feedback
+
+-Actions are visible in real time
+
+-Optional screen recording supported
+
+### Session (Optional)
+
+Browser state is maintained between tasks
+
+Useful for authenticated workflows
+---
 
 ## 📊 **Project Outcome**
 
@@ -184,7 +213,32 @@ Add screenshots in assets/screenshots/
 **Verified Web UI → Agent → Browser execution flow**
 
 **Built a strong foundation for advanced testing features in future milestones**
+---
 
+## 📡 API Endpoints (Internal)
+
+**The Web UI exposes internal endpoints used by Gradio:**
+
+| Endpoint          | Description             |
+| ----------------- | ----------------------- |
+| `/`               | Web UI Home             |
+| `/run-agent`      | Execute AI browser task |
+| `/stop-agent`     | Stop running agent      |
+| `/browser-status` | Browser session status  |
+---
+## 🧩 Dependencies
+**Core Technologies**
+
+**Python 3.11**
+
+**Gradio – UI framework**
+
+**Playwright – Browser automation**
+
+**browser-use – AI browser agent framework**
+
+**LangChain / LangGraph – Agent orchestration**
+---
 ## 📝 License
 
 **This project is developed for educational and internship purposes.**
