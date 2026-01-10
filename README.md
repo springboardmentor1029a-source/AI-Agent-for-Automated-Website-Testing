@@ -245,10 +245,12 @@ http://127.0.0.1:7788
 
 ---
 
-👨‍💻 Author
+## 👨‍💻 Author
+
 **Bindu A**
 
 -GitHub: bindukushi
+
 -Project: AI Agent for Automated Website Testing
 
 ---
