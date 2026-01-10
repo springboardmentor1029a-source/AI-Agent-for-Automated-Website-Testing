@@ -1,2 +1,0 @@
-Open demo page, enter username admin and password pass, click login and expect Login successful
-Open demo page, enter username wrong and password bad, click login and expect Login failed
