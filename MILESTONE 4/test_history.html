@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test History - E2E Testing Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>📜 Test Execution History</h1>
+            <p class="subtitle">View all past test executions</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="card">
+            <h2>🔍 Filters</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <div>
+                    <label>Status:</label>
+                    <select id="filter-status" onchange="applyFilters()" style="width: 100%; padding: 8px; border-radius: 5px; border: 2px solid #e0e0e0;">
+                        <option value="all">All</option>
+                        <option value="passed">Passed</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Date Range:</label>
+                    <select id="filter-date" onchange="applyFilters()" style="width: 100%; padding: 8px; border-radius: 5px; border: 2px solid #e0e0e0;">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">Last 7 Days</option>
+                        <option value="month">Last 30 Days</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Sort By:</label>
+                    <select id="filter-sort" onchange="applyFilters()" style="width: 100%; padding: 8px; border-radius: 5px; border: 2px solid #e0e0e0;">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="duration-high">Longest Duration</option>
+                        <option value="duration-low">Shortest Duration</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Summary -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Tests</h3>
+                <div class="value" id="history-total">{{ tests|length }}</div>
+                <div class="label">In history</div>
+            </div>
+
+            <div class="stat-card success">
+                <h3>Passed</h3>
+                <div class="value" id="history-passed">{{ tests|selectattr('success')|list|length }}</div>
+                <div class="label">Successful</div>
+            </div>
+
+            <div class="stat-card error">
+                <h3>Failed</h3>
+                <div class="value" id="history-failed">{{ tests|rejectattr('success')|list|length }}</div>
+                <div class="label">Failed</div>
+            </div>
+
+            <div class="stat-card info">
+                <h3>Success Rate</h3>
+                <div class="value" id="history-rate">
+                    {% if tests|length > 0 %}
+                        {{ "%.1f"|format((tests|selectattr('success')|list|length / tests|length) * 100) }}%
+                    {% else %}
+                        0%
+                    {% endif %}
+                </div>
+                <div class="label">Overall</div>
+            </div>
+        </div>
+
+        <!-- Test History Table -->
+        <div class="card">
+            <h2>📋 All Tests</h2>
+            <div class="table-container">
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Test ID</th>
+                            <th>Status</th>
+                            <th>Target URL</th>
+                            <th>Timestamp</th>
+                            <th>Duration</th>
+                            <th>Screenshots</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if tests %}
+                            {% for test in tests %}
+                            <tr class="test-row" data-status="{{ 'passed' if test.success else 'failed' }}" data-date="{{ test.timestamp }}">
+                                <td>{{ test.test_id }}</td>
+                                <td>
+                                    <span class="status-badge {% if test.success %}passed{% else %}failed{% endif %}">
+                                        {% if test.success %}✅ Passed{% else %}❌ Failed{% endif %}
+                                    </span>
+                                </td>
+                                <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ test.target_url }}
+                                </td>
+                                <td>{{ test.timestamp }}</td>
+                                <td>{{ "%.2f"|format(test.execution_time) }}s</td>
+                                <td>{{ test.screenshots|length }}</td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" onclick="window.location.href='/report/{{ test.test_id }}'">
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="7" class="no-data">
+                                    <div class="no-data-icon">📭</div>
+                                    <p>No test history found</p>
+                                    <button class="btn btn-primary" onclick="window.location.href='/test-gui'" style="margin-top: 20px;">
+                                        Run Your First Test
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card">
+            <h2>⚙️ Actions</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="window.location.href='/dashboard'">
+                    🏠 Back to Dashboard
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='/test-gui'">
+                    ➕ New Test
+                </button>
+                <button class="btn btn-danger" onclick="clearHistory()">
+                    🗑️ Clear History
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function applyFilters() {
+            const status = document.getElementById('filter-status').value;
+            const date = document.getElementById('filter-date').value;
+            const sort = document.getElementById('filter-sort').value;
+
+            const rows = document.querySelectorAll('.test-row');
+            
+            rows.forEach(row => {
+                let show = true;
+
+                // Status filter
+                if (status !== 'all') {
+                    const rowStatus = row.dataset.status;
+                    if (rowStatus !== status) show = false;
+                }
+
+                // Date filter (simplified)
+                if (date !== 'all') {
+                    // Implement date filtering logic here
+                }
+
+                row.style.display = show ? '' : 'none';
+            });
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all test history? This cannot be undone.')) {
+                fetch('/api/clear-history', { method: 'POST' })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('History cleared successfully');
+                            window.location.reload();
+                        } else {
+                            alert('Failed to clear history');
+                        }
+                    })
+                    .catch(err => {
+                        alert('Error: ' + err.message);
+                    });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - E2E Testing Agent</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <h1>🧪 E2E Testing Agent Dashboard</h1>
+            <p class="subtitle">Monitor and manage your automated tests</p>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Tests</h3>
+                <div class="value" id="total-tests">0</div>
+                <div class="label">All time</div>
+                <div class="stat-icon">📊</div>
+            </div>
+
+            <div class="stat-card success">
+                <h3>Passed Tests</h3>
+                <div class="value" id="passed-tests">0</div>
+                <div class="label">Successful</div>
+                <div class="stat-icon">✅</div>
+            </div>
+
+            <div class="stat-card error">
+                <h3>Failed Tests</h3>
+                <div class="value" id="failed-tests">0</div>
+                <div class="label">Failed</div>
+                <div class="stat-icon">❌</div>
+            </div>
+
+            <div class="stat-card info">
+                <h3>Success Rate</h3>
+                <div class="value" id="success-rate">0%</div>
+                <div class="label">Pass ratio</div>
+                <div class="stat-icon">📈</div>
+            </div>
+
+            <div class="stat-card warning">
+                <h3>Avg Execution</h3>
+                <div class="value" id="avg-time">0s</div>
+                <div class="label">Average time</div>
+                <div class="stat-icon">⏱️</div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="card">
+            <h2>🚀 Quick Actions</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="window.location.href='/test-gui'">
+                    ➕ New Test
+                </button>
+                <button class="btn btn-secondary" id="refresh-btn">
+                    🔄 Refresh
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='/history'">
+                    📜 View History
+                </button>
+                <button class="btn btn-secondary" onclick="Dashboard.exportData()">
+                    💾 Export Data
+                </button>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="grid-2">
+            <div class="card">
+                <h2>📊 Success Rate</h2>
+                <div class="chart-container">
+                    <canvas id="success-rate-chart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📈 Test Trend</h2>
+                <div class="chart-container">
+                    <canvas id="test-trend-chart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Tests -->
+        <div class="card">
+            <h2>📋 Recent Tests</h2>
+            <div class="table-container">
+                <table id="tests-table">
+                    <thead>
+                        <tr>
+                            <th>Test ID</th>
+                            <th>Status</th>
+                            <th>Timestamp</th>
+                            <th>Duration</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" class="loading-container">
+                                <div class="loading-spinner"></div>
+                                <p>Loading tests...</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Loading Spinner (hidden by default) -->
+        <div id="loading-spinner" style="display: none;" class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/realtime.js') }}"></script>
+</body>
+</html>
