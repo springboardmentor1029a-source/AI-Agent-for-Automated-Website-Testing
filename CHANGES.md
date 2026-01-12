@@ -1,2 +1,0 @@
-
-Delete CHANGES.md
