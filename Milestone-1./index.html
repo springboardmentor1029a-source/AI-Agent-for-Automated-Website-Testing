@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI WebPilot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --bg: #020617;
+  --panel: #0f172a;
+  --card: #020617;
+  --primary: #6366f1;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+}
+
+.light {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --card: #f1f5f9;
+  --text: #020617;
+  --muted: #475569;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: rgba(2,6,23,0.9);
+}
+
+.navbar h2 { font-size: 18px; }
+
+.navbar a {
+  color: var(--muted);
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.navbar a:hover { color: var(--text); }
+
+.navbar button {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px;
+}
+
+.hero h1 { font-size: 34px; }
+.hero p { color: var(--muted); }
+
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 20px;
+  margin-top: 25px;
+}
+
+.stat {
+  background: var(--panel);
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.stat h3 { font-size: 24px; }
+
+/* MAIN */
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 40px;
+  background: var(--panel);
+  border-radius: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 15px;
+  background: var(--card);
+  color: var(--text);
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+button.main {
+  margin-top: 15px;
+  padding: 12px 28px;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#4f46e5,#6366f1);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* OUTPUT */
+.output {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.box {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 12px;
+  min-height: 220px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.logs { color: var(--accent); }
+
+.result-box {
+  white-space: pre-line;
+  line-height: 1.5;
+}
+
+.pass { color: var(--accent); font-weight: bold; }
+.fail { color: var(--danger); font-weight: bold; }
+
+@media (max-width: 800px) {
+  .output { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="navbar">
+  <h2>AI WebPilot</h2>
+  <div>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <button onclick="toggleTheme()">🌙 / ☀️</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>AI Website Testing Agent</h1>
+  <p>Search topics automatically and return real results using browser automation.</p>
+
+  <div class="stats">
+    <div class="stat">
+      <h3 id="tests">0</h3>
+      <span>Automated Tests Executed</span>
+    </div>
+    <div class="stat">
+      <h3 id="passrate">0%</h3>
+      <span>Average Pass Rate</span>
+    </div>
+    <div class="stat">
+      <h3 id="time">0h</h3>
+      <span>Time Saved</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <textarea id="user_input"
+    placeholder="Example: give data about ITER">
+  </textarea>
+
+  <button class="main" onclick="runTest()">▶ Run Test</button>
+
+  <button
+    id="downloadScreenshot"
+    class="main"
+    style="display:none; margin-top:15px;">
+    📸 Download Screenshot
+  </button>
+
+  <div id="status" style="margin-top:15px;"></div>
+
+  <div class="output">
+  <div class="box logs" id="logs">Waiting for execution...</div>
+
+  <div class="box result-box" id="result">
+    Result will appear here...
+    <div id="screenshot-container" style="margin-top:15px;"></div>
+  </div>
+</div>
+
+
+</div>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+/* STATS */
+function loadStats() {
+  const s = JSON.parse(localStorage.getItem("ai_stats")) || {
+    total: 0, passed: 0, time: 0
+  };
+
+  document.getElementById("tests").textContent = s.total;
+  document.getElementById("passrate").textContent =
+    s.total === 0 ? "0%" : Math.round((s.passed / s.total) * 100) + "%";
+  document.getElementById("time").textContent = s.time + "h";
+}
+
+function updateStats(status) {
+  const s = JSON.parse(localStorage.getItem("ai_stats")) || {
+    total: 0, passed: 0, time: 0
+  };
+
+  s.total += 1;
+  if (status === "PASSED") s.passed += 1;
+  s.time += 0.5;
+
+  localStorage.setItem("ai_stats", JSON.stringify(s));
+  loadStats();
+}
+
+/* RUN TEST */
+async function runTest() {
+  const input = document.getElementById("user_input").value;
+  const logs = document.getElementById("logs");
+  const result = document.getElementById("result");
+  const status = document.getElementById("status");
+
+  logs.innerHTML = "🚀 Running test...<br>";
+  result.innerHTML = "";
+  status.innerHTML = "";
+
+  const res = await fetch("/run_agent", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ user_input: input })
+  });
+
+  const data = await res.json();
+
+  logs.innerHTML = "";
+  data.execution.logs.forEach(l => {
+    logs.innerHTML += "✔ " + l + "<br>";
+  });
+if (data.execution.extracted_data) {
+    result.textContent += "\n🧠 INFORMATION:\n" + data.execution.extracted_data;
+} else {
+    result.textContent = "No data extracted.";
+}
+// 📸 Screenshot download option
+const downloadBtn = document.getElementById("downloadScreenshot");
+
+if (data.execution.screenshot) {
+    downloadBtn.style.display = "inline-block";
+
+    downloadBtn.onclick = () => {
+        // Flask serves static files automatically
+        const url = "/" + data.execution.screenshot;
+        window.open(url, "_blank");
+    };
+} else {
+    downloadBtn.style.display = "none";
+}
+
+ if (data.execution.summary) {
+    result.textContent += "\n\n🧠 AI SUMMARY:\n" + data.execution.summary;
+}
+// 📸 SHOW SCREENSHOT + DOWNLOAD
+const sc = document.getElementById("screenshot-container");
+sc.innerHTML = "";
+
+if (data.execution.screenshot) {
+  sc.innerHTML = `
+    <hr style="margin:15px 0;">
+    <h4>📸 Screenshot</h4>
+    <img src="${data.execution.screenshot}"
+         style="width:100%;border-radius:10px;margin-top:10px;">
+    <br><br>
+    <a href="${data.execution.screenshot}" download>
+      <button class="main">⬇ Download Screenshot</button>
+    </a>
+  `;
+}
+
+
+
+  if (data.execution.status === "PASSED") {
+    status.innerHTML = "✅ TEST PASSED";
+    status.className = "pass";
+  } else {
+    status.innerHTML = "❌ TEST FAILED";
+    status.className = "fail";
+  }
+
+  updateStats(data.execution.status);
+}
+
+window.onload = loadStats;
+</script>
+
+</body>
+</html>
