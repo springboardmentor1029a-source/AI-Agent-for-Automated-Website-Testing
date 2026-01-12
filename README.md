@@ -254,16 +254,16 @@ The application will start at: **http://localhost:5000**
 ┌─────────────────────────────────────────────────────────────┐
 │                     PROCESSING LAYER                        │
 │                                                             │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐ │
-│  │   Natural    │───▶│     Code     │───▶│   Browser    │ │
-│  │   Language   │    │  Generator   │    │  Automation  │ │
-│  │   Parser     │    │   (Python)   │    │  (Playwright)│ │
-│  └──────────────┘    └──────────────┘    └──────────────┘ │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐   │
+│  │   Natural    │───▶│     Code     │───▶│   Browser   │   │
+│  │   Language   │    │  Generator   │    │  Automation  │   │
+│  │   Parser     │    │   (Python)   │    │  (Playwright)│   │
+│  └──────────────┘    └──────────────┘    └──────────────┘   │
 │         │                    │                    │         │
 │         ▼                    ▼                    ▼         │
-│  Extract Intent      Generate Script       Execute in      │
-│  Parse Actions       Create Test Code      Real Browser    │
-│  Identify Targets    Add Validations       Capture Results │
+│  Extract Intent      Generate Script       Execute in       │
+│  Parse Actions       Create Test Code      Real Browser     │
+│  Identify Targets    Add Validations       Capture Results  │
 └─────────────────────────────────────────────────────────────┘
                            │
                            ▼
@@ -287,7 +287,7 @@ The application will start at: **http://localhost:5000**
 ┌─────────────────────────────────────────────────────────┐
 │                    Flask Web Framework                  │
 │                   (Web Interface Layer)                 │
-└──────────────┬──────────────────────────┬────────────────┘
+└──────────────┬──────────────────────────┬───────────────┘
                │                          │
                ▼                          ▼
     ┌──────────────────┐      ┌──────────────────┐
