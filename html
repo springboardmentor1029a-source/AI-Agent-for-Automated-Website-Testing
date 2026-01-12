@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="neon-night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Awesome Modern Website</title>
+  
+  <!-- Google Fonts - very trendy combinations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-soft: #11111a;
+      --text: #f0f0ff;
+      --text-muted: #a0a0cc;
+      --primary: #00f0ff;
+      --primary-glow: #00f0ff33;
+      --accent: #ff00aa;
+      --accent-glow: #ff00aa44;
+      --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    [data-theme="vibrant-sunset"] {
+      --bg: #0f172a;
+      --primary: #ff6b6b;
+      --accent: #ffd93d;
+      --gradient: linear-gradient(135deg, #f43f5e, #a855f7, #3b82f6);
+    }
+
+    [data-theme="glass-purple"] {
+      --bg: #0f0b1a;
+      --primary: #a78bfa;
+      --accent: #c084fc;
+      --bg-soft: rgba(30, 20, 60, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 20% 30%, var(--primary-glow) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, var(--accent-glow) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    /* Animated Gradient Background option */
+    .animated-bg {
+      position: fixed;
+      inset: 0;
+      background: var(--gradient);
+      background-size: 300% 300%;
+      animation: gradientMove 18s ease infinite;
+      z-index: -2;
+      opacity: 0.15;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      padding: 4rem 8%;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 40px var(--primary-glow);
+      margin-bottom: 1rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-15px); }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2.2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: black;
+      box-shadow: 0 0 30px var(--primary-glow);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.7s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    /* Floating particles (very trendy) */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="animated-bg"></div>
+  <div class="particles"></div>
+
+  <header>
+    <h1>CREATE SOMETHING<br>EPIC</h1>
+    <p class="subtitle">Modern • Bold • Unforgettable experiences that people actually remember</p>
+    
+    <div class="btn-group">
+      <a href="#start" class="btn btn-primary">Get Started →</a>
+      <a href="#explore" class="btn btn-outline">Explore Works</a>
+    </div>
+  </header>
+
+  <!-- You can add more sections here -->
+
+  <!-- Optional: Add floating particles with JS -->
+  <script>
+    // Simple floating particles (very attractive)
+    function createParticles() {
+      const particlesContainer = document.querySelector('.particles');
+      for(let i = 0; i < 60; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+          position: absolute;
+          width: ${Math.random()*3+1}px;
+          height: ${Math.random()*3+1}px;
+          background: ${Math.random()>0.6 ? 'var(--primary)' : 'var(--accent)'};
+          border-radius: 50%;
+          left: ${Math.random()*100}%;
+          top: ${Math.random()*100}%;
+          opacity: ${Math.random()*0.4+0.2};
+          animation: floatParticle ${Math.random()*20+15}s linear infinite;
+          box-shadow: 0 0 ${Math.random()*10+5}px currentColor;
+        `;
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    function createFloatParticle() {
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes floatParticle {
+          0%   { transform: translateY(0) translateX(0); }
+          25%  { transform: translateY(-30vh) translateX(${Math.random()*60-30}px); }
+          50%  { transform: translateY(-60vh) translateX(${Math.random()*100-50}px); }
+          75%  { transform: translateY(-90vh) translateX(${Math.random()*60-30}px); }
+          100% { transform: translateY(-120vh) translateX(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    createFloatParticle();
+    createParticles();
+  </script>
+</body>
+</html>
