@@ -1,37 +1,21 @@
-# agent.py
-from langgraph.graph import StateGraph, START, END
-from transformers import pipeline
+# agent.py (Milestone 1)
 
-# --- Load Local Model (NO API KEY REQUIRED) ---
-# This loads distilgpt2 model inside the venv
-model = pipeline("text-generation", model="distilgpt2")
+def handle_input(text):
+    """
+    Basic agent for Milestone 1
+    Just echoes or explains the input
+    """
 
-def local_llm_node(state: dict):
-    text = state.get("input", "")
+    if not text.strip():
+        return "Please enter an instruction."
 
-    # Generate response locally
-    out = model(
-        text,
-        max_length=50,
-        num_return_sequences=1,
-        pad_token_id=50256  # needed to avoid warnings
-    )
+    # Simple logic
+    if "automated testing" in text.lower():
+        return (
+            "Automated testing is the process of using tools or scripts "
+            "to automatically execute test cases, verify results, and "
+            "ensure software quality without manual effort."
+        )
 
-    reply = out[0]['generated_text']
-    return {"response": reply}
-
-# --- Build Graph ---
-def build_agent():
-    g = StateGraph(dict)
-    g.add_node("agent", local_llm_node)
-    g.add_edge(START, "agent")
-    g.add_conditional_edges("agent", lambda s: END, [END])
-    return g.compile()
-
-AGENT = build_agent()
-
-# Main entry used by Flask
-def handle_input(user_text: str):
-    state = {"input": user_text}
-    final_state = AGENT.invoke(state)
-    return final_state.get("response", "")
+    # Default response
+    return f"You entered: {text}"
