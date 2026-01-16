@@ -23,11 +23,11 @@ history = []
 
 @app.route("/screenshots/<path:f>")
 def screenshots(f):
-    return send_from_directory(SCREENSHOTS_DIR, f)
+    return send_from_directory(SCREENSHOTS_DIR, f,as_attachment=True)
 
 @app.route("/videos/<path:f>")
 def videos(f):
-    return send_from_directory(VIDEOS_DIR, f)
+    return send_from_directory(VIDEOS_DIR, f,as_attachment=True)
 
 @app.route("/reports/<path:f>")
 def reports(f):

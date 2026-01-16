@@ -133,7 +133,12 @@ textarea {
   background: #ddd;
   margin: 0 10px;
 }
-
+.line.pass{
+  backgroung:var(--success);
+}
+.line.fail{
+  backgroung:var(--danger);
+}
 /* RESULT */
 .result-box {
   padding: 15px;

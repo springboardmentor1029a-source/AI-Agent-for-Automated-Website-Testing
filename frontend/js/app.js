@@ -1,6 +1,22 @@
 const BACKEND_URL = "http://127.0.0.1:5000";
 let lastInstruction = "";
 
+/* =======================
+   ✅ STATE PERSISTENCE
+======================= */
+function saveLastResult(data) {
+  localStorage.setItem("lastTestResult", JSON.stringify(data));
+}
+
+function loadLastResult() {
+  const saved = localStorage.getItem("lastTestResult");
+  if (!saved) return null;
+  return JSON.parse(saved);
+}
+
+/* =======================
+   RUN TEST
+======================= */
 function runTest(instructionOverride = null) {
   const instruction =
     instructionOverride ||
@@ -18,73 +34,11 @@ function runTest(instructionOverride = null) {
   })
     .then(r => r.json())
     .then(d => {
-      updateWizard(1);
 
-      /* ---------- RESULT ---------- */
-      const box = document.getElementById("result");
-      box.innerText =
-        d.status === "PASSED"
-          ? "Test executed successfully"
-          : "Test failed";
+      // ✅ SAVE RESULT
+      saveLastResult(d);
 
-      box.className =
-        "result-box " + (d.status === "PASSED" ? "success" : "error");
-
-      /* ---------- ✅ EXECUTION DETAILS (FIXED) ---------- */
-      const extra = document.getElementById("extraInfo");
-      const reportLink = document.getElementById("reportLink");
-
-      extra.innerHTML = `
-        <b>Execution Time:</b> ${d.execution_time ?? "-"} seconds<br>
-        <b>Failure Reason:</b> ${d.failure_reason || "N/A"}<br>
-      `;
-
-      if (d.report) {
-        reportLink.href = `${BACKEND_URL}/reports/${d.report}`;
-        reportLink.style.display = "inline-block";
-      } else {
-        reportLink.style.display = "none";
-      }
-
-      /* ---------- STATS ---------- */
-      document.getElementById("total").innerText = d.stats.total;
-      document.getElementById("passed").innerText = d.stats.passed;
-      document.getElementById("failed").innerText = d.stats.failed;
-
-      updateWizard(2);
-
-      /* ---------- SCREENSHOT ---------- */
-      const img = document.getElementById("screenshot");
-      const dl = document.getElementById("downloadShot");
-
-      if (d.screenshot) {
-        const src = `${BACKEND_URL}/screenshots/${d.screenshot}?t=${Date.now()}`;
-        img.src = src;
-        dl.href = src;
-        dl.style.display = "inline-block";
-      } else {
-        img.src = "";
-        dl.style.display = "none";
-      }
-
-      /* ---------- VIDEO ---------- */
-      const video = document.getElementById("video");
-      const dlVideo = document.getElementById("downloadVideo");
-
-      if (d.video) {
-        const videoSrc = `${BACKEND_URL}/videos/${d.video}?t=${Date.now()}`;
-        video.src = videoSrc;
-        video.load(); // ensures full playback
-        video.style.display = "block";
-        dlVideo.href = videoSrc;
-        dlVideo.style.display = "inline-block";
-      } else {
-        video.style.display = "none";
-        dlVideo.style.display = "none";
-      }
-
-      updateWizard(3);
-      loadHistory();
+      renderResult(d);
     })
     .catch(() => {
       const box = document.getElementById("result");
@@ -93,6 +47,82 @@ function runTest(instructionOverride = null) {
     });
 }
 
+/* =======================
+   RENDER RESULT (NEW)
+======================= */
+function renderResult(d) {
+  updateWizard(1);
+
+  const box = document.getElementById("result");
+
+  let extraInfo = "";
+  if (d.execution_time !== undefined) {
+    extraInfo += `\nExecution Time: ${d.execution_time}s`;
+  }
+  if (d.failure_reason) {
+    extraInfo += `\nFailure Reason: ${d.failure_reason}`;
+  }
+
+  box.innerText =
+    (d.status === "PASSED"
+      ? "Test executed successfully"
+      : "Test failed") + extraInfo;
+
+  box.className =
+    "result-box " + (d.status === "PASSED" ? "success" : "error");
+
+  /* ---------- STATS ---------- */
+  document.getElementById("total").innerText = d.stats.total;
+  document.getElementById("passed").innerText = d.stats.passed;
+  document.getElementById("failed").innerText = d.stats.failed;
+
+  updateWizard(2);
+
+  /* ---------- SCREENSHOT ---------- */
+  const img = document.getElementById("screenshot");
+  const dl = document.getElementById("downloadShot");
+
+  if (d.screenshot) {
+    const src = `${BACKEND_URL}/screenshots/${d.screenshot}?t=${Date.now()}`;
+    img.src = src;
+    dl.href = src;
+    dl.download=d.screenshot;
+    dl.style.display = "inline-block";
+  } else {
+    img.src = "";
+    dl.style.display = "none";
+  }
+
+  /* ---------- VIDEO ---------- */
+  const video = document.getElementById("video");
+  const dlVideo = document.getElementById("downloadVideo");
+
+  if (d.video) {
+    const videoSrc = `${BACKEND_URL}/videos/${d.video}?t=${Date.now()}`;
+    video.src = videoSrc;
+    video.load();
+    video.style.display = "block";
+    dlVideo.href = videoSrc;
+    dlVideo.style.display = "inline-block";
+  } else {
+    video.style.display = "none";
+    dlVideo.style.display = "none";
+  }
+
+  updateWizard(3);
+  loadHistory();
+}
+
+/* =======================
+   RESTORE ON PAGE LOAD
+======================= */
+window.onload = function () {
+  const last = loadLastResult();
+  if (last) {
+    renderResult(last); // ✅ RESTORE UI AFTER BACK / REFRESH
+  }
+};
+
 /* ---------- RUN AGAIN ---------- */
 function runLast() {
   if (lastInstruction) runTest(lastInstruction);
@@ -100,18 +130,14 @@ function runLast() {
 
 /* ---------- CLEAR ---------- */
 function clearAll() {
+  localStorage.removeItem("lastTestResult");
   document.getElementById("instruction").value = "";
   document.getElementById("result").innerText = "Cleared.";
   document.getElementById("result").className = "result-box neutral";
-
-  document.getElementById("extraInfo").innerHTML = `
-    <b>Execution Time:</b> - seconds<br>
-    <b>Failure Reason:</b> N/A<br>
-  `;
-  document.getElementById("reportLink").style.display = "none";
-
   document.getElementById("screenshot").src = "";
   document.getElementById("downloadShot").style.display = "none";
+  document.getElementById("video").style.display = "none";
+  document.getElementById("downloadVideo").style.display = "none";
   updateWizard(0);
 }
 
