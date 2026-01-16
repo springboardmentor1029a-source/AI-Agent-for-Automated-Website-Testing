@@ -1,0 +1,11 @@
+{
+    "test_name": "Intelligent Website Routing Test",
+    "timestamp": "2026-01-16 13:14:00",
+    "search_query": "iphone",
+    "website_chosen": "amazon",
+    "screenshots": [
+        "screenshots/amazon_home.png",
+        "screenshots/amazon_results.png"
+    ],
+    "status": "SUCCESS"
+}
