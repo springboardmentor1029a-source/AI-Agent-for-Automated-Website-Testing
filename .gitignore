@@ -1,73 +1,75 @@
+# =====================
 # Python
-<<<<<<< HEAD
-<<<<<<< HEAD
-venv/
+# =====================
 __pycache__/
 *.pyc
-
-# Generated artifacts
-videos/
-screenshots/
-reports/
-
-# OS / Editor
-.vscode/
-.DS_Store
-Thumbs.db
-=======
-=======
->>>>>>> 57a12c9edaf7a52203e10283b6c5dec93ecffbac
-__pycache__/
-*.py[cod]
-*$py.class
+*.pyo
+*.pyd
 *.so
 .Python
+
+# =====================
+# Virtual Environments
+# =====================
 venv/
 env/
 ENV/
-.venv
+.venv/
 
+# =====================
+# Generated Artifacts
+# =====================
+videos/
+screenshots/
+reports/
+test_results/
+
+# =====================
 # Flask
+# =====================
 instance/
 .webassets-cache
 
-# IDE
+# =====================
+# Node / Frontend
+# =====================
+node_modules/
+
+# =====================
+# Browser Drivers
+# =====================
+chromedriver
+geckodriver
+
+# =====================
+# Logs
+# =====================
+*.log
+
+# =====================
+# Databases
+# =====================
+*.db
+*.sqlite
+*.sqlite3
+
+# =====================
+# Environment Variables
+# =====================
+.env
+.env.local
+
+# =====================
+# IDE / Editor
+# =====================
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
+# =====================
+# OS Files
+# =====================
 .DS_Store
 Thumbs.db
-
-# Logs
-*.log
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Environment variables
-.env
-.env.local
-
-
-node_modules/
-__pycache__/
-
-
-# ChromeDriver
-chromedriver
-geckodriver
-
-# Test results
-test_results/
-screenshots/
-
-<<<<<<< HEAD
->>>>>>> 57a12c9edaf7a52203e10283b6c5dec93ecffbac
-=======
->>>>>>> 57a12c9edaf7a52203e10283b6c5dec93ecffbac
