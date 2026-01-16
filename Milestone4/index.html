@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Milestone 4 Practice</title>
+</head>
+<body>
+
+  <h2>Milestone 4 – Timer Demo</h2>
+
+  <button onclick="startTimer()">Start 10 Seconds Timer</button>
+
+  <p id="msg"></p>
+
+  <script>
+    function startTimer() {
+      document.getElementById("msg").innerText = "Timer started...";
+
+      setTimeout(() => {
+        document.getElementById("msg").innerText =
+          "10 seconds completed. You may close this tab.";
+      }, 10000);
+    }
+  </script>
+
+</body>
+</html>

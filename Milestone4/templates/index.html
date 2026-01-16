@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Website Test Agent</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; }
+        .box {
+            width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+        input, textarea, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        button {
+            background: blue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>AI-Powered Website Testing</h2>
+
+    <input id="url" placeholder="https://example.com">
+
+    <textarea id="instruction" rows="4"
+        placeholder="open website, click login, enter username"></textarea>
+
+    <button onclick="runTest()">Run Test</button>
+</div>
+
+<script>
+function runTest() {
+    const url = document.getElementById("url").value;
+    const instruction = document.getElementById("instruction").value;
+
+    fetch("/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url, instruction })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert("Test Completed!");
+        console.log(data);
+    });
+}
+</script>
+
+</body>
+</html>
