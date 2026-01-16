@@ -1,0 +1,350 @@
+[
+  {
+    "timestamp": "2025-12-10 18:52:10",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-10 18:52:22",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-10 18:59:20",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-10 19:00:00",
+    "entry": "genrator received: [{'action': 'goto', 'url': '/'}, {'action': 'fill', 'selector': 'body', 'value': ''}]"
+  },
+  {
+    "timestamp": "2025-12-10 19:01:40",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-10 19:07:58",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-10 19:23:51",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-11 18:37:16",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-11 18:38:42",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-11 18:40:30",
+    "entry": "genrator received: [{'action': 'unknown', 'note': 'Ambiguous or unknown instruction'}]"
+  },
+  {
+    "timestamp": "2025-12-11 18:40:59",
+    "entry": "genrator received: [{'action': 'goto', 'url': 'google.com'}]"
+  },
+  {
+    "timestamp": "2025-12-11 18:49:14",
+    "entry": "genrator received: [{'action': 'goto', 'url': '/'}, {'action': 'fill', 'selector': 'body', 'value': ''}]"
+  },
+  {
+    "timestamp": "2025-12-22 21:15:15",
+    "entry": "{\n  \"action\": \"open\",\n  \"target\": \"https://www.google.com\"\n}"
+  },
+  {
+    "timestamp": "2025-12-23 19:48:11",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://example.com/login\"\n    },\n    {\n      \"action\": \"fill\",\n      \"target\": \"username field\",\n      \"value\": \"nigger\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 19:48:28",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"fill\",\n      \"target\": \"search box\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 20:34:33",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 20:34:34",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 20:58:58",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    },\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"dogs\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 20:59:12",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 20:59:22",
+    "entry": "{\n  \"actions\": []\n}"
+  },
+  {
+    "timestamp": "2025-12-23 21:03:39",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"assert\",\n      \"value\": \"i love cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 21:04:30",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-23 21:04:45",
+    "entry": "{\n  \"action\": \"open\",\n  \"target\": \"https://www.youtube.com\"\n}"
+  },
+  {
+    "timestamp": "2025-12-23 21:13:17",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-24 18:17:06",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-24 18:17:33",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-24 18:19:12",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-24 18:19:50",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2025-12-24 18:20:11",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"infosys\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-06 22:50:48",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:31:22",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:34:57",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:35:49",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:47:48",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:48:39",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:50:07",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:58:08",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 19:59:10",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 20:04:13",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 20:06:27",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 20:08:58",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 20:34:38",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"helmet\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 20:35:31",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"helmet\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:48:16",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:49:19",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:49:32",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:50:17",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:52:44",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"tests\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:53:29",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.godaddy.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"Rae Lil Black\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:53:50",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"Rae Lil Black\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:54:50",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 22:56:14",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:04:52",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:16:09",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:17:17",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:18:57",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:21:21",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:22:26",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:28:44",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:29:11",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:30:28",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:31:03",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:31:21",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-08 23:31:58",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:21:22",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:37:50",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:46:58",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:47:12",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:47:20",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:47:32",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:54:54",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:55:07",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:57:30",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 14:59:37",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:07:35",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:11:32",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:21:56",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:22:42",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:23:35",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://duckduckgo.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"generic\"\n    },\n    {\n      \"action\": \"click\",\n      \"target\": \"a cat\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 15:24:20",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.amazon.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"bike\",\n      \"on\": \"amazon\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 19:15:23",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"Rickroll\",\n      \"on\": \"youtube\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 19:16:16",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"fill\",\n      \"target\": \"search bar\",\n      \"value\": \"Rickroll\"\n    },\n    {\n      \"action\": \"click\",\n      \"target\": \"search button\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 19:23:56",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-09 20:19:09",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"DanTDM\",\n      \"on\": \"youtube\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-12 22:35:31",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-16 19:18:13",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://google.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"cats\",\n      \"on\": \"google\"\n    }\n  ]\n}"
+  },
+  {
+    "timestamp": "2026-01-16 19:18:49",
+    "entry": "{\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"target\": \"https://www.youtube.com\"\n    },\n    {\n      \"action\": \"search\",\n      \"value\": \"DanTDM\",\n      \"on\": \"youtube\"\n    }\n  ]\n}"
+  }
+]

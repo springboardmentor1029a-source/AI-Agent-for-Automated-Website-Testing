@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings</title>
+
+    <style>
+        .page-transition {
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* background-image: url("{{ url_for('static', filename='images/bg3.png') }}"); */
+            background-size: cover;
+            background-color: dimgrey;
+            background-position: center;
+            height: 100vh;
+            color: white;
+        }
+
+        /* ---------- NAVBAR ---------- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        nav h2 {
+            margin: 0;
+            color: aquamarine;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: cyan;
+        }
+
+        /* ---------- SETTINGS CARD ---------- */
+        .settings-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 70px);
+        }
+
+        .settings-box {
+            width: 40%;
+            background: rgba(0, 0, 0, 0.65);
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        .settings-box h1 {
+            color: aquamarine;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .setting p {
+            max-width: 75%;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* ---------- TOGGLE SWITCH ---------- */
+        .switch {
+            position: relative;
+            width: 52px;
+            height: 26px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            background: #555;
+            border-radius: 30px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: 0.3s;
+        }
+
+        .slider:before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        input:checked + .slider {
+            background: cyan;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="page" class="page-transition">
+
+        <!-- NAV -->
+        <nav>
+            <h2>E2E Automation</h2>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/logs">Logs</a></li>
+                <li><a href="/settings">Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- SETTINGS -->
+        <div class="settings-container">
+            <div class="settings-box">
+                <h1>Settings</h1>
+
+                <div class="setting">
+                    <p>
+                        <strong>Disable Token Limit</strong><br>
+                        Removes token constraints when parsing large or complex test instructions.
+                    </p>
+                    <label class="switch">
+                        <input type="checkbox" id="disableTokens">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting">
+                    <p>
+                        <strong>Strict Parser Validation</strong><br>
+                        Rejects ambiguous or incomplete instructions before execution.
+                    </p>
+                    <label class="switch">
+                        <input type="checkbox" id="strictParser" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting">
+                    <p>
+                        <strong>Auto-Save Test Artifacts</strong><br>
+                        Automatically saves logs, screenshots, and traces after each run.
+                    </p>
+                    <label class="switch">
+                        <input type="checkbox" id="autoSave" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            requestAnimationFrame(() => {
+                document.getElementById("page").classList.add("active");
+            });
+        });
+    </script>
+
+</body>
+</html>
