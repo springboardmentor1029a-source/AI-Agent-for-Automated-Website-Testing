@@ -22,14 +22,19 @@ The system uses LangGraph for orchestration and Playwright for browser automatio
 
 
 User Input (Natural Language Test Case)
+
            ↓
 Instruction Parser Module ( Interprets natural language, Maps to browser actions)
+
            ↓
 Code Generation Module( Generates Playwright scripts and  Creates assertions)
+
            ↓
 Execution Module (Playwright) (  Runs tests headlessly and Monitors DOM changes)
+
            ↓
 Assertion & Reporting Module ( Validates results and Generates test reports)
+
            ↓
     Test Report (Success/Failure)
 
