@@ -1,0 +1,6 @@
+flask
+playwright
+langchain
+langgraph
+pydantic
+reportlab

@@ -1,0 +1,27 @@
+{
+    "summary": {
+        "total_steps": 2,
+        "passed": 2,
+        "failed": 0,
+        "pass_percentage": 100.0
+    },
+    "steps": [
+        {
+            "step_no": 1,
+            "action": "OPEN",
+            "target": "https://youtube.com",
+            "status": "PASS"
+        },
+        {
+            "step_no": 2,
+            "action": "SEARCH",
+            "target": "python course",
+            "status": "PASS"
+        }
+    ],
+    "logs": [
+        "Executing SEARCH: python course",
+        "Found visible search input directly.",
+        "Filling search box..."
+    ]
+}
