@@ -58,14 +58,3 @@ Run the Streamlit application using the command:
 streamlit run app.py
 http://localhost:8501
 
-
----
-Future Enhancements
-
-Integration with Playwright for advanced automation
-
-LLM-based instruction understanding (OpenAI / LangGraph)
-
-API-based test execution
-
-Enhanced reporting and analytics
