@@ -52,11 +52,14 @@ The system accepts test steps written in plain English, parses them into structu
 
 ## 🚀 How to Run the Project (Local)
 
+Run the Streamlit application using the command:
+
 ```bash
 streamlit run app.py
-Then open the browser at:
 http://localhost:8501
 
+
+---
 Future Enhancements
 
 Integration with Playwright for advanced automation
