@@ -7,9 +7,17 @@ import streamlit as st
 import os
 import base64
 import subprocess
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
-from ai_agent import AIWebsiteTester, PLAYWRIGHT_AVAILABLE
+
+# Import Playwright availability check
+try:
+    from ai_agent import AIWebsiteTester, PLAYWRIGHT_AVAILABLE
+except ImportError:
+    # Fallback if import fails
+    PLAYWRIGHT_AVAILABLE = False
+    AIWebsiteTester = None
 
 # Load environment variables - check for .env file in current directory
 # Try multiple locations for .env file
@@ -38,26 +46,43 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Check Playwright browser installation
+# Check and install Playwright browsers if needed
 @st.cache_resource
-def check_playwright_browsers():
-    """Check if Playwright browsers are installed"""
+def ensure_playwright_browsers():
+    """Ensure Playwright browsers are installed"""
     if not PLAYWRIGHT_AVAILABLE:
         return False, "Playwright package not installed"
     
     try:
-        # Try to check if chromium is installed
+        # Try to install chromium browser (idempotent - won't reinstall if already installed)
+        # This is safe to run multiple times
         result = subprocess.run(
-            ['playwright', 'install', '--dry-run', 'chromium'],
+            ['playwright', 'install', 'chromium'],
             capture_output=True,
             text=True,
-            timeout=10
+            timeout=300,  # 5 minutes timeout for installation
+            stderr=subprocess.STDOUT
         )
-        # If dry-run succeeds, browsers are likely installed
-        return True, None
-    except:
-        # If command fails, browsers might not be installed
-        # But don't fail - let it try at runtime
+        
+        if result.returncode == 0:
+            return True, None
+        else:
+            # Installation might have failed, but browsers might already be installed
+            # Try to verify by checking if playwright can find chromium
+            try:
+                from playwright.sync_api import sync_playwright
+                with sync_playwright() as p:
+                    # Try to launch chromium - if it works, browsers are installed
+                    browser = p.chromium.launch(headless=True)
+                    browser.close()
+                return True, None
+            except:
+                return False, "Playwright browsers installation failed. Please check logs."
+    except subprocess.TimeoutExpired:
+        return False, "Playwright browser installation timed out. Please try again."
+    except Exception as e:
+        # If installation fails, browsers might still be available
+        # Let the runtime handle it
         return True, None
 
 # Inject custom CSS
@@ -884,8 +909,16 @@ st.markdown('<div id="demo" class="section demo"><div class="section-container">
 # Initialize agent
 ai_agent, error = get_ai_agent()
 
-# Check Playwright browsers
-playwright_ok, playwright_error = check_playwright_browsers()
+# Ensure Playwright browsers are installed (this will install if needed)
+playwright_ok, playwright_error = ensure_playwright_browsers()
+
+# Show Playwright status if there's an issue
+if not playwright_ok and PLAYWRIGHT_AVAILABLE:
+    st.warning(f"⚠️ Playwright browsers: {playwright_error}")
+    st.info("""
+    **Installing Playwright browsers...** This may take a few minutes on first run.
+    The browsers will be installed automatically. Please wait or refresh the page.
+    """)
 
 # Only show error message if API key is truly missing
 if error == "OPENAI_API_KEY_NOT_FOUND":
@@ -992,7 +1025,10 @@ with col_results:
         if not ai_agent:
             st.error("❌ **AI Agent not available.** Please add your OpenAI API key to use this feature.")
         elif not PLAYWRIGHT_AVAILABLE:
-            st.error("❌ **Playwright not installed.** Please install it: `pip install playwright && playwright install chromium`")
+            st.error("❌ **Playwright package not installed.** This should be installed automatically. Please check deployment logs.")
+        elif not playwright_ok:
+            st.warning(f"⚠️ **Playwright browsers installing...** {playwright_error}")
+            st.info("Please wait a moment and try again. Browsers are being installed automatically.")
         elif not website_url or not test_instruction:
             st.warning("⚠️ Please fill in both Website URL and Test Instruction")
         else:
