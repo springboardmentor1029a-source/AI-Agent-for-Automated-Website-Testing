@@ -22,8 +22,16 @@ from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import StateGraph, END
 
-# Playwright imports
-from playwright.sync_api import sync_playwright, Page, Browser, BrowserContext
+# Playwright imports (optional - graceful degradation if not installed)
+try:
+    from playwright.sync_api import sync_playwright, Page, Browser, BrowserContext
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
+    sync_playwright = None
+    Page = None
+    Browser = None
+    BrowserContext = None
 
 # Load environment variables
 load_dotenv()
