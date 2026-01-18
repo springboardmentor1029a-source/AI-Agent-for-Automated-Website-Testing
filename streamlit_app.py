@@ -759,17 +759,19 @@ st.markdown(how_it_works_html, unsafe_allow_html=True)
 # Demo Section
 st.markdown('<div class="section demo"><div class="section-container"><h2 class="section-title">Try It Now</h2><div class="demo-container">', unsafe_allow_html=True)
 
-# Form Column
-with st.container():
+# Initialize agent
+ai_agent, error = get_ai_agent()
+
+if error:
+    st.warning(f"⚠️ AI Agent initialization: {error}")
+    st.info("💡 The agent will work in fallback mode without OpenAI API")
+    ai_agent = None
+
+# Create two columns for form and results
+col_form, col_results = st.columns(2)
+
+with col_form:
     st.markdown('<div class="demo-form">', unsafe_allow_html=True)
-    
-    # Initialize agent
-    ai_agent, error = get_ai_agent()
-    
-    if error:
-        st.warning(f"⚠️ AI Agent initialization: {error}")
-        st.info("💡 The agent will work in fallback mode without OpenAI API")
-        ai_agent = None
     
     with st.form("test_form"):
         st.markdown('<div class="form-group"><label><i class="fas fa-link"></i> Website URL</label></div>', unsafe_allow_html=True)
@@ -801,8 +803,8 @@ with st.container():
         submitted = st.form_submit_button("🚀 Run Test", use_container_width=True, type="primary")
     
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Results Column
+
+with col_results:
     st.markdown('<div class="demo-results" id="results">', unsafe_allow_html=True)
     
     # Run test when form is submitted
@@ -901,7 +903,9 @@ with st.container():
         </div>
         ''', unsafe_allow_html=True)
     
-    st.markdown('</div></div></div></div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('</div></div></div>', unsafe_allow_html=True)
 
 # Footer
 footer_html = """
