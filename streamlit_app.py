@@ -6,13 +6,12 @@ Recreated with the same UI as the HTML version
 import streamlit as st
 import os
 import base64
+import subprocess
+from pathlib import Path
 from dotenv import load_dotenv
-from ai_agent import AIWebsiteTester
+from ai_agent import AIWebsiteTester, PLAYWRIGHT_AVAILABLE
 
 # Load environment variables - check for .env file in current directory
-from pathlib import Path
-import os
-
 # Try multiple locations for .env file
 env_locations = [
     Path('.') / '.env',  # Current directory
@@ -38,6 +37,28 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+# Check Playwright browser installation
+@st.cache_resource
+def check_playwright_browsers():
+    """Check if Playwright browsers are installed"""
+    if not PLAYWRIGHT_AVAILABLE:
+        return False, "Playwright package not installed"
+    
+    try:
+        # Try to check if chromium is installed
+        result = subprocess.run(
+            ['playwright', 'install', '--dry-run', 'chromium'],
+            capture_output=True,
+            text=True,
+            timeout=10
+        )
+        # If dry-run succeeds, browsers are likely installed
+        return True, None
+    except:
+        # If command fails, browsers might not be installed
+        # But don't fail - let it try at runtime
+        return True, None
 
 # Inject custom CSS
 def inject_custom_css():
@@ -116,25 +137,6 @@ def inject_custom_css():
         align-items: center;
     }
     
-    .nav-menu {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-        margin: 0;
-        padding: 0;
-    }
-    
-    .nav-menu a {
-        text-decoration: none;
-        color: var(--text-dark);
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-    
-    .nav-menu a:hover {
-        color: var(--primary-color);
-    }
-    
     .nav-brand {
         display: flex;
         align-items: center;
@@ -174,6 +176,25 @@ def inject_custom_css():
     .nav-brand-subtitle {
         font-size: 0.75rem;
         color: var(--text-light);
+    }
+    
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav-menu a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+    
+    .nav-menu a:hover {
+        color: var(--primary-color);
     }
     
     /* Hero Section */
@@ -488,12 +509,6 @@ def inject_custom_css():
         align-items: start;
     }
     
-    @media (max-width: 768px) {
-        .demo-container {
-            grid-template-columns: 1fr;
-        }
-    }
-    
     .demo-form {
         background: var(--white);
         padding: 2rem;
@@ -636,11 +651,6 @@ def get_ai_agent():
                     # Key exists but agent still failed - might be invalid
                     return None, f"API key found but initialization failed: {str(ve)}"
             return None, str(ve)
-    except ValueError as e:
-        # This is the error from ai_agent.py when API key is missing
-        if "OPENAI_API_KEY" in str(e):
-            return None, "OPENAI_API_KEY not found. Please add it in Streamlit Cloud secrets or .env file. The app will work in limited mode."
-        return None, str(e)
     except Exception as e:
         return None, str(e)
 
@@ -874,6 +884,9 @@ st.markdown('<div id="demo" class="section demo"><div class="section-container">
 # Initialize agent
 ai_agent, error = get_ai_agent()
 
+# Check Playwright browsers
+playwright_ok, playwright_error = check_playwright_browsers()
+
 # Only show error message if API key is truly missing
 if error == "OPENAI_API_KEY_NOT_FOUND":
     # Check if we're running on Streamlit Cloud (has secrets) or locally
@@ -977,7 +990,9 @@ with col_results:
     # Run test when form is submitted
     if submitted:
         if not ai_agent:
-            st.error("AI Agent not available. Please check your configuration.")
+            st.error("❌ **AI Agent not available.** Please add your OpenAI API key to use this feature.")
+        elif not PLAYWRIGHT_AVAILABLE:
+            st.error("❌ **Playwright not installed.** Please install it: `pip install playwright && playwright install chromium`")
         elif not website_url or not test_instruction:
             st.warning("⚠️ Please fill in both Website URL and Test Instruction")
         else:
@@ -986,82 +1001,111 @@ with col_results:
                 website_url = 'https://' + website_url
             
             # Show progress
-            with st.spinner("🔄 Running test... This may take a few moments"):
-                try:
-                    # Run the test
-                    result = ai_agent.run_test(website_url, test_instruction, browser)
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            try:
+                status_text.text("🔄 Initializing test...")
+                progress_bar.progress(10)
+                
+                # Run the test
+                status_text.text("🔄 Running test... This may take a few moments")
+                progress_bar.progress(30)
+                
+                result = ai_agent.run_test(website_url, test_instruction, browser)
+                
+                progress_bar.progress(100)
+                status_text.text("✅ Test completed!")
+                
+                # Clear progress indicators
+                progress_bar.empty()
+                status_text.empty()
+                
+                # Display results
+                st.markdown("---")
+                st.header("📊 Test Results")
+                
+                # Status
+                if result.get("status") == "success":
+                    st.success(f"✅ Test Passed")
+                elif result.get("status") == "error":
+                    st.error(f"❌ Test Failed")
+                else:
+                    st.info(f"ℹ️ Test Status: {result.get('status', 'unknown')}")
+                
+                # Test details
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Website", result.get("websiteUrl", "N/A"))
+                with col2:
+                    st.metric("Browser", result.get("browser", "N/A"))
+                
+                st.markdown(f"**Test Instruction:** {result.get('testInstruction', 'N/A')}")
+                
+                # Results
+                if result.get("results"):
+                    st.subheader("📋 Results")
+                    for res in result["results"]:
+                        st.markdown(f"- {res}")
+                
+                # Validations
+                if result.get("validations"):
+                    st.subheader("✅ Validations")
+                    for val in result["validations"]:
+                        status_icon = "✅" if val.get("status") == "pass" else "⚠️" if val.get("status") == "warning" else "❌"
+                        st.markdown(f"{status_icon} **{val.get('type', 'N/A')}**: {val.get('message', 'N/A')}")
+                
+                # Screenshots
+                if result.get("screenshots"):
+                    st.subheader("📸 Screenshots")
+                    screenshots = result["screenshots"]
+                    # Filter duplicates
+                    seen = set()
+                    unique_screenshots = []
+                    for ss in screenshots:
+                        if ss.get("name") and ss.get("name") not in seen and ss.get("base64"):
+                            seen.add(ss.get("name"))
+                            unique_screenshots.append(ss)
                     
-                    # Display results
-                    st.markdown("---")
-                    st.header("📊 Test Results")
-                    
-                    # Status
-                    if result.get("status") == "success":
-                        st.success(f"✅ Test Passed")
-                    else:
-                        st.error(f"❌ Test Failed")
-                    
-                    # Test details
+                    if unique_screenshots:
+                        cols = st.columns(min(len(unique_screenshots), 3))
+                        for idx, screenshot in enumerate(unique_screenshots):
+                            with cols[idx % len(cols)]:
+                                st.image(
+                                    f"data:image/png;base64,{screenshot.get('base64')}",
+                                    caption=screenshot.get("name", f"Screenshot {idx + 1}"),
+                                    use_container_width=True
+                                )
+                
+                # Performance metrics
+                if result.get("performance"):
+                    st.subheader("⚡ Performance Metrics")
+                    perf = result["performance"]
                     col1, col2 = st.columns(2)
                     with col1:
-                        st.metric("Website", result.get("websiteUrl", "N/A"))
+                        st.metric("Load Time", f"{perf.get('loadTime', 0)}ms")
                     with col2:
-                        st.metric("Browser", result.get("browser", "N/A"))
-                    
-                    st.markdown(f"**Test Instruction:** {result.get('testInstruction', 'N/A')}")
-                    
-                    # Results
-                    if result.get("results"):
-                        st.subheader("📋 Results")
-                        for res in result["results"]:
-                            st.markdown(f"- {res}")
-                    
-                    # Validations
-                    if result.get("validations"):
-                        st.subheader("✅ Validations")
-                        for val in result["validations"]:
-                            status_icon = "✅" if val.get("status") == "pass" else "⚠️" if val.get("status") == "warning" else "❌"
-                            st.markdown(f"{status_icon} **{val.get('type', 'N/A')}**: {val.get('message', 'N/A')}")
-                    
-                    # Screenshots
-                    if result.get("screenshots"):
-                        st.subheader("📸 Screenshots")
-                        screenshots = result["screenshots"]
-                        # Filter duplicates
-                        seen = set()
-                        unique_screenshots = []
-                        for ss in screenshots:
-                            if ss.get("name") and ss.get("name") not in seen and ss.get("base64"):
-                                seen.add(ss.get("name"))
-                                unique_screenshots.append(ss)
-                        
-                        if unique_screenshots:
-                            cols = st.columns(min(len(unique_screenshots), 3))
-                            for idx, screenshot in enumerate(unique_screenshots):
-                                with cols[idx % len(cols)]:
-                                    st.image(
-                                        f"data:image/png;base64,{screenshot.get('base64')}",
-                                        caption=screenshot.get("name", f"Screenshot {idx + 1}"),
-                                        use_container_width=True
-                                    )
-                    
-                    # Performance metrics
-                    if result.get("performance"):
-                        st.subheader("⚡ Performance Metrics")
-                        perf = result["performance"]
-                        col1, col2 = st.columns(2)
-                        with col1:
-                            st.metric("Load Time", f"{perf.get('loadTime', 0)}ms")
-                        with col2:
-                            st.metric("Page Size", f"{perf.get('pageSize', 'N/A')}KB")
-                    
-                    # Error details
-                    if result.get("error"):
-                        st.error(f"❌ Error: {result.get('error')}")
-                    
-                except Exception as e:
-                    st.error(f"❌ An error occurred: {str(e)}")
-                    st.exception(e)
+                        page_size = perf.get('pageSize', 0)
+                        if page_size:
+                            st.metric("Page Size", f"{page_size / 1024:.2f}KB")
+                        else:
+                            st.metric("Page Size", "N/A")
+                
+                # Error details
+                if result.get("error"):
+                    st.error(f"❌ Error: {result.get('error')}")
+                
+                # Execution details
+                if result.get("execution_details"):
+                    exec_details = result["execution_details"]
+                    if exec_details.get("error"):
+                        st.error(f"❌ Execution Error: {exec_details.get('error')}")
+                
+            except Exception as e:
+                progress_bar.empty()
+                status_text.empty()
+                st.error(f"❌ An error occurred: {str(e)}")
+                st.exception(e)
     else:
         st.markdown('''
         <div class="results-placeholder">
