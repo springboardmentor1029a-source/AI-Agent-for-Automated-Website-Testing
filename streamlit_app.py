@@ -11,17 +11,25 @@ from ai_agent import AIWebsiteTester
 
 # Load environment variables - check for .env file in current directory
 from pathlib import Path
-env_path = Path('.') / '.env'
-if env_path.exists():
-    load_dotenv(dotenv_path=env_path)
-else:
-    # Try parent directory
-    env_path = Path('..') / '.env'
+import os
+
+# Try multiple locations for .env file
+env_locations = [
+    Path('.') / '.env',  # Current directory
+    Path(__file__).parent / '.env',  # Same directory as script
+    Path('..') / '.env',  # Parent directory
+]
+
+env_loaded = False
+for env_path in env_locations:
     if env_path.exists():
-        load_dotenv(dotenv_path=env_path)
-    else:
-        # Load from default locations
-        load_dotenv()
+        load_dotenv(dotenv_path=env_path, override=True)
+        env_loaded = True
+        break
+
+# If no .env file found, try default locations
+if not env_loaded:
+    load_dotenv(override=True)
 
 # Page configuration
 st.set_page_config(
@@ -589,27 +597,37 @@ def get_ai_agent():
         # Try to get API key from Streamlit secrets first (for Cloud deployment)
         api_key = None
         try:
-            if hasattr(st, 'secrets') and hasattr(st.secrets, 'get'):
-                api_key = st.secrets.get('OPENAI_API_KEY')
+            if hasattr(st, 'secrets'):
+                # Try different ways to access secrets
+                if hasattr(st.secrets, 'get'):
+                    api_key = st.secrets.get('OPENAI_API_KEY')
+                elif hasattr(st.secrets, '__contains__') and 'OPENAI_API_KEY' in st.secrets:
+                    api_key = st.secrets['OPENAI_API_KEY']
                 if api_key:
-                    os.environ['OPENAI_API_KEY'] = api_key
-        except:
+                    os.environ['OPENAI_API_KEY'] = str(api_key)
+        except Exception as e:
             pass
         
         # If still not found, try environment variable (for local development with .env)
         if not api_key:
             api_key = os.getenv('OPENAI_API_KEY')
         
-        # Set it in environment if found
+        # Clean up API key (remove quotes if present)
         if api_key:
+            api_key = api_key.strip().strip('"').strip("'")
             os.environ['OPENAI_API_KEY'] = api_key
         
         # If no API key, return None but don't fail - agent can work in fallback mode
-        if not api_key:
+        if not api_key or len(api_key) < 10:
             return None, "OPENAI_API_KEY not found. Please add it in Streamlit Cloud secrets or .env file. The app will work in limited mode."
         
         agent = AIWebsiteTester()
         return agent, None
+    except ValueError as e:
+        # This is the error from ai_agent.py when API key is missing
+        if "OPENAI_API_KEY" in str(e):
+            return None, "OPENAI_API_KEY not found. Please add it in Streamlit Cloud secrets or .env file. The app will work in limited mode."
+        return None, str(e)
     except Exception as e:
         return None, str(e)
 
@@ -845,27 +863,47 @@ ai_agent, error = get_ai_agent()
 
 if error:
     # Show a more user-friendly message
-    if "OPENAI_API_KEY" in error:
-        st.info("""
-        💡 **API Key Setup Required**
+    if "OPENAI_API_KEY" in error or "not found" in error.lower():
+        # Check if we're running locally (has .env file) or on Streamlit Cloud
+        env_file_exists = Path('.env').exists() or Path(__file__).parent.joinpath('.env').exists()
         
-        To use the full AI capabilities, please add your OpenAI API key:
-        
-        1. In Streamlit Cloud: Go to **Manage app** → **Secrets** → Add:
-           ```
-           OPENAI_API_KEY = your_api_key_here
-           ```
-        
-        2. Or locally: Create a `.env` file with:
-           ```
-           OPENAI_API_KEY=your_api_key_here
-           ```
-        
-        The app will work in limited mode without the API key.
-        """)
+        if env_file_exists:
+            st.warning("""
+            ⚠️ **API Key Not Loaded**
+            
+            A `.env` file was found, but the API key couldn't be loaded. Please check:
+            
+            1. The `.env` file is in the project root directory
+            2. The format is correct: `OPENAI_API_KEY=your_key_here` (no quotes needed)
+            3. Restart the Streamlit app after creating/updating `.env`
+            
+            The app will work in limited mode without the API key.
+            """)
+        else:
+            st.info("""
+            💡 **API Key Setup Required**
+            
+            To use the full AI capabilities, please add your OpenAI API key:
+            
+            1. **Locally**: Create a `.env` file in the project root with:
+               ```
+               OPENAI_API_KEY=your_api_key_here
+               ```
+               Then restart the app.
+            
+            2. **Streamlit Cloud**: Go to **Manage app** → **Secrets** → Add:
+               ```
+               OPENAI_API_KEY = your_api_key_here
+               ```
+            
+            The app will work in limited mode without the API key.
+            """)
     else:
         st.warning(f"⚠️ AI Agent initialization: {error}")
     ai_agent = None
+else:
+    # Success - show a subtle indicator
+    st.success("✅ AI Agent ready - API key loaded successfully!", icon="🤖")
 
 # Create two columns for form and results
 col_form, col_results = st.columns(2)
