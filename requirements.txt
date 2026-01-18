@@ -1,14 +1,17 @@
+# Streamlit Cloud Compatible Requirements
+# Use this file if main requirements.txt fails
+# Rename this to requirements.txt if needed
+
 streamlit==1.29.0
-Flask==3.0.0
-flask-cors==4.0.0
 langgraph==0.2.28
 langchain==0.2.16
 langchain-openai==0.1.23
 langchain-community==0.2.10
 langchain-core==0.2.43
-playwright==1.41.0
+python-dotenv==1.0.0
 requests==2.31.0
 beautifulsoup4==4.12.2
-python-dotenv==1.0.0
 fpdf2==2.7.9
-lxml>=5.0.0
+
+# Playwright - try without it first, then add back
+# playwright==1.41.0
