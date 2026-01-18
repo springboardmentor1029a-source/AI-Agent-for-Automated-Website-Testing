@@ -559,6 +559,15 @@ class AIWebsiteTester:
         """
         Execution Module: Runs Playwright tests in headless browser with screenshots and validation
         """
+        if not PLAYWRIGHT_AVAILABLE:
+            state["execution_result"] = {
+                "status": "error",
+                "error": "Playwright is not installed. Please install it with: pip install playwright && playwright install chromium"
+            }
+            state["screenshots"] = []
+            state["validations"] = []
+            return state
+        
         if state.get("error") or not state.get("generated_code"):
             state["execution_result"] = {
                 "status": "error",
