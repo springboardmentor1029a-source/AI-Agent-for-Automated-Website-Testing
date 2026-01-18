@@ -1,24 +1,26 @@
-# Core web framework
-Flask>=3.0.0
-flask-cors>=4.0.0
-
-# LangGraph and LangChain for AI agent
-langgraph>=0.2.28
-langchain>=0.2.16
-langchain-openai>=0.1.23
-langchain-community>=0.2.10
-
-# Playwright for browser automation
-playwright>=1.41.0
-
 # Streamlit for deployment
-streamlit>=1.29.0
+streamlit==1.29.0
+
+# Core web framework (optional for Streamlit, but included for Flask app)
+Flask==3.0.0
+flask-cors==4.0.0
+
+# LangGraph and LangChain for AI agent - pinned compatible versions
+langgraph==0.2.28
+langchain==0.2.16
+langchain-openai==0.1.23
+langchain-community==0.2.10
+langchain-core==0.2.43
+
+# Playwright for browser automation - with compatible greenlet
+playwright==1.41.0
+greenlet==3.0.3
 
 # Additional dependencies
-requests>=2.31.0
-beautifulsoup4>=4.12.2
-python-dotenv>=1.0.0
-fpdf2>=2.7.9
+requests==2.31.0
+beautifulsoup4==4.12.2
+python-dotenv==1.0.0
+fpdf2==2.7.9
 
-# lxml - use latest compatible version (avoid 4.9.3 which has Python 3.13 issues)
-lxml>=5.0.0
+# lxml - use compatible version (avoid 4.9.3)
+lxml>=5.0.0,<6.0.0
