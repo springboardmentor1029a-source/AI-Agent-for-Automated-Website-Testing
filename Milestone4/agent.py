@@ -1,6 +1,7 @@
-from instruction_parser import parse_instruction
-from playwright_executor import run_playwright_test
-from report_generator import generate_report
+from Parser.instruction_parser import parse_instruction
+from Milestone4.playwright_executor import run_playwright_test
+from Milestone4.report_generator import generate_report
+
 
 def run_agent(url, instruction):
     actions = parse_instruction(instruction)

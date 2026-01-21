@@ -1,20 +1,10 @@
-from flask import Flask, render_template, request, jsonify
-from agent import run_agent
+# Milestone4/app.py
 
-app = Flask(__name__)
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-@app.route("/run", methods=["POST"])
-def run_test():
-    data = request.json
-    url = data.get("url")
-    instruction = data.get("instruction")
-
-    result = run_agent(url, instruction)
-    return jsonify(result)
+from Milestone4.agent import run_agent
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    output = run_agent(
+        "http://example.com",
+        "Open website and click link"
+    )
+    print(output)
