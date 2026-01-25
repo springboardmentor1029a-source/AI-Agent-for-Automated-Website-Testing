@@ -1,60 +1,103 @@
-# AI Agent for Automated Website Testing
+# 🤖 AI Agent for Automated Website Testing
 
-This project is developed as part of the **Infosys Springboard Mentorship Program**.  
-It demonstrates an AI-powered approach to automate website testing using natural language instructions.
+An intelligent web-based application that automates website testing using natural language instructions. Users can describe what they want to test in plain English, and the AI agent automatically generates and executes Playwright test scripts.
 
----
-
-## 📌 Project Overview
-
-The system accepts test steps written in plain English, parses them into structured actions, intelligently decides the target website, and executes automated browser tests while capturing screenshots and generating reports.
+This project is developed as part of the Infosys Springboard Virtual Internship and demonstrates the use of AI agents, LLMs, and browser automation.
 
 ---
 
-## 🧩 Milestone-wise Implementation
+## 🚀 Features
 
-### 🔹 Milestone 1: Problem Understanding
-- Studied AI-based website testing concepts
-- Understood automation workflows and testing challenges
-
-### 🔹 Milestone 2: Instruction Parsing & Mapping
-- Natural language instruction parsing
-- Conversion into structured commands such as open, search, and click
-
-### 🔹 Milestone 3: Automated Test Execution
-- Implemented browser automation using Selenium
-- Intelligent routing logic:
-  - Product-related searches → Amazon
-  - General/company searches → Google
-- Automatic screenshot capture during execution
-
-### 🔹 Milestone 4: Reporting
-- Generated test execution report in JSON format
-- Included screenshots, timestamps, and execution status
+- Natural language based website testing  
+- AI agent workflow using LangGraph  
+- Automatic Playwright script generation  
+- Headless browser execution  
+- Fallback mode (works without OpenAI API key)  
+- Tests search, navigation, forms, images, and links  
+- Real-time test execution results and performance metrics  
 
 ---
 
-## 🛠️ Technologies Used
-- Python
-- Streamlit (Frontend Web Interface)
-- Selenium (Browser Automation)
+## 🧰 Technology Stack
+
+### Backend
+- Python 3.8+
+- Flask
+- LangGraph
+- LangChain
+- OpenAI GPT-3.5-turbo
+- Playwright
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+- Font Awesome
 
 ---
 
-## ⚙️ Key Features
-- Natural language test input
-- Rule-based fallback mode for instruction understanding
-- Intelligent website selection
-- Screenshot-based evidence
-- Automated test report generation
+## 📋 Prerequisites
+
+- Python 3.8 or higher  
+- Playwright browsers (Chromium)  
+- OpenAI API key (optional – fallback mode supported)
 
 ---
 
-## 🚀 How to Run the Project (Local)
+## ⚙️ Installation
 
-Run the Streamlit application using the command:
-
+### Clone the Repository
 ```bash
-streamlit run app.py
-http://localhost:8501
+git clone <your-github-repository-url>
+cd infosys-springboard
+Create Virtual Environment (Recommended)
+python -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
+Install Dependencies
+pip install -r requirements.txt
+playwright install chromium
+(Optional) Set OpenAI API Key
 
+Create a .env file:
+
+OPENAI_API_KEY=your_api_key_here
+
+Note: The application works even without an OpenAI API key using fallback mode.
+
+▶️ Running the Application
+Flask Web Application
+python app.py
+Open in browser:
+
+http://localhost:5001
+Streamlit Application
+streamlit run streamlit_app.py
+Open in browser:
+
+http://localhost:8501
+🧪 Usage Examples
+Search Test
+
+Website URL:
+
+https://amazon.com
+Test Instruction:
+
+go to website and search for iphone 15
+Navigation Test
+navigate to the contact page and verify the form loads
+Comprehensive Test
+check all images, links, and forms on the homepage
+⚙️ How It Works
+
+User Instruction
+↓
+LangGraph AI Agent
+↓
+Instruction Parsing (GPT / Fallback)
+↓
+Playwright Script Generation
+↓
+Headless Browser Execution
+↓
+Test Results and Performance Metrics
